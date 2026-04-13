@@ -1,0 +1,171 @@
+
+[
+    {
+        "jobTitle": "IT / Software",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 38250,
+        "salaryRangeHigh": 56250
+    },
+    {
+        "jobTitle": "IT / Software",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 72250,
+        "salaryRangeHigh": 106250
+    },
+    {
+        "jobTitle": "IT / Software",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 119000,
+        "salaryRangeHigh": 175000
+    },
+    {
+        "jobTitle": "IT / Software",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 187000,
+        "salaryRangeHigh": 275000
+    },
+    {
+        "jobTitle": "BPO / Customer Support",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 21250,
+        "salaryRangeHigh": 31250
+    },
+    {
+        "jobTitle": "BPO / Customer Support",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 40800,
+        "salaryRangeHigh": 60000
+    },
+    {
+        "jobTitle": "BPO / Customer Support",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 63750,
+        "salaryRangeHigh": 93750
+    },
+    {
+        "jobTitle": "BPO / Customer Support",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 106250,
+        "salaryRangeHigh": 156250
+    },
+    {
+        "jobTitle": "Finance / Accounting",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 25500,
+        "salaryRangeHigh": 37500
+    },
+    {
+        "jobTitle": "Finance / Accounting",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 51000,
+        "salaryRangeHigh": 75000
+    },
+    {
+        "jobTitle": "Finance / Accounting",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 85000,
+        "salaryRangeHigh": 125000
+    },
+    {
+        "jobTitle": "Finance / Accounting",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 153000,
+        "salaryRangeHigh": 225000
+    },
+    {
+        "jobTitle": "Engineering / Construction",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 23800,
+        "salaryRangeHigh": 35000
+    },
+    {
+        "jobTitle": "Engineering / Construction",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 46750,
+        "salaryRangeHigh": 68750
+    },
+    {
+        "jobTitle": "Engineering / Construction",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 80750,
+        "salaryRangeHigh": 118750
+    },
+    {
+        "jobTitle": "Engineering / Construction",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 136000,
+        "salaryRangeHigh": 200000
+    },
+    {
+        "jobTitle": "Marketing / E-commerce",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 22100,
+        "salaryRangeHigh": 32500
+    },
+    {
+        "jobTitle": "Marketing / E-commerce",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 44200,
+        "salaryRangeHigh": 65000
+    },
+    {
+        "jobTitle": "Marketing / E-commerce",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 76500,
+        "salaryRangeHigh": 112500
+    },
+    {
+        "jobTitle": "Marketing / E-commerce",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 127500,
+        "salaryRangeHigh": 187500
+    },
+    {
+        "jobTitle": "HR / General Affairs",
+        "experienceLevel": "Entry (1-3 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 20400,
+        "salaryRangeHigh": 30000
+    },
+    {
+        "jobTitle": "HR / General Affairs",
+        "experienceLevel": "Mid (4-7 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 38250,
+        "salaryRangeHigh": 56250
+    },
+    {
+        "jobTitle": "HR / General Affairs",
+        "experienceLevel": "Senior (8-12 years)",
+        "location": "Metro Manila",
+        "salaryRangeLow": 68000,
+        "salaryRangeHigh": 100000
+    },
+    {
+        "jobTitle": "HR / General Affairs",
+        "experienceLevel": "Manager/Director",
+        "location": "Metro Manila",
+        "salaryRangeLow": 110500,
+        "salaryRangeHigh": 162500
+    }
+]

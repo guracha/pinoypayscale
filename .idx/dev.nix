@@ -6,7 +6,16 @@
   # Use https://search.nixos.org/packages to find packages
   packages = [
     pkgs.nodejs_22
-    pkgs.python3
+    # Install Chromium optimized for this Nix environment
+    pkgs.chromium
+    (pkgs.python311.withPackages (ps: [
+      ps.pip
+      ps.wheel
+      ps.fastapi
+      ps.uvicorn
+      ps.python-multipart
+      ps.pypdf
+    ]))
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -21,7 +30,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["python3" "-m" "http.server" "$PORT" "--bind" "0.0.0.0"];
+          command = ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"];
           manager = "web";
         };
       };

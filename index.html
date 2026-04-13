@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,475 +7,44 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #0047AB; /* Professional Blue */
-            --bg-color-light: #F8F9FA;
-            --bg-color-white: #FFFFFF;
-            --text-color-dark: #212529;
-            --text-color-light: #6c757d;
-            --border-color: #dee2e6;
-        }
-
-        body {
-            font-family: 'Inter', 'Roboto', sans-serif;
-            margin: 0;
-            background-color: var(--bg-color-light);
-            color: var(--text-color-dark);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 40px;
-            box-sizing: border-box;
-            background-color: var(--bg-color-white);
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        nav a {
-            margin-left: 25px;
-            text-decoration: none;
-            color: var(--text-color-dark);
-            font-weight: 400;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
-        main {
-            width: 100%;
-            max-width: 960px;
-            padding: 40px 20px;
-            box-sizing: border-box;
-            text-align: center;
-        }
-
-        .hero-section h1 {
-            font-family: 'Inter', sans-serif;
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--text-color-dark);
-            line-height: 1.2;
-            margin-bottom: 15px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .hero-section p {
-            font-size: 18px;
-            color: var(--text-color-light);
-            margin-bottom: 40px;
-        }
-
-        .cta-section .cta-box {
-            border: 3px dashed var(--primary-color);
-            border-radius: 15px;
-            padding: 50px 30px;
-            background-color: var(--bg-color-white);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            transition: background-color 0.3s ease;
-        }
-        
-        .cta-box.drag-over {
-            background-color: #e9ecef;
-        }
-
-        .cta-box p {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-color-light);
-        }
-
-        .cta-box span {
-            color: var(--text-color-light);
-            font-weight: 700;
-        }
-
-        .cta-box #upload-btn {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .cta-box #upload-btn:hover {
-            background-color: #003380; /* Darker blue */
-            transform: translateY(-2px);
-        }
-
-        .stats-section {
-            margin-top: 60px;
-            width: 100%;
-        }
-
-        .stats-section h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 30px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .stat-card {
-            background-color: var(--bg-color-white);
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            text-align: left;
-            border: 1px solid var(--border-color);
-        }
-
-        .stat-card span {
-            font-size: 14px;
-            color: var(--primary-color);
-            font-weight: 700;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .stat-card strong {
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-color-dark);
-            display: block;
-            margin-bottom: 4px;
-        }
-
-        .stat-card p {
-            font-size: 14px;
-            color: var(--text-color-light);
-            margin: 0;
-        }
-        
-        /* Result & Loader Styles */
-        .result-section {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            margin-top: 40px;
-        }
-
-        .loader {
-            text-align: center;
-        }
-
-        .loader p {
-            font-size: 18px;
-            color: var(--text-color-light);
-            margin-bottom: 20px;
-        }
-
-        .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: var(--primary-color);
-            animation: spin 1s ease infinite;
-            margin: 0 auto;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .result-card-container {
-            background-color: var(--bg-color-white);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            width: 100%;
-            max-width: 600px;
-            border: 1px solid var(--border-color);
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .result-card-container h2 {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-top: 0;
-        }
-
-        .result-card-container .salary-range {
-            font-size: 48px;
-            font-weight: 900;
-            color: var(--text-color-dark);
-            margin: 10px 0;
-        }
-
-        .result-card-container .role-description {
-            font-size: 16px;
-            color: var(--text-color-light);
-            margin-bottom: 30px;
-        }
-
-        .result-card-container .disclaimer {
-            font-size: 12px;
-            color: #999;
-            margin-top: 20px;
-        }
-        
-        #restart-btn {
-            margin-top: 20px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        #restart-btn:hover {
-            background-color: #003380;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-
-        footer {
-            width: 100%;
-            text-align: center;
-            padding: 30px 20px;
-            margin-top: auto;
-            font-size: 14px;
-            color: var(--text-color-light);
-            border-top: 1px solid var(--border-color);
-            background-color: var(--bg-color-white);
-        }
-
-        @media (max-width: 768px) {
-            header {
-                padding: 15px 20px;
-            }
-
-            .logo {
-                font-size: 20px;
-            }
-            
-            nav a {
-                margin-left: 15px;
-            }
-
-            main {
-                padding: 20px 15px;
-            }
-
-            .hero-section h1 {
-                font-size: 32px;
-            }
-
-            .hero-section p {
-                font-size: 16px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .cta-box #upload-btn {
-                padding: 12px 24px;
-                font-size: 16px;
-            }
-            .result-card-container {
-                padding: 30px 20px;
-            }
-            .result-card-container h2 {
-                font-size: 24px;
-            }
-            .result-card-container .salary-range {
-                font-size: 36px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <div class="logo">PinoyPayScale</div>
+        <div class="logo"><a href="index.html">PinoyPayScale</a></div>
         <nav>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <a href="blog.html">Blog</a>
         </nav>
     </header>
 
     <main>
         <section class="hero-section">
-            <h1>Know Your Real Market Worth in the 2026 PH Job Market</h1>
-            <p>Get an AI-powered salary prediction based on your skills and experience.</p>
+            <h1>Explore Real Market Salaries in the 2026 PH Job Market</h1>
+            <p>Browse live salary data based on job titles and experience levels.</p>
         </section>
 
-        <section class="cta-section">
-            <div class="cta-box" id="drop-zone">
-                <p>Drag & Drop Your Resume Here</p>
-                <span>or</span>
-                <button id="upload-btn">Upload Resume & Check My Salary</button>
-                <input type="file" id="file-input" hidden accept=".pdf,.doc,.docx">
-            </div>
-        </section>
-        
-        <section class="result-section hidden">
-            <div class="loader">
-                <p>Our AI is analyzing your profile...</p>
-                <div class="spinner"></div>
-            </div>
-            <div class="result-card-container hidden">
-                <h2>Your AI-Powered Salary Prediction</h2>
-                <p class="salary-range">₱95,000 - ₱115,000</p>
-                <p class="role-description">Based on your profile for a <strong>Mid-level Full Stack Developer</strong> role in Metro Manila.</p>
-                <p class="disclaimer">*This is a simulated result for demonstration purposes.</p>
-                <button id="restart-btn">Analyze Another</button>
-            </div>
-        </section>
-
-        <section class="stats-section">
+        <section class="stats-section" id="about">
             <h2>Live Market Rates</h2>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <span>Trending BPO</span>
-                    <strong>₱35,000 - ₱45,000</strong>
-                    <p>QA Analyst in Makati</p>
-                </div>
-                <div class="stat-card">
-                    <span>Hot Tech</span>
-                    <strong>₱85,000 - ₱120,000</strong>
-                    <p>Senior React Dev in BGC</p>
-                </div>
-                <div class="stat-card">
-                    <span>High Demand</span>
-                    <strong>₱75,000 - ₱95,000</strong>
-                    <p>Spanish Bilingual Specialist</p>
-                </div>
+            <!-- This grid will be populated by main.js -->
+            <div class="stats-grid" id="stats-container">
+                <!-- Data will be loaded here by main.js from salary_data.json -->
             </div>
+        </section>
+
+        <section id="contact" class="contact-section">
+          <h2>Contact Us</h2>
+          <p>For inquiries, please email us at contact@pinoypayscale.com</p>
         </section>
     </main>
 
     <footer>
-        &copy; 2026 PinoyPayScale. Built for the Filipino Workforce.
+        <p>&copy; 2026 PinoyPayScale. Built for the Filipino Workforce.</p>
     </footer>
 
-    <script>
-        const uploadButton = document.getElementById('upload-btn');
-        const fileInput = document.getElementById('file-input');
-        const dropZone = document.getElementById('drop-zone');
-        
-        const ctaSection = document.querySelector('.cta-section');
-        const statsSection = document.querySelector('.stats-section');
-        const resultSection = document.querySelector('.result-section');
-        const loader = resultSection.querySelector('.loader');
-        const resultCardContainer = resultSection.querySelector('.result-card-container');
-        const restartButton = document.getElementById('restart-btn');
+    <!-- Main application logic for populating stats -->
+    <script src="main.js"></script>
 
-        function handleFileUpload(file) {
-            if (!file) return;
-
-            console.log(`File selected: ${file.name}`);
-
-            // Hide original sections
-            ctaSection.classList.add('hidden');
-            statsSection.classList.add('hidden');
-
-            // Show loader
-            resultSection.classList.remove('hidden');
-            loader.classList.remove('hidden');
-            resultCardContainer.classList.add('hidden');
-
-            // Simulate AI analysis
-            setTimeout(() => {
-                // Hide loader and show result
-                loader.classList.add('hidden');
-                resultCardContainer.classList.remove('hidden');
-            }, 3000); // Simulate a 3-second analysis
-        }
-        
-        // Trigger file input click on button click
-        uploadButton.addEventListener('click', () => {
-            fileInput.click();
-        });
-
-        // Handle file selection
-        fileInput.addEventListener('change', () => {
-            if (fileInput.files.length > 0) {
-                handleFileUpload(fileInput.files[0]);
-            }
-        });
-        
-        // Drag and drop events
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            dropZone.classList.add('drag-over');
-        });
-
-        dropZone.addEventListener('dragleave', () => {
-            dropZone.classList.remove('drag-over');
-        });
-
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('drag-over');
-            
-            if (e.dataTransfer.files.length > 0) {
-                fileInput.files = e.dataTransfer.files;
-                handleFileUpload(e.dataTransfer.files[0]);
-            }
-        });
-
-        // Restart button logic
-        restartButton.addEventListener('click', () => {
-            // Hide result
-            resultSection.classList.add('hidden');
-            
-            // Show original sections
-            ctaSection.classList.remove('hidden');
-            statsSection.classList.remove('hidden');
-
-            // Reset file input
-            fileInput.value = '';
-        });
-    </script>
 </body>
 </html>

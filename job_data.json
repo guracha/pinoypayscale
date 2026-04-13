@@ -1,0 +1,26 @@
+[
+    {
+        "job": "IT / Software",
+        "description": "This sector showed the highest salary increase in 2026. The rise of global remote work opportunities, especially for AI, Data Science, and Cloud Architect roles, has significantly lifted local salary benchmarks."
+    },
+    {
+        "job": "BPO / Customer Support",
+        "description": "As a core industry in the Philippines, it's evolving from simple call center tasks to high-value KPO (Knowledge Process Outsourcing), including data analysis, healthcare coding, and legal support, boosting mid-level manager salaries."
+    },
+    {
+        "job": "Finance / Accounting",
+        "description": "Demand is solid due to the expansion of shared services centers (SSCs) by multinational corporations. Senior levels with international certifications like US CPA or Australian CPA can command high salaries."
+    },
+    {
+        "job": "Engineering / Construction",
+        "description": "Thanks to the Philippine government's continuous 'Build Better More' infrastructure projects, there is high domestic demand for civil, structural engineers, and project managers, showing steady growth."
+    },
+    {
+        "job": "Marketing / E-commerce",
+        "description": "The acceleration of digital transformation has led to explosive demand for performance marketers and CRM specialists. This field has a higher proportion of performance-based incentives."
+    },
+    {
+        "job": "HR / General Affairs",
+        "description": "A stable job sector that grows with organizational expansion. The value of specialized IT recruiters and HR Business Partners (HRBP) has risen due to increased competition for talent."
+    }
+]
