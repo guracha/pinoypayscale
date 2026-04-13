@@ -178,6 +178,104 @@
             color: var(--text-color-light);
             margin: 0;
         }
+        
+        /* Result & Loader Styles */
+        .result-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .loader {
+            text-align: center;
+        }
+
+        .loader p {
+            font-size: 18px;
+            color: var(--text-color-light);
+            margin-bottom: 20px;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: var(--primary-color);
+            animation: spin 1s ease infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .result-card-container {
+            background-color: var(--bg-color-white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid var(--border-color);
+            animation: fadeIn 0.5s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result-card-container h2 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .result-card-container .salary-range {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text-color-dark);
+            margin: 10px 0;
+        }
+
+        .result-card-container .role-description {
+            font-size: 16px;
+            color: var(--text-color-light);
+            margin-bottom: 30px;
+        }
+
+        .result-card-container .disclaimer {
+            font-size: 12px;
+            color: #999;
+            margin-top: 20px;
+        }
+        
+        #restart-btn {
+            margin-top: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #restart-btn:hover {
+            background-color: #003380;
+        }
+
+        .hidden {
+            display: none;
+        }
+
 
         footer {
             width: 100%;
@@ -224,6 +322,15 @@
                 padding: 12px 24px;
                 font-size: 16px;
             }
+            .result-card-container {
+                padding: 30px 20px;
+            }
+            .result-card-container h2 {
+                font-size: 24px;
+            }
+            .result-card-container .salary-range {
+                font-size: 36px;
+            }
         }
     </style>
 </head>
@@ -247,7 +354,21 @@
                 <p>Drag & Drop Your Resume Here</p>
                 <span>or</span>
                 <button id="upload-btn">Upload Resume & Check My Salary</button>
-                <input type="file" id="file-input" hidden>
+                <input type="file" id="file-input" hidden accept=".pdf,.doc,.docx">
+            </div>
+        </section>
+        
+        <section class="result-section hidden">
+            <div class="loader">
+                <p>Our AI is analyzing your profile...</p>
+                <div class="spinner"></div>
+            </div>
+            <div class="result-card-container hidden">
+                <h2>Your AI-Powered Salary Prediction</h2>
+                <p class="salary-range">₱95,000 - ₱115,000</p>
+                <p class="role-description">Based on your profile for a <strong>Mid-level Full Stack Developer</strong> role in Metro Manila.</p>
+                <p class="disclaimer">*This is a simulated result for demonstration purposes.</p>
+                <button id="restart-btn">Analyze Another</button>
             </div>
         </section>
 
@@ -281,7 +402,36 @@
         const uploadButton = document.getElementById('upload-btn');
         const fileInput = document.getElementById('file-input');
         const dropZone = document.getElementById('drop-zone');
+        
+        const ctaSection = document.querySelector('.cta-section');
+        const statsSection = document.querySelector('.stats-section');
+        const resultSection = document.querySelector('.result-section');
+        const loader = resultSection.querySelector('.loader');
+        const resultCardContainer = resultSection.querySelector('.result-card-container');
+        const restartButton = document.getElementById('restart-btn');
 
+        function handleFileUpload(file) {
+            if (!file) return;
+
+            console.log(`File selected: ${file.name}`);
+
+            // Hide original sections
+            ctaSection.classList.add('hidden');
+            statsSection.classList.add('hidden');
+
+            // Show loader
+            resultSection.classList.remove('hidden');
+            loader.classList.remove('hidden');
+            resultCardContainer.classList.add('hidden');
+
+            // Simulate AI analysis
+            setTimeout(() => {
+                // Hide loader and show result
+                loader.classList.add('hidden');
+                resultCardContainer.classList.remove('hidden');
+            }, 3000); // Simulate a 3-second analysis
+        }
+        
         // Trigger file input click on button click
         uploadButton.addEventListener('click', () => {
             fileInput.click();
@@ -290,16 +440,13 @@
         // Handle file selection
         fileInput.addEventListener('change', () => {
             if (fileInput.files.length > 0) {
-                const fileName = fileInput.files[0].name;
-                console.log(`File selected: ${fileName}`);
-                // You can add further logic here, like showing the file name
-                alert(`Thank you for uploading ${fileName}. Our AI is analyzing it now!`);
+                handleFileUpload(fileInput.files[0]);
             }
         });
-
+        
         // Drag and drop events
         dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault(); // Prevent default behavior (opening file in browser)
+            e.preventDefault();
             dropZone.classList.add('drag-over');
         });
 
@@ -308,15 +455,26 @@
         });
 
         dropZone.addEventListener('drop', (e) => {
-            e.preventDefault(); // Prevent default behavior
+            e.preventDefault();
             dropZone.classList.remove('drag-over');
             
             if (e.dataTransfer.files.length > 0) {
                 fileInput.files = e.dataTransfer.files;
-                const fileName = fileInput.files[0].name;
-                console.log(`File dropped: ${fileName}`);
-                alert(`Thank you for uploading ${fileName}. Our AI is analyzing it now!`);
+                handleFileUpload(e.dataTransfer.files[0]);
             }
+        });
+
+        // Restart button logic
+        restartButton.addEventListener('click', () => {
+            // Hide result
+            resultSection.classList.add('hidden');
+            
+            // Show original sections
+            ctaSection.classList.remove('hidden');
+            statsSection.classList.remove('hidden');
+
+            // Reset file input
+            fileInput.value = '';
         });
     </script>
 </body>
