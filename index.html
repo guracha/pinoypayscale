@@ -1,14 +1,323 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinoyPayScale | Know Your Real Market Worth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0047AB; /* Professional Blue */
+            --bg-color-light: #F8F9FA;
+            --bg-color-white: #FFFFFF;
+            --text-color-dark: #212529;
+            --text-color-light: #6c757d;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            margin: 0;
+            background-color: var(--bg-color-light);
+            color: var(--text-color-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            box-sizing: border-box;
+            background-color: var(--bg-color-white);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        nav a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-color-dark);
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        main {
+            width: 100%;
+            max-width: 960px;
+            padding: 40px 20px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-family: 'Inter', sans-serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text-color-dark);
+            line-height: 1.2;
+            margin-bottom: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-section p {
+            font-size: 18px;
+            color: var(--text-color-light);
+            margin-bottom: 40px;
+        }
+
+        .cta-section .cta-box {
+            border: 3px dashed var(--primary-color);
+            border-radius: 15px;
+            padding: 50px 30px;
+            background-color: var(--bg-color-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .cta-box.drag-over {
+            background-color: #e9ecef;
+        }
+
+        .cta-box p {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-color-light);
+        }
+
+        .cta-box span {
+            color: var(--text-color-light);
+            font-weight: 700;
+        }
+
+        .cta-box #upload-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-box #upload-btn:hover {
+            background-color: #003380; /* Darker blue */
+            transform: translateY(-2px);
+        }
+
+        .stats-section {
+            margin-top: 60px;
+            width: 100%;
+        }
+
+        .stats-section h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-card {
+            background-color: var(--bg-color-white);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            text-align: left;
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-card span {
+            font-size: 14px;
+            color: var(--primary-color);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .stat-card strong {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-color-dark);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            color: var(--text-color-light);
+            margin: 0;
+        }
+
+        footer {
+            width: 100%;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: auto;
+            font-size: 14px;
+            color: var(--text-color-light);
+            border-top: 1px solid var(--border-color);
+            background-color: var(--bg-color-white);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+            
+            nav a {
+                margin-left: 15px;
+            }
+
+            main {
+                padding: 20px 15px;
+            }
+
+            .hero-section h1 {
+                font-size: 32px;
+            }
+
+            .hero-section p {
+                font-size: 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .cta-box #upload-btn {
+                padding: 12px 24px;
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+    <header>
+        <div class="logo">PinoyPayScale</div>
+        <nav>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero-section">
+            <h1>Know Your Real Market Worth in the 2026 PH Job Market</h1>
+            <p>Get an AI-powered salary prediction based on your skills and experience.</p>
+        </section>
+
+        <section class="cta-section">
+            <div class="cta-box" id="drop-zone">
+                <p>Drag & Drop Your Resume Here</p>
+                <span>or</span>
+                <button id="upload-btn">Upload Resume & Check My Salary</button>
+                <input type="file" id="file-input" hidden>
+            </div>
+        </section>
+
+        <section class="stats-section">
+            <h2>Live Market Rates</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span>Trending BPO</span>
+                    <strong>₱35,000 - ₱45,000</strong>
+                    <p>QA Analyst in Makati</p>
+                </div>
+                <div class="stat-card">
+                    <span>Hot Tech</span>
+                    <strong>₱85,000 - ₱120,000</strong>
+                    <p>Senior React Dev in BGC</p>
+                </div>
+                <div class="stat-card">
+                    <span>High Demand</span>
+                    <strong>₱75,000 - ₱95,000</strong>
+                    <p>Spanish Bilingual Specialist</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        &copy; 2026 PinoyPayScale. Built for the Filipino Workforce.
+    </footer>
+
+    <script>
+        const uploadButton = document.getElementById('upload-btn');
+        const fileInput = document.getElementById('file-input');
+        const dropZone = document.getElementById('drop-zone');
+
+        // Trigger file input click on button click
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle file selection
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                const fileName = fileInput.files[0].name;
+                console.log(`File selected: ${fileName}`);
+                // You can add further logic here, like showing the file name
+                alert(`Thank you for uploading ${fileName}. Our AI is analyzing it now!`);
+            }
+        });
+
+        // Drag and drop events
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Prevent default behavior (opening file in browser)
+            dropZone.classList.add('drag-over');
+        });
+
+        dropZone.addEventListener('dragleave', () => {
+            dropZone.classList.remove('drag-over');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault(); // Prevent default behavior
+            dropZone.classList.remove('drag-over');
+            
+            if (e.dataTransfer.files.length > 0) {
+                fileInput.files = e.dataTransfer.files;
+                const fileName = fileInput.files[0].name;
+                console.log(`File dropped: ${fileName}`);
+                alert(`Thank you for uploading ${fileName}. Our AI is analyzing it now!`);
+            }
+        });
+    </script>
 </body>
 </html>
