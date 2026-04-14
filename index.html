@@ -29,11 +29,11 @@
         <section id="resume-analyzer">
             <div id="analyzer-drop-zone" class="analyzer-box">
                 <h2>Resume Analyzer</h2>
-                <p>Drag & drop your resume (.txt file) or click here to upload.</p>
+                <p>Drag & drop your resume (.txt, .pdf, .docx) or click here to upload.</p>
                 <div class="analyzer-icon-container">
                     <!-- Icon will be added via CSS or as an SVG -->
                 </div>
-                <input type="file" id="resume-file-input" accept=".txt" hidden>
+                <input type="file" id="resume-file-input" accept=".txt,.pdf,.docx,.doc" hidden>
                 <button id="analyze-button" class="analyzer-button" style="display: none;">Analyze My Resume</button>
                 <p class="analyzer-disclaimer">Get an AI-powered salary estimate based on your skills & experience.</p>
             </div>
@@ -79,6 +79,10 @@
             </div>
         </div>
     </div>
+
+    <!-- Libraries for parsing PDF and DOCX files -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.19/mammoth.browser.min.js"></script>
 
     <!-- Main application logic -->
     <script src="main.js"></script>
