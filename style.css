@@ -342,3 +342,12 @@ footer {
 #resume-scanner {
     display: none; /* Hide the old section completely */
 }
+
+/* Hide blog section by default, show when targeted */
+#blog {
+    display: none;
+}
+
+#blog:target {
+    display: block;
+}
