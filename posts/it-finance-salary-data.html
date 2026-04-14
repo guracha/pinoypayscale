@@ -1,183 +1,217 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 PH Salary Survey & Labor Market Report - PinoyPayScale</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="logo"><a href="index.html">PinoyPayScale</a></div>
-        <nav>
-            <a href="index.html#about">About</a>
-            <a href="index.html#contact">Contact</a>
-            <a href="blog.html">Blog</a>
-        </nav>
-    </header>
+<!-- 
+  [Content-Only Embed]
+  IT & FINANCE SALARY REPORT - 2026
+-->
 
-    <main class="blog-content">
-        <article>
-            <h1 class="blog-title">2026 Philippine Salary Survey & Labor Market Analysis Report</h1>
-            <p class="blog-meta">Date: April 2026 | Subject: Annual Compensation Benchmarking and Employment Trends</p>
-            
-            <img src="https://images.pexels.com/photos/938965/pexels-photo-938965.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Professional workspace" class="blog-header-image">
+<div id="ph-pro-report-2026" class="antialiased text-slate-900">
+    <!-- Header Area -->
+    <div class="bg-slate-900 p-8 md:p-12 text-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="inline-block px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-[10px] font-bold uppercase tracking-widest mb-4">Professional Sector Analysis</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">2026 PH Tech & Finance<br><span class="text-purple-400">Salary Deep Dive</span></h2>
+            </div>
+            <div class="flex gap-4">
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Avg Increase</p>
+                    <p class="text-xl font-bold text-purple-400">+6.8%</p>
+                </div>
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">AI Premium</p>
+                    <p class="text-xl font-bold text-emerald-400">~18%</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-            <h2>1. Executive Summary</h2>
-            <p>The Philippine labor market in 2026 reflects a resilient economy characterized by a 6.8% average salary increase across all major sectors. This growth is primarily driven by the continued expansion of the Business Process Outsourcing (BPO) sector into Knowledge Process Outsourcing (KPO), a burgeoning tech scene, and significant government-led infrastructure projects. This report provides a comprehensive breakdown of salary benchmarks to assist organizations in talent retention and professionals in career planning.</p>
+    <!-- Main Content Body -->
+    <div class="p-6 md:p-10 space-y-20">
+        
+        <!-- Section 1: Introduction -->
+        <div class="max-w-3xl">
+            <h3 class="text-2xl font-bold mb-4">Executive Summary</h3>
+            <p class="text-slate-600 leading-relaxed">
+                The 2026 Philippine labor market shows resilient growth, led by the tech and finance sectors. A shift to high-value KPO services and widespread digital transformation has created a significant demand for specialized talent. This report details salary benchmarks to guide companies and professionals in a competitive landscape.
+            </p>
+        </div>
 
-            <h2>2. Macroeconomic Context</h2>
-            <ul>
-                <li><strong>GDP Growth:</strong> The Philippines continues to be one of the fastest-growing economies in Southeast Asia, with a projected 6.5% GDP growth for 2026.</li>
-                <li><strong>Inflation Adjustment:</strong> Companies have adjusted base salaries by an average of 4.2% to counteract global inflationary pressures.</li>
-                <li><strong>Digital Transformation:</strong> The "AI-Integration Phase" has reached maturity, leading to a 15-20% premium on roles that require specialized technical literacy.</li>
-            </ul>
+        <!-- Section 2: Salary Progression Chart -->
+        <div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+                <div>
+                    <h3 class="text-xl font-bold">Salary Progression by Industry</h3>
+                    <p class="text-sm text-slate-500 mt-1">Average monthly base salary by experience level (NCR baseline).</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="proReport.updateSalaryChart('it', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">IT & Software</button>
+                    <button onclick="proReport.updateSalaryChart('bpo', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">BPO & CX</button>
+                    <button onclick="proReport.updateSalaryChart('finance', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Finance & Acct.</button>
+                </div>
+            </div>
+            <div class="report-chart-container">
+                <canvas id="salaryIndustryChart"></canvas>
+            </div>
+        </div>
 
-            <h2>3. Salary Benchmarks by Industry (Monthly PHP)</h2>
-            <p>The following figures represent the Average Monthly Gross Base Salary in Philippine Pesos (PHP).</p>
+        <!-- Section 3: Key Employment Trends -->
+        <div class="bg-sky-50 p-8 rounded-[2.5rem] border border-sky-100">
+            <h3 class="text-2xl font-bold text-sky-900 mb-6">Key Employment Trends for 2026</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="text-2xl mb-2">🏡</div>
+                    <h4 class="font-bold text-sky-900">Hybrid Work Dominance</h4>
+                    <p class="text-xs text-slate-500 mt-2">72% of firms have adopted a permanent hybrid model, making it a non-negotiable factor for top talent.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="text-2xl mb-2">🎓</div>
+                    <h4 class="font-bold text-sky-900">Upskilling Incentives</h4>
+                    <p class="text-xs text-slate-500 mt-2">Companies now offer education subsidies for certifications in AI, Data Privacy, and ESG over simple cash bonuses.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-sky-100 shadow-sm">
+                    <div class="text-2xl mb-2">❤️</div>
+                    <h4 class="font-bold text-sky-900">Holistic HMO Packages</h4>
+                    <p class="text-xs text-slate-500 mt-2">Comprehensive health coverage, including mental health support, has become a standard requirement.</p>
+                </div>
+            </div>
+        </div>
 
-            <h3>A. Information Technology & Software Development</h3>
-            <p>The IT sector remains the highest-paying industry due to the global shortage of specialized talent.</p>
-            <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Software development team" class="blog-image">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Job Level</th>
-                        <th>Experience</th>
-                        <th>Salary Range (Monthly)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Entry Level</td>
-                        <td>0-3 Years</td>
-                        <td>₱40,000 – ₱55,000</td>
-                    </tr>
-                    <tr>
-                        <td>Mid-Level</td>
-                        <td>4-7 Years</td>
-                        <td>₱75,000 – ₱110,000</td>
-                    </tr>
-                    <tr>
-                        <td>Senior Level</td>
-                        <td>8-12 Years</td>
-                        <td>₱120,000 – ₱180,000</td>
-                    </tr>
-                    <tr>
-                        <td>Director/Lead</td>
-                        <td>13+ Years</td>
-                        <td>₱200,000 – ₱350,000+</td>
-                    </tr>
-                </tbody>
-            </table>
+        <!-- Section 4: Regional Disparity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold">Regional Wage Variations</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    While NCR remains the benchmark, emerging hubs like Cebu, Clark, and Davao are closing the gap, driven by industrial and tech expansion.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold">Metro Manila (NCR)</span>
+                        <span class="px-3 py-1 bg-slate-900 text-white text-[10px] font-bold rounded-lg">100% (Baseline)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Metro Cebu</span>
+                        <span class="font-bold text-slate-400">~88%</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Clark / Pampanga</span>
+                        <span class="font-bold text-slate-400">~85%</span>
+                    </div>
+                     <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Davao City</span>
+                        <span class="font-bold text-slate-400">~78%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <div class="report-chart-container" style="height: 280px;">
+                    <canvas id="regionalProBarChart"></canvas>
+                </div>
+            </div>
+        </div>
 
-            <h3>B. BPO & Customer Experience (CX)</h3>
-            <p>The shift from traditional voice services to multi-channel KPO has increased the value of mid-management roles.</p>
-            <img src="https://images.pexels.com/photos/3184431/pexels-photo-3184431.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="BPO professionals in a meeting" class="blog-image">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Job Level</th>
-                        <th>Experience</th>
-                        <th>Salary Range (Monthly)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Entry Level</td>
-                        <td>0-3 Years</td>
-                        <td>₱22,000 – ₱32,000</td>
-                    </tr>
-                    <tr>
-                        <td>Mid-Level</td>
-                        <td>4-7 Years</td>
-                        <td>₱40,000 – ₱65,000</td>
-                    </tr>
-                    <tr>
-                        <td>Senior Level</td>
-                        <td>8-12 Years</td>
-                        <td>₱70,000 – ₱95,000</td>
-                    </tr>
-                    <tr>
-                        <td>Operations Manager</td>
-                        <td>13+ Years</td>
-                        <td>₱110,000 – ₱160,000</td>
-                    </tr>
-                </tbody>
-            </table>
+    </div>
 
-            <h3>C. Finance, Accounting & Shared Services</h3>
-            <p>Growth is concentrated in specialized roles like Compliance, Tax, and Financial Analysis for multinational firms.</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Job Level</th>
-                        <th>Experience</th>
-                        <th>Salary Range (Monthly)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Entry Level</td>
-                        <td>0-3 Years</td>
-                        <td>₱28,000 – ₱38,000</td>
-                    </tr>
-                    <tr>
-                        <td>Mid-Level</td>
-                        <td>4-7 Years</td>
-                        <td>₱55,000 – ₱80,000</td>
-                    </tr>
-                    <tr>
-                        <td>Senior Level</td>
-                        <td>8-12 Years</td>
-                        <td>₱90,000 – ₱130,000</td>
-                    </tr>
-                    <tr>
-                        <td>CFO/Finance Head</td>
-                        <td>15+ Years</td>
-                        <td>₱180,000 – ₱300,000+</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- Footer -->
+    <div class="p-8 bg-slate-50 border-t border-slate-100 text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2026 PinoyPayScale • Professional Market Analytics</p>
+    </div>
+</div>
 
-            <h2>4. Regional Variations and Emerging Hubs</h2>
-            <p>While the National Capital Region (NCR) remains the primary economic engine, 2026 shows a significant "De-centralization" trend.</p>
-            <ul>
-                <li><strong>Metro Manila (NCR):</strong> Base index (100%). Highest competition for talent and highest cost of living.</li>
-                <li><strong>Metro Cebu:</strong> 85-90% of NCR levels. Strongest hub for IT and Creative Industries outside Manila.</li>
-                <li><strong>Clark/Pampanga:</strong> 82-88% of NCR levels. Rapid growth in Logistics and Manufacturing due to upgraded airport infrastructure.</li>
-                <li><strong>Davao City:</strong> 75-80% of NCR levels. Emerging as a key center for Agriculture-Tech and Back-office operations.</li>
-            </ul>
+<script>
+    // Encapsulate all logic in a single object to be called by main.js
+    const proReport = {
+        salaryChart: null,
+        salaryData: {
+            it: [47500, 92500, 150000, 275000],
+            bpo: [27000, 52500, 82500, 135000],
+            finance: [33000, 67500, 110000, 240000]
+        },
+        regionalData: {
+            labels: ['Manila', 'Cebu', 'Clark', 'Davao'],
+            data: [100, 88, 85, 78]
+        },
 
-            <h2>5. Key Employment Trends for 2026</h2>
-            <ul>
-                <li><strong>Hybrid Work Dominance:</strong> 72% of professional service firms have adopted a "Permanent Hybrid" model, which is now a non-negotiable factor for top-tier talent.</li>
-                <li><strong>Upskilling Incentives:</strong> Organizations are increasingly offering "Education Subsidies" rather than just cash bonuses to encourage certifications in AI, Data Privacy, and ESG.</li>
-                <li><strong>Health & Wellness Focus:</strong> Comprehensive HMO coverage including mental health support has moved from a "perk" to a standard requirement in competitive packages.</li>
-            </ul>
+        init: function() {
+            // Destroy existing charts to prevent duplicates
+            if (Chart.getChart('salaryIndustryChart')) {
+                Chart.getChart('salaryIndustryChart').destroy();
+            }
+            if (Chart.getChart('regionalProBarChart')) {
+                Chart.getChart('regionalProBarChart').destroy();
+            }
 
-            <h2>6. Strategic Recommendations</h2>
-            <h3>For Employers:</h3>
-            <ul>
-                <li><strong>Benchmark Regularly:</strong> Adjust salary brackets at least twice a year to keep pace with the hyper-competitive IT and KPO sectors.</li>
-                <li><strong>Value Non-Monetary Benefits:</strong> Focus on career pathing and flexible hours to reduce turnover rates, which average 18% in the BPO sector.</li>
-            </ul>
-            <h3>For Professionals:</h3>
-            <ul>
-                <li><strong>Specialization is Key:</strong> Generalist roles are seeing slower wage growth compared to specialized certifications (e.g., AWS/Azure for IT, CPA/CFA for Finance).</li>
-                <li><strong>Soft Skills:</strong> Communication and emotional intelligence remain highly valued as AI takes over routine analytical tasks.</li>
-            </ul>
+            this.initSalaryChart();
+            this.initRegionalChart();
+        },
 
-            <p class="disclaimer"><em>Disclaimer: The data provided in this report are estimates based on market trends and sample surveys conducted in early 2026. Actual compensation may vary based on specific company budgets, individual performance, and location.</em></p>
-        </article>
-    </main>
+        initSalaryChart: function() {
+            const ctx = document.getElementById('salaryIndustryChart').getContext('2d');
+            this.salaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Entry (0-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Lead/Director (13y+)'],
+                    datasets: [{
+                        label: 'Average Monthly Salary (PHP)',
+                        data: this.salaryData.it,
+                        backgroundColor: '#8b5cf6', // Purple
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            ticks: { callback: v => '₱' + (v/1000) + 'k' }
+                        }
+                    }
+                }
+            });
+        },
 
-    <footer>
-        <p>&copy; 2026 PinoyPayScale. Built for the Filipino Workforce.</p>
-    </footer>
-</body>
-</html>
+        initRegionalChart: function() {
+            const ctx = document.getElementById('regionalProBarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: this.regionalData.labels,
+                    datasets: [{
+                        data: this.regionalData.data,
+                        backgroundColor: ['#0f172a', '#64748b', '#94a3b8', '#cbd5e1'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { 
+                            beginAtZero: true, 
+                            max: 110, 
+                            ticks: { display: false }, 
+                            grid: { display: false }
+                        },
+                        y: {
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        },
+
+        updateSalaryChart: function(type, btn) {
+            const colors = { it: '#8b5cf6', bpo: '#3b82f6', finance: '#10b981' };
+            this.salaryChart.data.datasets[0].data = this.salaryData[type];
+            this.salaryChart.data.datasets[0].backgroundColor = colors[type];
+            this.salaryChart.update();
+
+            document.querySelectorAll('#ph-pro-report-2026 .nav-btn').forEach(b => b.classList.remove('active-tab'));
+            btn.classList.add('active-tab');
+        }
+    };
+</script>

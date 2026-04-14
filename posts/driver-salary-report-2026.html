@@ -1,52 +1,9 @@
 <!-- 
-  [Full Embed Guide]
-  1. This code is optimized for embedding inside a blog post or an existing web page.
-  2. It uses a unique ID (#ph-driver-report-2026) to prevent styling conflicts.
-  3. All detailed data from the expanded report is included here.
+  [Content-Only Embed]
+  This file contains only the core HTML content and the specific JavaScript
+  needed for its interactive elements. Global dependencies (Tailwind, Chart.js)
+  are loaded by the main index.html file.
 -->
-
-<!-- Dependencies -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-    
-    #ph-driver-report-2026 {
-        font-family: 'Inter', sans-serif;
-        background-color: #ffffff;
-        color: #0f172a;
-        max-width: 1000px;
-        margin: 2rem auto;
-        border: 1px solid #e2e8f0;
-        border-radius: 2rem;
-        overflow: hidden;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
-    }
-
-    .report-chart-container {
-        position: relative;
-        width: 100%;
-        height: 350px;
-    }
-
-    .custom-scrollbar::-webkit-scrollbar {
-        width: 6px;
-    }
-    .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f5f9;
-    }
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 10px;
-    }
-
-    .active-tab {
-        background-color: #0f172a !important;
-        color: white !important;
-        border-color: #0f172a !important;
-    }
-</style>
 
 <div id="ph-driver-report-2026" class="antialiased text-slate-900">
     <!-- Header Area -->
@@ -88,10 +45,10 @@
                     <p class="text-sm text-slate-500 mt-1">Select a category to see how experience impacts monthly base pay (NCR baseline).</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
-                    <button onclick="updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
-                    <button onclick="updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
-                    <button onclick="updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
+                    <button onclick="driverReport.updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
+                    <button onclick="driverReport.updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
+                    <button onclick="driverReport.updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
+                    <button onclick="driverReport.updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
                 </div>
             </div>
             <div class="report-chart-container">
@@ -172,7 +129,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Experience</label>
-                    <select id="calcExp" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="calcExp" onchange="driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="0">Entry (1-3 yrs)</option>
                         <option value="1">Mid (4-7 yrs)</option>
                         <option value="2">Senior (8-12 yrs)</option>
@@ -181,7 +138,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Category</label>
-                    <select id="calcCat" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcCat" onchange="driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="private">Private Family</option>
                         <option value="corporate">Corporate Office</option>
                         <option value="executive">Executive / VIP</option>
@@ -190,7 +147,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Location</label>
-                    <select id="calcLoc" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcLoc" onchange="driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="1.0">Manila (NCR)</option>
                         <option value="0.88">Cebu Hubs</option>
                         <option value="0.85">Clark / Pampanga</option>
@@ -199,7 +156,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Safety Record</label>
-                    <select id="calcSafe" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcSafe" onchange="driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="1.0">Standard Record</option>
                         <option value="1.05">Clean LTO History</option>
                         <option value="1.15">Accident-Free Certified</option>
@@ -225,25 +182,40 @@
 </div>
 
 <script>
-    (function() {
-        const matrix = {
+    // Encapsulate all logic in a single object to avoid global scope pollution.
+    // This object will be called by main.js after the content is loaded.
+    const driverReport = {
+        salaryChart: null,
+        matrix: {
             private: [17500, 22500, 28000, 35000],
             corporate: [21000, 28000, 36000, 45000],
             executive: [28000, 42000, 60000, 85000],
             logistics: [24000, 33000, 48000, 65000]
-        };
+        },
 
-        let salaryChart;
+        init: function() {
+            // Destroy existing charts if they exist to prevent duplicates
+            if (Chart.getChart('salaryMatrixChart')) {
+                Chart.getChart('salaryMatrixChart').destroy();
+            }
+            if (Chart.getChart('regionalBarChart')) {
+                Chart.getChart('regionalBarChart').destroy();
+            }
+            
+            this.initSalaryChart();
+            this.initRegionalChart();
+            this.runEstimator();
+        },
 
-        function initSalaryChart() {
+        initSalaryChart: function() {
             const ctx = document.getElementById('salaryMatrixChart').getContext('2d');
-            salaryChart = new Chart(ctx, {
+            this.salaryChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: ['Junior (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
                     datasets: [{
                         label: 'Avg Salary (PHP)',
-                        data: matrix.private,
+                        data: this.matrix.private,
                         backgroundColor: '#3b82f6',
                         borderRadius: 8,
                         barPercentage: 0.6
@@ -258,9 +230,9 @@
                     }
                 }
             });
-        }
+        },
 
-        function initRegionalChart() {
+        initRegionalChart: function() {
             const ctx = document.getElementById('regionalBarChart').getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
@@ -278,38 +250,33 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } }
+                        x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } },
+                        y: { grid: { display: false } }
                     }
                 }
             });
-        }
+        },
 
-        window.updateChart = function(type, btn) {
-            salaryChart.data.datasets[0].data = matrix[type];
-            salaryChart.update();
+        updateChart: function(type, btn) {
+            this.salaryChart.data.datasets[0].data = this.matrix[type];
+            this.salaryChart.update();
 
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
+            document.querySelectorAll('#ph-driver-report-2026 .nav-btn').forEach(b => b.classList.remove('active-tab'));
             btn.classList.add('active-tab');
-        };
+        },
 
-        window.runEstimator = function() {
+        runEstimator: function() {
             const exp = parseInt(document.getElementById('calcExp').value);
             const cat = document.getElementById('calcCat').value;
             const loc = parseFloat(document.getElementById('calcLoc').value);
             const safe = parseFloat(document.getElementById('calcSafe').value);
 
-            const base = matrix[cat][exp];
+            const base = this.matrix[cat][exp];
             const result = Math.round(base * loc * safe);
             
             const resultEl = document.getElementById('finalResult');
             resultEl.innerText = result.toLocaleString();
-        };
+        }
+    };
 
-        // Initialize on Load
-        window.addEventListener('load', () => {
-            initSalaryChart();
-            initRegionalChart();
-            runEstimator();
-        });
-    })();
 </script>

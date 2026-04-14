@@ -1,180 +1,189 @@
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- COMMON ELEMENTS ---
+    const dropZone = document.getElementById('analyzer-drop-zone');
+    const fileInput = document.getElementById('resume-file-input');
+    const analyzeButton = document.getElementById('analyze-button');
+    const modal = document.getElementById('result-modal');
+    const closeModalButton = document.querySelector('.close-button');
+    const resultContainer = document.getElementById('salary-estimate-result');
 
-    // --- Library setup for PDF.js ---
-    pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js`;
+    // --- RESUME ANALYZER LOGIC ---
 
-    // --- Scrolling Salary Dashboard ---
-    const dashboard = document.getElementById('dashboard');
-    if (dashboard) {
-        dashboard.innerHTML = '<h2>Salary Dashboard</h2><div class="scrolling-wrapper"><div id="stats-container" class="stats-grid"></div></div>';
-        const statsContainer = document.getElementById('stats-container');
-        fetch('salary_data.json')
-            .then(response => response.json())
-            .then(data => {
-                const appendCards = (dataList) => {
-                    dataList.forEach(item => {
-                        const statCard = document.createElement('div');
-                        statCard.className = 'stat-card';
-                        statCard.innerHTML = `
-                            <h4>${item.jobTitle}</h4>
-                            <p>${item.experienceLevel}</p>
-                            <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
-                        `;
-                        statsContainer.appendChild(statCard);
+    // Function to handle file selection and analysis
+    const handleFile = (file) => {
+        if (!file) return;
+        
+        // Show the analyze button and update text
+        analyzeButton.style.display = 'block';
+        dropZone.querySelector('p').textContent = `File selected: ${file.name}`;
+
+        analyzeButton.onclick = () => {
+            resultContainer.innerHTML = '<p class="text-center">Analyzing your resume... This may take a moment.</p>';
+            modal.style.display = 'flex';
+
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const content = e.target.result;
+                let textContent = '';
+
+                if (file.type === "application/pdf") {
+                    // Use PDF.js for PDF files
+                    pdfjsLib.getDocument({ data: content }).promise.then(pdf => {
+                        let text = '';
+                        const numPages = pdf.numPages;
+                        const promises = [];
+                        for (let i = 1; i <= numPages; i++) {
+                            promises.push(pdf.getPage(i).then(page => page.getTextContent()));
+                        }
+                        return Promise.all(promises);
+                    }).then(textContents => {
+                        textContents.forEach(textContent => {
+                            textContent.items.forEach(item => {
+                                text += item.str + ' ';
+                            });
+                            text += '\n';
+                        });
+                        displayAnalysis(text);
                     });
-                };
-                appendCards(data); // Original cards
-                appendCards(data); // Cloned cards for seamless scroll
-            });
-    }
-
-    // --- Resume Analyzer Logic ---
-    const analyzerDropZone = document.getElementById('analyzer-drop-zone');
-    const resumeFileInput = document.getElementById('resume-file-input');
-    const resultModal = document.getElementById('result-modal');
-    const closeButton = document.querySelector('.close-button');
-    const salaryEstimateResultDiv = document.getElementById('salary-estimate-result');
-
-    const processResumeFile = async (file) => {
-        if (!file) {
-            alert('Please select a file.');
-            return;
-        }
-
-        let resumeText = '';
-        const fileName = file.name.toLowerCase();
-
-        try {
-            if (fileName.endsWith('.pdf')) {
-                const arrayBuffer = await file.arrayBuffer();
-                const pdf = await pdfjsLib.getDocument(arrayBuffer).promise;
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const textContent = await page.getTextContent();
-                    resumeText += textContent.items.map(item => item.str).join(' ') + '\n';
+                } else if (file.name.endsWith('.docx')) {
+                     // Use mammoth.js for DOCX files
+                    mammoth.extractRawText({ arrayBuffer: content })
+                        .then(result => {
+                            displayAnalysis(result.value);
+                        })
+                        .catch(err => {
+                             resultContainer.innerHTML = '<p class="text-center text-red-500">Error processing .docx file.</p>';
+                             console.error(err);
+                        });
+                } else {
+                    // Plain text
+                    displayAnalysis(content);
                 }
-            } else if (fileName.endsWith('.docx') || fileName.endsWith('.doc')) {
-                const arrayBuffer = await file.arrayBuffer();
-                const result = await mammoth.extractRawText({ arrayBuffer });
-                resumeText = result.value;
-            } else if (fileName.endsWith('.txt')) {
-                resumeText = await file.text();
-            } else {
-                alert('Unsupported file type. Please upload a .txt, .pdf, or .docx file.');
-                return;
-            }
-
-            // Simulate AI analysis with the extracted text
-            console.log("Simulating analysis for resume:", resumeText.substring(0, 200) + "...");
-            const mockResponse = {
-                jobTitle: "Senior Software Engineer",
-                estimatedSalary: "₱150,000 - ₱200,000",
-                confidence: "85%"
             };
             
-            displayAnalysisResult(mockResponse);
-
-        } catch (error) {
-            console.error('Error processing resume file:', error);
-            alert('There was an error reading your resume. Please ensure it is not corrupted.');
-        }
-    };
-
-    const displayAnalysisResult = (response) => {
-        const resultHTML = `
-            <h4>Analysis Complete</h4>
-            <p>Based on your resume, we've identified a potential match:</p>
-            <div style="margin: 2rem 0; text-align: left; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                <p><strong>Identified Role:</strong> ${response.jobTitle}</p>
-                <p><strong>Estimated Salary Range:</strong> <strong style="color: var(--primary-color);">${response.estimatedSalary}</strong></p>
-                <p><strong>Confidence Score:</strong> ${response.confidence}</p>
-            </div>
-            <small>Disclaimer: This is a preliminary estimate and may vary.</small>
-        `;
-        salaryEstimateResultDiv.innerHTML = resultHTML;
-        openModal();
-    };
-
-    // Modal control
-    const openModal = () => {
-        if (resultModal) {
-            resultModal.style.display = 'flex';
-            setTimeout(() => resultModal.classList.add('visible'), 10);
-        }
-    };
-    const closeModal = () => {
-        if (resultModal) {
-            resultModal.classList.remove('visible');
-            setTimeout(() => resultModal.style.display = 'none', 300);
-        }
-    };
-
-    // Event listeners for file upload
-    if (analyzerDropZone) {
-        analyzerDropZone.addEventListener('click', () => resumeFileInput.click());
-        analyzerDropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
-            analyzerDropZone.classList.add('drag-over');
-        });
-        analyzerDropZone.addEventListener('dragleave', () => analyzerDropZone.classList.remove('drag-over'));
-        analyzerDropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            analyzerDropZone.classList.remove('drag-over');
-            if (e.dataTransfer.files.length > 0) {
-                processResumeFile(e.dataTransfer.files[0]);
+            if (file.type === "application/pdf" || file.name.endsWith('.docx')) {
+                 reader.readAsArrayBuffer(file);
+            } else {
+                 reader.readAsText(file);
             }
-        });
-    }
+        };
+    };
+    
+    // Simulate AI analysis and display results
+    const displayAnalysis = (text) => {
+        // Simple keyword-based estimation for demonstration
+        const keywords = {
+            'senior developer': 150000,
+            'project manager': 120000,
+            'data scientist': 180000,
+            'registered nurse': 45000,
+            'call center agent': 28000,
+            'driver': 25000,
+        };
 
-    if (resumeFileInput) {
-        resumeFileInput.addEventListener('change', (e) => {
-            if (e.target.files.length > 0) {
-                processResumeFile(e.target.files[0]);
+        let estimatedSalary = 40000; // Default base
+        let jobTitle = 'Entry-Level Professional';
+
+        for (const [key, value] of Object.entries(keywords)) {
+            if (text.toLowerCase().includes(key)) {
+                estimatedSalary = value;
+                jobTitle = key.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+                break;
             }
-        });
-    }
+        }
+        
+        // Add some variability
+        estimatedSalary = Math.round(estimatedSalary * (0.85 + Math.random() * 0.3));
 
-    // Modal close listeners
-    if (closeButton) closeButton.addEventListener('click', closeModal);
-    if (resultModal) resultModal.addEventListener('click', (e) => {
-        if (e.target === resultModal) closeModal();
+        setTimeout(() => {
+            resultContainer.innerHTML = `
+                <h3 class="text-xl font-bold text-center mb-4">Salary Analysis Complete</h3>
+                <p class="text-center text-sm mb-2">Based on your resume, we identified the likely role of:</p>
+                <p class="text-center font-bold text-lg text-blue-600 mb-6">${jobTitle}</p>
+                <p class="text-center text-sm uppercase font-bold text-gray-500">Estimated Monthly Salary (PHP)</p>
+                <p class="text-center text-5xl font-extrabold text-gray-800 mt-2 mb-4">₱${estimatedSalary.toLocaleString()}</p>
+                <p class="text-xs text-center text-gray-500 italic mt-6">*This is a rough estimate based on limited data and market trends.</p>
+            `;
+        }, 2000);
+    };
+
+    // Event listeners for file drop and click
+    dropZone.addEventListener('dragover', (e) => e.preventDefault());
+    dropZone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        handleFile(e.dataTransfer.files[0]);
     });
+    dropZone.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
 
-    // --- Blog Loading Logic ---
+    // Modal close functionality
+    closeModalButton.onclick = () => modal.style.display = 'none';
+    window.onclick = (e) => {
+        if (e.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+
+    // --- BLOG SYSTEM LOGIC ---
     const postList = document.getElementById('post-list');
     const postContentContainer = document.getElementById('post-content-container');
+    
+    // List of available posts
+    const availablePosts = [
+        { title: 'IT & Finance Salary Data', file: 'posts/it-finance-salary-data.html', id: 'proReport' },
+        { title: 'Driver Salary Report 2026', file: 'posts/driver-salary-report-2026.html', id: 'driverReport' }
+    ];
 
-    function loadPost(fileName) {
-        fetch(`posts/${fileName}`)
+    // Function to load a post
+    const loadPost = (postFile, scriptId) => {
+        // Clear previous content and charts
+        postContentContainer.innerHTML = '<p>Loading post...</p>';
+
+        fetch(postFile)
             .then(response => response.text())
             .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const postBody = doc.body;
-                const header = postBody.querySelector('header');
-                if (header) header.remove();
-                postContentContainer.innerHTML = postBody.innerHTML;
+                postContentContainer.innerHTML = html;
+                
+                // Find the script within the loaded HTML and execute its init function
+                // This is a safer way than just appending the script tag
+                if (scriptId && window[scriptId] && typeof window[scriptId].init === 'function') {
+                    window[scriptId].init();
+                } else if (scriptId) {
+                    console.warn(`Script object '${scriptId}' or its init function was not found.`);
+                }
+            })
+            .catch(error => {
+                postContentContainer.innerHTML = '<p class="text-red-500">Error loading post. Please try again later.</p>';
+                console.error('Error fetching post:', error);
             });
-    }
+    };
 
-    const knownPosts = ['it-finance-salary-data.html', 'driver-salary-report-2026.html'];
-    if (postList) {
-        knownPosts.forEach(fileName => {
-            const listItem = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = `#`;
-            const title = fileName.replace(/-/g, ' ').replace('.html', '').replace(/\b\w/g, l => l.toUpperCase());
-            link.textContent = title;
-            link.onclick = (e) => {
-                e.preventDefault();
-                loadPost(fileName);
-            };
-            listItem.appendChild(link);
-            postList.appendChild(listItem);
-        });
-        if (knownPosts.length > 0) {
-            loadPost(knownPosts[0]);
-        }
+    // Populate the post list
+    availablePosts.forEach((post, index) => {
+        const li = document.createElement('li');
+        const a = document.createElement('a');
+        a.href = `#post-${index}`;
+        a.textContent = post.title;
+        a.onclick = (e) => {
+            e.preventDefault();
+            // Remove active class from all links
+            document.querySelectorAll('#post-list a').forEach(link => link.classList.remove('active'));
+            // Add active class to the clicked link
+            a.classList.add('active');
+            loadPost(post.file, post.id);
+        };
+        li.appendChild(a);
+        postList.appendChild(li);
+    });
+
+    // Load the first post by default and set it to active
+    if (availablePosts.length > 0) {
+        const firstPostLink = postList.querySelector('a');
+        firstPostLink.classList.add('active');
+        loadPost(availablePosts[0].file, availablePosts[0].id);
+    } else {
+        postContentContainer.innerHTML = '<p>No posts available.</p>';
     }
 });
