@@ -76,9 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- BLOG SYSTEM LOGIC ---
     const postList = document.querySelector('#post-list-container ul');
     const postContentContainer = document.getElementById('post-content-container');
+    // Ensure global chart object is initialized to prevent script errors
+    window.myCharts = {};
+    // Newest posts should come first in the array
     const availablePosts = [
-        { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
         { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
+        { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
     ];
     const loadPost = (postFile) => {
         postContentContainer.innerHTML = '<p>Loading post...</p>';
@@ -88,10 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 postContentContainer.innerHTML = html;
                 const scriptTag = postContentContainer.querySelector('script');
                 if (scriptTag) {
-                    // A new script element must be created to execute the script content
                     const newScript = document.createElement('script');
                     newScript.textContent = scriptTag.textContent;
-                    // Append and immediately remove to execute in the global scope
                     document.body.appendChild(newScript).remove();
                 }
             })
@@ -117,10 +118,10 @@ document.addEventListener('DOMContentLoaded', () => {
         postList.appendChild(li);
     });
     if (availablePosts.length > 0) {
-        // Load the newest post by default
-        const lastLink = postList.querySelector('li:last-child a');
-        lastLink.classList.add('active');
-        loadPost(availablePosts[availablePosts.length - 1].file);
+        // Load the first post in the list (the newest one) by default
+        const firstLink = postList.querySelector('a');
+        firstLink.classList.add('active');
+        loadPost(availablePosts[0].file);
     } else {
         postContentContainer.innerHTML = '<p>No posts available.</p>';
     }
