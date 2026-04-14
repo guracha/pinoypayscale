@@ -1,188 +1,92 @@
 
-<div class="report-container bg-white rounded-none shadow-none p-6 md:p-10">
-    <!-- Header -->
-    <header class="mb-12 text-center">
-        <span class="inline-block px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-widest mb-4">Industry Report</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">2026 Philippine Driver Salary & Labor Market Analysis</h1>
-        <p class="mt-4 text-lg text-slate-600 max-w-3xl mx-auto">A Deep Dive into the Compensation, Demand, and Future Outlook for Professional Drivers in the Philippines</p>
-    </header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 PH Driver Salary Report</title>
+</head>
+<body>
+    <div class="report-container">
+        <header>
+            <h1>2026 Philippine Driver Salary & Labor Market Analysis</h1>
+            <p>A Deep Dive into the Compensation, Demand, and Future Outlook for Professional Drivers in the Philippines</p>
+        </header>
 
-    <!-- Main Content -->
-    <main class="space-y-16">
-        <!-- Salary Analysis Section -->
-        <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Salary Analysis: Beyond the Minimum</h2>
-            <p class="text-slate-600 leading-relaxed max-w-4xl mb-8">
-                In 2026, the average monthly salary for a professional driver in the Philippines is approximately <strong>₱25,000</strong>. However, this figure is highly dependent on the driver's specialization, location, and the type of vehicle they operate. The chart below illustrates the typical salary ranges for different driver roles, from private family drivers to specialized heavy-machinery operators.
-            </p>
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
-                <div class="relative h-[300px] w-full">
+        <main>
+            <section>
+                <h2>Salary Analysis: Beyond the Minimum</h2>
+                <p>
+                    In 2026, the average monthly salary for a professional driver in the Philippines is approximately <strong>₱25,000</strong>. However, this figure is highly dependent on the driver's specialization, location, and the type of vehicle they operate. The chart below illustrates the typical salary ranges for different driver roles, from private family drivers to specialized heavy-machinery operators.
+                </p>
+                <div class="chart-container">
                     <canvas id="driverSalaryChart"></canvas>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- Labor Demand Section -->
-        <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Labor Demand & Regional Disparities</h2>
-            <p class="text-slate-600 leading-relaxed max-w-4xl mb-8">
-                Demand for drivers remains robust, particularly in logistics and e-commerce. Metro Manila (NCR) continues to be the epicenter of demand, offering higher wages but also contending with intense traffic and higher living costs. Regional hubs like Cebu and Davao offer competitive salaries with a more relaxed work environment, making them increasingly attractive alternatives.
-            </p>
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
-                 <div class="relative h-[300px] w-full">
+            <section>
+                <h2>Labor Demand & Regional Disparities</h2>
+                <p>
+                    Demand for drivers remains robust, particularly in logistics and e-commerce. Metro Manila (NCR) continues to be the epicenter of demand, offering higher wages but also contending with intense traffic and higher living costs. Regional hubs like Cebu and Davao offer competitive salaries with a more relaxed work environment, making them increasingly attractive alternatives.
+                </p>
+                <div class="chart-container">
                     <canvas id="regionalDemandChart"></canvas>
                 </div>
-            </div>
-        </section>
+            </section>
+        </main>
+    </div>
 
-        <!-- Benefits & Compensation Section -->
-        <section class="bg-blue-50/60 p-8 rounded-2xl border border-blue-200/80">
-            <h2 class="text-2xl font-bold text-blue-900 mb-6 text-center">Benefits & Non-Monetary Compensation</h2>
-            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-8">Beyond the basic salary, benefits play a crucial role in a driver's total compensation package. While SSS, PhilHealth, and Pag-IBIG are mandatory, many employers offer additional perks to attract and retain skilled drivers.</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm"><p class="text-sm font-bold text-blue-800">Meal Allowance</p><p class="font-mono text-lg">~₱150/day</p></div>
-                <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm"><p class="text-sm font-bold text-blue-800">Trip Allowance</p><p class="font-mono text-lg">Varies</p></div>
-                <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm"><p class="text-sm font-bold text-blue-800">Health Insurance</p><p class="font-mono text-lg">HMO Card</p></div>
-                <div class="bg-white p-4 rounded-xl border border-blue-200 shadow-sm"><p class="text-sm font-bold text-blue-800">13th Month Pay</p><p class="font-mono text-lg">Mandatory</p></div>
-            </div>
-        </section>
-
-        <!-- Salary Calculator -->
-        <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-blue-500 pl-4">Driver Salary Calculator (2026 Estimate)</h2>
-            <div class="max-w-xl mx-auto p-8 bg-white border rounded-2xl shadow-sm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="driverType" class="block text-sm font-medium text-slate-700">Type of Driver</label>
-                        <select id="driverType" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm"> 
-                            <option value="1">Personal/Family Driver</option>
-                            <option value="1.2">Truck Driver (Light)</option>
-                            <option value="1.5">Truck Driver (Heavy)</option>
-                            <option value="1.8">Heavy Equipment Operator</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="region" class="block text-sm font-medium text-slate-700">Region</label>
-                        <select id="region" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm">
-                            <option value="1.1">Metro Manila (NCR)</option>
-                            <option value="0.9">Cebu</option>
-                            <option value="0.85">Davao</option>
-                            <option value="0.8">Other Provinces</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="mt-8 text-center">
-                    <p class="text-sm uppercase font-bold text-slate-500">Estimated Monthly Salary (PHP)</p>
-                    <p id="estimatedSalary" class="text-5xl font-extrabold text-slate-800 mt-2">₱22,000</p>
-                </div>
-            </div>
-        </section>
-    </main>
-</div>
-
-<script>
-    (function() {
-        // Guard against re-initialization
-        if (window.myCharts && window.myCharts.driverReport) {
-            return;
+    <script>
+        if (window.myCharts && window.myCharts.driverSalaryChart) {
+            window.myCharts.driverSalaryChart.destroy();
+        }
+        if (window.myCharts && window.myCharts.regionalDemandChart) {
+            window.myCharts.regionalDemandChart.destroy();
         }
 
-        // Data for charts
-        const salaryData = {
-            labels: ['Family Driver', 'Delivery Rider', 'Light Truck', 'Bus Driver', 'Heavy Truck', 'Heavy Equipment'],
-            data: [22000, 25000, 28000, 32000, 35000, 45000]
-        };
-        const regionalData = {
-            labels: ['NCR', 'Cebu', 'Davao', 'Clark', 'Iloilo'],
-            data: [100, 85, 80, 75, 70] // Representing demand index
-        };
-
-        // Chart initialization logic
-        function initDriverCharts() {
-             // Destroy existing charts from other posts to prevent conflicts
-            if(window.myCharts) {
-                if(window.myCharts.salary) window.myCharts.salary.destroy();
-                if(window.myCharts.regional) window.myCharts.regional.destroy();
-            }
-
-            const salaryCtx = document.getElementById('driverSalaryChart')?.getContext('2d');
-            if (salaryCtx) {
-                const salaryChart = new Chart(salaryCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: salaryData.labels,
-                        datasets: [{
-                            label: 'Average Monthly Salary (PHP)',
-                            data: salaryData.data,
-                            backgroundColor: '#3b82f6',
-                            borderRadius: 8,
-                        }]
-                    },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: { 
-                            x: { grid: { display: false } }, 
-                            y: { ticks: { callback: value => '₱' + (value / 1000) + 'k' } }
+        const salaryCtx = document.getElementById('driverSalaryChart').getContext('2d');
+        window.myCharts.driverSalaryChart = new Chart(salaryCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Family Driver', 'Company Driver', 'Delivery Driver', 'Truck Driver', 'Bus Driver'],
+                datasets: [{
+                    label: 'Monthly Salary Range (PHP)',
+                    data: [18000, 22000, 25000, 30000, 28000],
+                    backgroundColor: '#3b82f6',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return '₱' + value.toLocaleString();
+                            }
                         }
                     }
-                });
-                // Add to global chart object
-                window.myCharts = { ...window.myCharts, salary: salaryChart };
+                }
             }
+        });
 
-            const regionalCtx = document.getElementById('regionalDemandChart')?.getContext('2d');
-            if (regionalCtx) {
-                const regionalChart = new Chart(regionalCtx, {
-                    type: 'line',
-                    data: {
-                        labels: regionalData.labels,
-                        datasets: [{
-                            label: 'Relative Demand Index',
-                            data: regionalData.data,
-                            borderColor: '#10b981',
-                            backgroundColor: '#10b98120',
-                            fill: true,
-                            tension: 0.3
-                        }]
-                    },
-                    options: {
-                        responsive: true, maintainAspectRatio: false,
-                        plugins: { legend: { display: false } },
-                        scales: { 
-                            x: { grid: { display: false } }, 
-                            y: { suggestedMin: 50, suggestedMax: 100, grid: { display: false }, ticks: { callback: value => value + '%' } } 
-                        }
-                    }
-                });
-                window.myCharts = { ...window.myCharts, regional: regionalChart };
+        const demandCtx = document.getElementById('regionalDemandChart').getContext('2d');
+        window.myCharts.regionalDemandChart = new Chart(demandCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Metro Manila', 'Cebu', 'Davao', 'Other'],
+                datasets: [{
+                    label: 'Job Postings by Region',
+                    data: [45, 20, 15, 20],
+                    backgroundColor: ['#0ea5e9', '#f97316', '#16a34a', '#6b7280'],
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
             }
-        }
-
-        // Salary Calculator Logic
-        function initCalculator() {
-            const driverType = document.getElementById('driverType');
-            const region = document.getElementById('region');
-            const estimatedSalaryEl = document.getElementById('estimatedSalary');
-            const baseSalary = 20000;
-
-            function updateSalary() {
-                const typeMultiplier = parseFloat(driverType.value);
-                const regionMultiplier = parseFloat(region.value);
-                const finalSalary = baseSalary * typeMultiplier * regionMultiplier;
-                estimatedSalaryEl.textContent = `₱${Math.round(finalSalary).toLocaleString()}`;
-            }
-
-            driverType.addEventListener('change', updateSalary);
-            region.addEventListener('change', updateSalary);
-            updateSalary(); // Initial calculation
-        }
-
-        // Set a flag to indicate this specific report's script has run
-        window.myCharts = { ...window.myCharts, driverReport: true };
-
-        // Run initializations
-        initDriverCharts();
-        initCalculator();
-    })();
-</script>
+        });
+    </script>
+</body>
+</html>
