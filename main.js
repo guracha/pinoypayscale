@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const postContentContainer = document.getElementById('post-content-container');
     const availablePosts = [
         { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
-        // Add new posts here in the future
+        { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
     ];
     const loadPost = (postFile) => {
         postContentContainer.innerHTML = '<p>Loading post...</p>';
@@ -88,8 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 postContentContainer.innerHTML = html;
                 const scriptTag = postContentContainer.querySelector('script');
                 if (scriptTag) {
+                    // A new script element must be created to execute the script content
                     const newScript = document.createElement('script');
                     newScript.textContent = scriptTag.textContent;
+                    // Append and immediately remove to execute in the global scope
                     document.body.appendChild(newScript).remove();
                 }
             })
@@ -115,9 +117,10 @@ document.addEventListener('DOMContentLoaded', () => {
         postList.appendChild(li);
     });
     if (availablePosts.length > 0) {
-        const firstLink = postList.querySelector('a');
-        firstLink.classList.add('active');
-        loadPost(availablePosts[0].file);
+        // Load the newest post by default
+        const lastLink = postList.querySelector('li:last-child a');
+        lastLink.classList.add('active');
+        loadPost(availablePosts[availablePosts.length - 1].file);
     } else {
         postContentContainer.innerHTML = '<p>No posts available.</p>';
     }
@@ -134,34 +137,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function handleNavigation() {
         const hash = window.location.hash;
-
-        // Hide all main sections by default
         Object.values(mainSections).forEach(section => {
             if (section) section.style.display = 'none';
         });
 
-        if (hash === '#blog') {
-            // Show only the blog section
+        if (hash.startsWith('#post')) {
+             if (mainSections.blog) mainSections.blog.style.display = 'block';
+        } else if (hash === '#blog') {
             if (mainSections.blog) mainSections.blog.style.display = 'block';
         } else if (hash === '#dashboard') {
-            // Show only the dashboard section
             if (mainSections.dashboard) mainSections.dashboard.style.display = 'block';
         } else if (hash === '#contact') {
-            // Show only the contact section
             if (mainSections.contact) mainSections.contact.style.display = 'block';
         } else {
-            // Default "home" view: show all sections
             Object.values(mainSections).forEach(section => {
                 if (section) section.style.display = 'block';
             });
         }
     }
 
-    // Handle navigation on page load and hash changes
     window.addEventListener('hashchange', handleNavigation);
-    handleNavigation(); // For initial page load
+    handleNavigation();
 
-    // Make the site title a "home" button
     if (navHome) {
         navHome.style.cursor = 'pointer';
         navHome.addEventListener('click', () => {
