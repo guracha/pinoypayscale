@@ -76,14 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- BLOG SYSTEM LOGIC ---
     const postList = document.querySelector('#post-list-container ul');
     const postContentContainer = document.getElementById('post-content-container');
-    // Ensure global chart object is initialized to prevent script errors
-    window.myCharts = {};
-    // Newest posts should come first in the array
+    window.myCharts = {}; // Global container for chart instances
     const availablePosts = [
         { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
         { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
     ];
     const loadPost = (postFile) => {
+        // Destroy all existing chart instances before loading new content
+        Object.values(window.myCharts).forEach(chart => {
+            if (chart && typeof chart.destroy === 'function') {
+                chart.destroy();
+            }
+        });
+        window.myCharts = {}; // Reset container for a clean slate
+
         postContentContainer.innerHTML = '<p>Loading post...</p>';
         fetch(postFile)
             .then(response => response.text())
@@ -118,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
         postList.appendChild(li);
     });
     if (availablePosts.length > 0) {
-        // Load the first post in the list (the newest one) by default
         const firstLink = postList.querySelector('a');
         firstLink.classList.add('active');
         loadPost(availablePosts[0].file);
