@@ -80,6 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const availablePosts = [
         { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
         { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
+        { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' },
     ];
     const loadPost = (postFile) => {
         // Destroy all existing chart instances before loading new content
