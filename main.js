@@ -57,14 +57,21 @@ document.addEventListener('DOMContentLoaded', () => {
         fetch(`posts/${fileName}`)
             .then(response => response.text())
             .then(html => {
-                postContentContainer.innerHTML = html;
-                // If the loaded content has its own scripts, you might need to handle them
+                // Use DOMParser to avoid loading full HTML doc into a div
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const postBody = doc.body;
+
+                // Remove header and other unwanted elements from the post content
+                const header = postBody.querySelector('header');
+                if (header) header.remove();
+
+                // Set the cleaned content
+                postContentContainer.innerHTML = postBody.innerHTML;
             });
     }
 
     // Fetch the list of posts
-    // In a real hosting environment, you might need a server-side script to list files.
-    // For this static site, we'll hardcode the known posts.
     const knownPosts = [
         'it-finance-salary-data.html',
         'driver-salary-report-2026.html'
