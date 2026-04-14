@@ -30,7 +30,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "$PORT"];
+          command = ["python", "-m", "http.server", "$PORT"];
           manager = "web";
         };
       };

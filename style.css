@@ -68,6 +68,54 @@ main {
     font-size: 1.2rem;
 }
 
+/* Resume Section */
+.resume-section {
+    text-align: center;
+    padding: 2rem;
+    background-color: #e9f2ff;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.resume-section h2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.resume-section p {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+}
+
+#resume-file {
+    margin-bottom: 1rem;
+}
+
+#scan-resume-btn {
+    background-color: #0052cc;
+    color: #fff;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#scan-resume-btn:hover {
+    background-color: #003d99;
+}
+
+#salary-estimate {
+    margin-top: 1.5rem;
+    font-size: 1.1rem;
+}
+
+
 /* Stats Section */
 .stats-section h2 {
     text-align: center;
