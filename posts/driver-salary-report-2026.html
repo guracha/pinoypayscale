@@ -5,88 +5,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 PH Driver Salary Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="report-container">
-        <header>
-            <h1>2026 Philippine Driver Salary & Labor Market Analysis</h1>
-            <p>A Deep Dive into the Compensation, Demand, and Future Outlook for Professional Drivers in the Philippines</p>
+<body class="font-sans">
+    <div class="p-6 lg:p-10 max-w-4xl mx-auto">
+        <header class="mb-8">
+            <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">2026 Philippine Driver Salary & Labor Market Analysis</h1>
+            <p class="text-slate-600">A Deep Dive into the Compensation, Demand, and Future Outlook for Professional Drivers in the Philippines.</p>
+             <p class="text-sm text-slate-500 mt-2">Published on: October 27, 2023</p>
         </header>
 
-        <main>
-            <section>
-                <h2>Salary Analysis: Beyond the Minimum</h2>
+        <article class="prose lg:prose-xl max-w-none">
+            <section class="mt-8">
+                <h2 class="text-2xl font-bold mb-4">Salary Analysis: Beyond the Minimum</h2>
                 <p>
                     In 2026, the average monthly salary for a professional driver in the Philippines is approximately <strong>₱25,000</strong>. However, this figure is highly dependent on the driver's specialization, location, and the type of vehicle they operate. The chart below illustrates the typical salary ranges for different driver roles, from private family drivers to specialized heavy-machinery operators.
                 </p>
-                <div class="chart-container">
-                    <canvas id="driverSalaryChart"></canvas>
+                <div class="overflow-x-auto p-4 bg-slate-50 rounded-lg mt-6">
+                    <div style="height: 400px;">
+                        <canvas id="driverSalaryChart"></canvas>
+                    </div>
                 </div>
             </section>
 
-            <section>
-                <h2>Labor Demand & Regional Disparities</h2>
+            <section class="mt-8">
+                <h2 class="text-2xl font-bold mb-4">Labor Demand & Regional Disparities</h2>
                 <p>
                     Demand for drivers remains robust, particularly in logistics and e-commerce. Metro Manila (NCR) continues to be the epicenter of demand, offering higher wages but also contending with intense traffic and higher living costs. Regional hubs like Cebu and Davao offer competitive salaries with a more relaxed work environment, making them increasingly attractive alternatives.
                 </p>
-                <div class="chart-container">
-                    <canvas id="regionalDemandChart"></canvas>
+                <div class="overflow-x-auto p-4 bg-slate-50 rounded-lg mt-6">
+                     <div style="height: 400px; max-width: 500px; margin: auto;">
+                        <canvas id="regionalDemandChart"></canvas>
+                    </div>
                 </div>
             </section>
-        </main>
+        </article>
     </div>
 
     <script>
-        if (window.myCharts && window.myCharts.driverSalaryChart) {
-            window.myCharts.driverSalaryChart.destroy();
-        }
-        if (window.myCharts && window.myCharts.regionalDemandChart) {
-            window.myCharts.regionalDemandChart.destroy();
-        }
+        if (window.myCharts && window.myCharts.driverSalaryChart) { window.myCharts.driverSalaryChart.destroy(); }
+        if (window.myCharts && window.myCharts.regionalDemandChart) { window.myCharts.regionalDemandChart.destroy(); }
 
-        const salaryCtx = document.getElementById('driverSalaryChart').getContext('2d');
-        window.myCharts.driverSalaryChart = new Chart(salaryCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Family Driver', 'Company Driver', 'Delivery Driver', 'Truck Driver', 'Bus Driver'],
-                datasets: [{
-                    label: 'Monthly Salary Range (PHP)',
-                    data: [18000, 22000, 25000, 30000, 28000],
-                    backgroundColor: '#3b82f6',
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: function(value) {
-                                return '₱' + value.toLocaleString();
-                            }
+        const salaryCtx = document.getElementById('driverSalaryChart')?.getContext('2d');
+        if (salaryCtx) {
+            window.myCharts.driverSalaryChart = new Chart(salaryCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Family Driver', 'Company Driver', 'Delivery Driver', 'Truck Driver', 'Bus Driver'],
+                    datasets: [{
+                        label: 'Monthly Salary Range (PHP)',
+                        data: [18000, 22000, 25000, 30000, 28000],
+                        backgroundColor: '#3b82f6',
+                        borderColor: '#1d4ed8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, title: { display: true, text: 'Average Monthly Salary by Driver Role' } },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: function(value) { return '₱' + value.toLocaleString(); } }
                         }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        const demandCtx = document.getElementById('regionalDemandChart').getContext('2d');
-        window.myCharts.regionalDemandChart = new Chart(demandCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Metro Manila', 'Cebu', 'Davao', 'Other'],
-                datasets: [{
-                    label: 'Job Postings by Region',
-                    data: [45, 20, 15, 20],
-                    backgroundColor: ['#0ea5e9', '#f97316', '#16a34a', '#6b7280'],
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-            }
-        });
+        const demandCtx = document.getElementById('regionalDemandChart')?.getContext('2d');
+        if (demandCtx) {
+            window.myCharts.regionalDemandChart = new Chart(demandCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Metro Manila', 'Cebu', 'Davao', 'Other'],
+                    datasets: [{
+                        label: 'Job Postings by Region',
+                        data: [45, 20, 15, 20],
+                        backgroundColor: ['#0ea5e9', '#f97316', '#16a34a', '#6b7280']
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { title: { display: true, text: 'Driver Job Postings by Region (%)' } }
+                }
+            });
+        }
     </script>
 </body>
 </html>
