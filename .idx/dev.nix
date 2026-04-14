@@ -8,14 +8,7 @@
     pkgs.nodejs_22
     # Install Chromium optimized for this Nix environment
     pkgs.chromium
-    (pkgs.python311.withPackages (ps: [
-      ps.pip
-      ps.wheel
-      ps.fastapi
-      ps.uvicorn
-      ps.python-multipart
-      ps.pypdf
-    ]))
+    pkgs.wrangler
   ];
   # Sets environment variables in the workspace
   env = {};
@@ -30,7 +23,7 @@
       enable = true;
       previews = {
         web = {
-          command = ["python", "-m", "http.server", "$PORT"];
+          command = ["wrangler", "pages", "dev", ".", "--port", "$PORT"];
           manager = "web";
         };
       };
@@ -42,7 +35,7 @@
         # Example: install JS dependencies from NPM
         # npm-install = "npm install";
         # Open editors for the following files by default, if they exist:
-        default.openFiles = [ "style.css" "main.js" "index.html" ];
+        default.openFiles = [ "style.css" "main.js" "index.html" "functions/scan-resume.js"];
       };
       # Runs when the workspace is (re)started
       onStart = {

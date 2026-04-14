@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const resumeFileInput = document.getElementById('resume-file');
     const salaryEstimateDiv = document.getElementById('salary-estimate');
 
-    // Function to fetch and display salary data
+    // Function to fetch and display salary data for the grid
     function fetchSalaryData() {
         fetch('salary_data.json')
             .then(response => response.json())
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
 
-    // Function to handle resume scanning
+    // Function to handle resume scanning by calling the backend function
     function scanResume() {
         const file = resumeFileInput.files[0];
         if (!file) {
@@ -53,68 +53,40 @@ document.addEventListener('DOMContentLoaded', function() {
         const reader = new FileReader();
         reader.onload = function(event) {
             const resumeText = event.target.result;
-            estimateSalaryFromResume(resumeText);
+            salaryEstimateDiv.innerHTML = '<p>Scanning your resume...</p>';
+
+            // Call the Cloudflare Pages Function
+            fetch('/scan-resume', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'text/plain',
+                },
+                body: resumeText,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.json().then(errorInfo => {
+                        throw new Error(errorInfo.message || 'Server responded with an error.');
+                    });
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.jobTitle) {
+                    salaryEstimateDiv.innerHTML = `
+                        <p>Based on your resume, we estimate your salary as a <strong>${data.experienceLevel} ${data.jobTitle}</strong> to be:</p>
+                        <h3>₱${data.salaryRangeLow.toLocaleString()} - ₱${data.salaryRangeHigh.toLocaleString()}</h3>
+                    `;
+                } else {
+                    salaryEstimateDiv.innerHTML = `<p>${data.message || 'Could not get an estimate.'}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error scanning resume:', error);
+                salaryEstimateDiv.innerHTML = `<p>An error occurred: ${error.message}</p>`;
+            });
         };
         reader.readAsText(file);
-    }
-
-    // Function to estimate salary from resume text
-    function estimateSalaryFromResume(resumeText) {
-        // For demonstration, we'll use a simple keyword matching logic.
-        // In a real application, you would use a more sophisticated NLP model.
-        const keywords = {
-            "Software Engineer": ["software", "engineer", "developer"],
-            "Product Manager": ["product", "manager"],
-            "Data Analyst": ["data", "analyst", "analytics"],
-            "UX/UI Designer": ["ux", "ui", "designer"]
-        };
-
-        const experienceLevels = {
-            "Entry-level": ["entry", "junior", "fresh"],
-            "Mid-level": ["mid", "intermediate"],
-            "Senior-level": ["senior", "lead", "principal"]
-        };
-
-        let detectedJob = null;
-        let detectedExperience = null;
-
-        for (const job in keywords) {
-            if (keywords[job].some(keyword => resumeText.toLowerCase().includes(keyword))) {
-                detectedJob = job;
-                break;
-            }
-        }
-
-        for (const level in experienceLevels) {
-            if (experienceLevels[level].some(keyword => resumeText.toLowerCase().includes(keyword))) {
-                detectedExperience = level;
-                break;
-            }
-        }
-
-        if (detectedJob) {
-            fetch('salary_data.json')
-                .then(response => response.json())
-                .then(data => {
-                    const matchedSalaries = data.filter(entry => 
-                        entry.jobTitle === detectedJob && 
-                        (!detectedExperience || entry.experienceLevel === detectedExperience)
-                    );
-
-                    if (matchedSalaries.length > 0) {
-                        // For simplicity, show the first match
-                        const salary = matchedSalaries[0];
-                        salaryEstimateDiv.innerHTML = `
-                            <p>Based on your resume, we estimate your salary as a <strong>${salary.experienceLevel} ${salary.jobTitle}</strong> to be:</p>
-                            <h3>₱${salary.salaryRangeLow.toLocaleString()} - ₱${salary.salaryRangeHigh.toLocaleString()}</h3>
-                        `;
-                    } else {
-                        salaryEstimateDiv.innerHTML = '<p>Could not determine a salary estimate for the detected job role.</p>';
-                    }
-                });
-        } else {
-            salaryEstimateDiv.innerHTML = '<p>Could not determine job role from the resume.</p>';
-        }
     }
 
     // Initial call to fetch salary data for the stats grid
