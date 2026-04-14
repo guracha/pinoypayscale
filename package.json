@@ -1,4 +1,11 @@
 {
+  "name": "pinoy-payscale",
+  "version": "1.0.0",
+  "description": "A web project analyzing salary data in the Philippines.",
+  "main": "main.js",
+  "scripts": {
+    "build": "node scripts/build-salary-data.js"
+  },
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "cheerio": "^1.2.0"
