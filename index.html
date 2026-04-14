@@ -21,6 +21,19 @@
     </header>
 
     <main>
+        <section id="salary-sonar">
+            <div id="sonar-drop-zone" class="sonar-box">
+                <h2>Salary Sonar</h2>
+                <p>Drag & drop your resume (.txt file) or click here to upload.</p>
+                <div class="sonar-icon-container">
+                    <!-- Icon will be added via CSS or as an SVG -->
+                </div>
+                <input type="file" id="resume-file-input" accept=".txt" hidden>
+                <button id="analyze-button" class="sonar-button" style="display: none;">Analyze My Resume</button>
+                <p class="sonar-disclaimer">Get an AI-powered salary estimate based on your skills & experience.</p>
+            </div>
+        </section>
+
         <section id="hero">
             <h2>Deciphering the Philippine Professional Labor Market in 2026</h2>
             <p>An exclusive guide to navigating salary expectations and career growth in the post-pandemic digital economy.</p>
@@ -31,14 +44,6 @@
             <div id="stats-container" class="stats-grid">
                 <!-- Salary stats will be dynamically loaded here -->
             </div>
-        </section>
-
-        <section id="resume-scanner">
-            <h2>AI-Powered Resume Analysis</h2>
-            <p>Upload your resume (in TXT format) to get a preliminary salary estimation based on your skills and experience.</p>
-            <input type="file" id="resume-file" accept=".txt">
-            <button id="scan-resume-btn">Get Salary Estimate</button>
-            <div id="salary-estimate"></div>
         </section>
 
         <!-- Updated Blog Section -->
@@ -64,6 +69,16 @@
     <footer>
         <p>&copy; 2026 PinoyPayScale. Built for the Filipino Workforce.</p>
     </footer>
+
+    <!-- Result Modal -->
+    <div id="result-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <div id="salary-estimate-result">
+                <!-- Result content will be injected here by JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <!-- Main application logic -->
     <script src="main.js"></script>

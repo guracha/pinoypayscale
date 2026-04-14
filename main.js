@@ -1,70 +1,139 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- Scrolling Salary Dashboard --- 
+    // --- Scrolling Salary Dashboard (Existing Logic) --- 
     const dashboard = document.getElementById('dashboard');
-    // Replace the grid with a scrolling wrapper
-    dashboard.innerHTML = '<h2>Salary Dashboard</h2><div class="scrolling-wrapper"><div id="stats-container" class="stats-grid"></div></div>';
-    const statsContainer = document.getElementById('stats-container');
+    if (dashboard) {
+        dashboard.innerHTML = '<h2>Salary Dashboard</h2><div class="scrolling-wrapper"><div id="stats-container" class="stats-grid"></div></div>';
+        const statsContainer = document.getElementById('stats-container');
 
-    fetch('salary_data.json')
-        .then(response => response.json())
-        .then(data => {
-            // Original Cards
-            data.forEach(item => {
-                const statCard = document.createElement('div');
-                statCard.className = 'stat-card';
-                statCard.innerHTML = `
-                    <h4>${item.jobTitle}</h4>
-                    <p>${item.experienceLevel}</p>
-                    <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
-                `;
-                statsContainer.appendChild(statCard);
-            });
+        fetch('salary_data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Original Cards
+                data.forEach(item => {
+                    const statCard = document.createElement('div');
+                    statCard.className = 'stat-card';
+                    statCard.innerHTML = `
+                        <h4>${item.jobTitle}</h4>
+                        <p>${item.experienceLevel}</p>
+                        <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
+                    `;
+                    statsContainer.appendChild(statCard);
+                });
 
-            // Cloned Cards for seamless loop
-            data.forEach(item => {
-                const statCard = document.createElement('div');
-                statCard.className = 'stat-card';
-                statCard.innerHTML = `
-                    <h4>${item.jobTitle}</h4>
-                    <p>${item.experienceLevel}</p>
-                    <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
-                `;
-                statsContainer.appendChild(statCard);
+                // Cloned Cards for seamless loop
+                data.forEach(item => {
+                    const statCard = document.createElement('div');
+                    statCard.className = 'stat-card';
+                    statCard.innerHTML = `
+                        <h4>${item.jobTitle}</h4>
+                        <p>${item.experienceLevel}</p>
+                        <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
+                    `;
+                    statsContainer.appendChild(statCard);
+                });
             });
+    }
+
+    // --- Salary Sonar (New Feature Logic) ---
+    const sonarDropZone = document.getElementById('sonar-drop-zone');
+    const resumeFileInput = document.getElementById('resume-file-input');
+    const resultModal = document.getElementById('result-modal');
+    const closeButton = document.querySelector('.close-button');
+    const salaryEstimateResultDiv = document.getElementById('salary-estimate-result');
+
+    // Function to process the uploaded file
+    const processResumeFile = (file) => {
+        if (!file || !file.type === 'text/plain') {
+            alert('Please upload a valid .txt file.');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const resumeText = event.target.result;
+            // Simulate AI analysis
+            console.log("Simulating analysis for resume:", resumeText.substring(0, 100) + "...");
+            const mockResponse = {
+                jobTitle: "Senior Software Engineer",
+                estimatedSalary: "₱150,000 - ₱200,000",
+                confidence: "85%"
+            };
+            
+            // Display the result in the modal
+            const resultHTML = `
+                <h4>Analysis Complete</h4>
+                <p>Based on your resume, we've identified a potential match:</p>
+                <div style="margin: 2rem 0; text-align: left; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>Identified Role:</strong> ${mockResponse.jobTitle}</p>
+                    <p><strong>Estimated Salary Range:</strong> <strong style="color: var(--primary-color);">${mockResponse.estimatedSalary}</strong></p>
+                    <p><strong>Confidence Score:</strong> ${mockResponse.confidence}</p>
+                </div>
+                <small>Disclaimer: This is a preliminary estimate and may vary.</small>
+            `;
+            salaryEstimateResultDiv.innerHTML = resultHTML;
+            openModal();
+        };
+        reader.readAsText(file);
+    };
+
+    // Modal control functions
+    const openModal = () => {
+        if (resultModal) resultModal.classList.add('visible');
+    };
+    const closeModal = () => {
+        if (resultModal) resultModal.classList.remove('visible');
+    };
+
+    if (sonarDropZone) {
+        // Trigger file input click when the drop zone is clicked
+        sonarDropZone.addEventListener('click', () => resumeFileInput.click());
+
+        // Drag and drop event listeners
+        sonarDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Necessary to allow drop
+            sonarDropZone.classList.add('drag-over');
         });
 
-    // --- Resume Scanner Logic ---
-    const scanBtn = document.getElementById('scan-resume-btn');
-    const resumeFile = document.getElementById('resume-file');
-    const salaryEstimateDiv = document.getElementById('salary-estimate');
+        sonarDropZone.addEventListener('dragleave', () => {
+            sonarDropZone.classList.remove('drag-over');
+        });
 
-    if (scanBtn) {
-        scanBtn.addEventListener('click', () => {
-            if (resumeFile.files.length === 0) {
-                salaryEstimateDiv.textContent = 'Please select a TXT file.';
-                return;
+        sonarDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            sonarDropZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                processResumeFile(files[0]);
             }
-
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                const resumeText = event.target.result;
-                console.log("Simulating call to 'scan-resume' function with text:", resumeText.substring(0, 100) + "...");
-                const mockResponse = {
-                    jobTitle: "Senior Software Engineer",
-                    estimatedSalary: "₱150,000 - ₱200,000"
-                };
-                salaryEstimateDiv.innerHTML = `
-                    <p><strong>Identified Role:</strong> ${mockResponse.jobTitle}</p>
-                    <p><strong>Estimated Salary Range:</strong> ${mockResponse.estimatedSalary}</p>
-                `;
-            };
-            reader.readAsText(resumeFile.files[0]);
         });
     }
 
-    // --- Blog Loading Logic ---
+    // Listener for file selection via the hidden input
+    if (resumeFileInput) {
+        resumeFileInput.addEventListener('change', (e) => {
+            const files = e.target.files;
+            if (files.length > 0) {
+                processResumeFile(files[0]);
+            }
+        });
+    }
+
+    // Listeners for closing the modal
+    if (closeButton) {
+        closeButton.addEventListener('click', closeModal);
+    }
+    if (resultModal) {
+        resultModal.addEventListener('click', (e) => {
+            // Close only if clicking on the overlay itself, not the content
+            if (e.target === resultModal) {
+                closeModal();
+            }
+        });
+    }
+
+    // --- Blog Loading Logic (Existing Logic) ---
     const postList = document.getElementById('post-list');
     const postContentContainer = document.getElementById('post-content-container');
 

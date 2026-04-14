@@ -1,1 +1,5 @@
-node_modules
+# IDX specific files
+.idx/
+
+# Dependencies
+/node_modules
