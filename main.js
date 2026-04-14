@@ -79,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.myCharts = {}; // Global container for chart instances
     const availablePosts = [
         { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
-        { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
-        { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' },
+        { title: '2026 Philippine Tech & IT Salary Report', file: 'posts/tech-salary-report-2026.html' },
+        { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' }
     ];
     const loadPost = (postFile) => {
         // Destroy all existing chart instances before loading new content
@@ -126,8 +126,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     if (availablePosts.length > 0) {
         const firstLink = postList.querySelector('a');
-        firstLink.classList.add('active');
-        loadPost(availablePosts[0].file);
+        if (firstLink) {
+            firstLink.classList.add('active');
+            loadPost(availablePosts[0].file);
+        }
     } else {
         postContentContainer.innerHTML = '<p>No posts available.</p>';
     }
