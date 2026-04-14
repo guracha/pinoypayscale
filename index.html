@@ -1,49 +1,63 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PinoyPayScale | Know Your Real Market Worth</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>PinoyPayScale: 2026 PH Salary Guide</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <header>
-        <div class="logo"><a href="index.html">PinoyPayScale</a></div>
         <nav>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
-            <a href="blog.html">Blog</a>
+            <h1>PinoyPayScale</h1>
+            <ul>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
     <main>
-        <section class="hero-section">
-            <h1>Explore Real Market Salaries in the 2026 PH Job Market</h1>
-            <p>Browse live salary data based on job titles and experience levels.</p>
+        <section id="hero">
+            <h2>Deciphering the Philippine Professional Labor Market in 2026</h2>
+            <p>An exclusive guide to navigating salary expectations and career growth in the post-pandemic digital economy.</p>
         </section>
 
-        <section class="resume-section">
-            <h2>Get Your Salary Estimate</h2>
-            <p>Upload your resume to get a salary estimate based on your experience.</p>
-            <input type="file" id="resume-file" accept=".pdf,.doc,.docx">
-            <button id="scan-resume-btn">Scan Resume</button>
+        <section id="dashboard">
+            <h2>Salary Dashboard</h2>
+            <div id="stats-container" class="stats-grid">
+                <!-- Salary stats will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <section id="resume-scanner">
+            <h2>AI-Powered Resume Analysis</h2>
+            <p>Upload your resume (in TXT format) to get a preliminary salary estimation based on your skills and experience.</p>
+            <input type="file" id="resume-file" accept=".txt">
+            <button id="scan-resume-btn">Get Salary Estimate</button>
             <div id="salary-estimate"></div>
         </section>
 
-        <section class="stats-section" id="about">
-            <h2>Live Market Rates</h2>
-            <!-- This grid will be populated by main.js -->
-            <div class="stats-grid" id="stats-container">
-                <!-- Data will be loaded here by main.js from salary_data.json -->
+        <!-- Updated Blog Section -->
+        <section id="blog">
+            <h2>Latest Insights & Reports</h2>
+            <div class="blog-layout">
+                <div id="post-list-container">
+                    <h3>All Posts</h3>
+                    <ul id="post-list"></ul>
+                </div>
+                <div id="post-content-container">
+                    <!-- Selected blog post content will be displayed here -->
+                </div>
             </div>
         </section>
 
         <section id="contact" class="contact-section">
-          <h2>Contact Us</h2>
-          <p>For inquiries, please email us at contact@pinoypayscale.com</p>
+            <h2>Contact Us</h2>
+            <p>For inquiries, please email us at contact@pinoypayscale.com</p>
         </section>
     </main>
 
@@ -51,7 +65,7 @@
         <p>&copy; 2026 PinoyPayScale. Built for the Filipino Workforce.</p>
     </footer>
 
-    <!-- Main application logic for populating stats -->
+    <!-- Main application logic -->
     <script src="main.js"></script>
 
 </body>

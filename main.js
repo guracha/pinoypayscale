@@ -1,99 +1,92 @@
 
-document.addEventListener('DOMContentLoaded', function() {
-    const statsContainer = document.getElementById('stats-container');
-    const scanResumeBtn = document.getElementById('scan-resume-btn');
-    const resumeFileInput = document.getElementById('resume-file');
+document.addEventListener('DOMContentLoaded', () => {
+    // Load Salary Data for Dashboard
+    fetch('salary_data.json')
+        .then(response => response.json())
+        .then(data => {
+            const statsContainer = document.getElementById('stats-container');
+            data.forEach(item => {
+                const statCard = document.createElement('div');
+                statCard.className = 'stat-card';
+                statCard.innerHTML = `
+                    <h4>${item.jobTitle}</h4>
+                    <p>${item.experienceLevel}</p>
+                    <p class="salary-range">₱${item.salaryRangeLow.toLocaleString()} - ₱${item.salaryRangeHigh.toLocaleString()}</p>
+                `;
+                statsContainer.appendChild(statCard);
+            });
+        });
+
+    // Resume Scanner Logic
+    const scanBtn = document.getElementById('scan-resume-btn');
+    const resumeFile = document.getElementById('resume-file');
     const salaryEstimateDiv = document.getElementById('salary-estimate');
 
-    // Function to fetch and display salary data for the grid
-    function fetchSalaryData() {
-        fetch('salary_data.json')
-            .then(response => response.json())
-            .then(data => {
-                if (data && data.length > 0) {
-                    statsContainer.innerHTML = ''; // Clear existing hardcoded stats
-                    const itemsToShow = data.slice(0, 6);
-                    itemsToShow.forEach(stat => {
-                        const statCard = document.createElement('div');
-                        statCard.className = 'stat-card';
-
-                        const categorySpan = document.createElement('span');
-                        categorySpan.textContent = stat.jobTitle;
-
-                        const salaryStrong = document.createElement('strong');
-                        salaryStrong.textContent = `₱${stat.salaryRangeLow.toLocaleString()} - ₱${stat.salaryRangeHigh.toLocaleString()}`;
-
-                        const rolePara = document.createElement('p');
-                        rolePara.textContent = `${stat.experienceLevel} in ${stat.location}`;
-
-                        statCard.appendChild(categorySpan);
-                        statCard.appendChild(salaryStrong);
-                        statCard.appendChild(rolePara);
-
-                        statsContainer.appendChild(statCard);
-                    });
-                } else {
-                    statsContainer.innerHTML = '<p>No salary data available at the moment.</p>';
-                }
-            })
-            .catch(error => {
-                console.error('Error fetching salary data:', error);
-                statsContainer.innerHTML = '<p>Could not load salary data.</p>';
-            });
-    }
-
-    // Function to handle resume scanning by calling the backend function
-    function scanResume() {
-        const file = resumeFileInput.files[0];
-        if (!file) {
-            salaryEstimateDiv.innerHTML = '<p>Please select a resume file first.</p>';
+    scanBtn.addEventListener('click', () => {
+        if (resumeFile.files.length === 0) {
+            salaryEstimateDiv.textContent = 'Please select a TXT file.';
             return;
         }
 
         const reader = new FileReader();
         reader.onload = function(event) {
             const resumeText = event.target.result;
-            salaryEstimateDiv.innerHTML = '<p>Scanning your resume...</p>';
+            // Simulate a call to a Cloud Function
+            console.log("Simulating call to 'scan-resume' function with text:", resumeText.substring(0, 100) + "...");
+            
+            // This is a mock response. In a real scenario, you'd use fetch() to call the function.
+            const mockResponse = {
+                jobTitle: "Senior Software Engineer",
+                estimatedSalary: "₱150,000 - ₱200,000"
+            };
 
-            // Call the Cloudflare Pages Function
-            fetch('/scan-resume', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'text/plain',
-                },
-                body: resumeText,
-            })
-            .then(response => {
-                if (!response.ok) {
-                    return response.json().then(errorInfo => {
-                        throw new Error(errorInfo.message || 'Server responded with an error.');
-                    });
-                }
-                return response.json();
-            })
-            .then(data => {
-                if (data.jobTitle) {
-                    salaryEstimateDiv.innerHTML = `
-                        <p>Based on your resume, we estimate your salary as a <strong>${data.experienceLevel} ${data.jobTitle}</strong> to be:</p>
-                        <h3>₱${data.salaryRangeLow.toLocaleString()} - ₱${data.salaryRangeHigh.toLocaleString()}</h3>
-                    `;
-                } else {
-                    salaryEstimateDiv.innerHTML = `<p>${data.message || 'Could not get an estimate.'}</p>`;
-                }
-            })
-            .catch(error => {
-                console.error('Error scanning resume:', error);
-                salaryEstimateDiv.innerHTML = `<p>An error occurred: ${error.message}</p>`;
-            });
+            salaryEstimateDiv.innerHTML = `
+                <p><strong>Identified Role:</strong> ${mockResponse.jobTitle}</p>
+                <p><strong>Estimated Salary Range:</strong> ${mockResponse.estimatedSalary}</p>
+            `;
         };
-        reader.readAsText(file);
+        reader.readAsText(resumeFile.files[0]);
+    });
+
+    // Blog Loading Logic
+    const postList = document.getElementById('post-list');
+    const postContentContainer = document.getElementById('post-content-container');
+
+    // Function to fetch and display a post
+    function loadPost(fileName) {
+        fetch(`posts/${fileName}`)
+            .then(response => response.text())
+            .then(html => {
+                postContentContainer.innerHTML = html;
+                // If the loaded content has its own scripts, you might need to handle them
+            });
     }
 
-    // Initial call to fetch salary data for the stats grid
-    fetchSalaryData();
+    // Fetch the list of posts
+    // In a real hosting environment, you might need a server-side script to list files.
+    // For this static site, we'll hardcode the known posts.
+    const knownPosts = [
+        'it-finance-salary-data.html',
+        'driver-salary-report-2026.html'
+    ];
 
-    // Event listener for the scan resume button
-    if (scanResumeBtn) {
-        scanResumeBtn.addEventListener('click', scanResume);
+    knownPosts.forEach(fileName => {
+        const listItem = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = `#`;
+        // Extract a user-friendly title from the filename
+        const title = fileName.replace(/-/g, ' ').replace('.html', '').replace(/\b\w/g, l => l.toUpperCase());
+        link.textContent = title;
+        link.onclick = (e) => {
+            e.preventDefault();
+            loadPost(fileName);
+        };
+        listItem.appendChild(link);
+        postList.appendChild(listItem);
+    });
+
+    // Load the first post by default
+    if (knownPosts.length > 0) {
+        loadPost(knownPosts[0]);
     }
 });
