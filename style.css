@@ -1,240 +1,224 @@
-/* General Body Styles */
-body {
-    font-family: 'Roboto', sans-serif;
-    margin: 0;
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
+
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #004080; /* A deeper, more professional blue */
+    --secondary-color: #6c757d; /* A neutral, secondary text color */
+    --background-color: #f8f9fa; /* A very light grey for the background */
+    --surface-color: #ffffff; /* For cards and surfaces */
+    --text-color: #212529; /* Dark grey for primary text, better than pure black */
+    --border-color: #dee2e6;
+    --font-primary: 'Inter', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
 }
 
-/* Header and Navigation */
+body {
+    font-family: var(--font-secondary);
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.7;
+}
+
+/* --- Typography --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-primary);
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.2rem; margin: 0.5rem 0; }
+
+/* --- Header & Navigation --- */
 header {
-    background-color: #fff;
+    background-color: var(--surface-color);
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
-.logo {
-    font-family: 'Inter', sans-serif;
+header h1 {
+    font-size: 1.8rem;
     font-weight: 900;
-    font-size: 1.5rem;
-    color: #0052cc;
+    color: var(--primary-color);
+    margin: 0;
 }
 
-.logo a {
-    text-decoration: none;
-    color: inherit;
+header nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-nav a {
-    font-family: 'Inter', sans-serif;
+header nav li {
+    display: inline-block;
+    margin-left: 2rem;
+}
+
+header nav a {
     text-decoration: none;
-    color: #555;
-    margin-left: 1.5rem;
+    color: var(--secondary-color);
     font-weight: 700;
+    font-family: var(--font-primary);
     transition: color 0.3s ease;
 }
 
-nav a:hover {
-    color: #0052cc;
+header nav a:hover {
+    color: var(--primary-color);
 }
 
-/* Main Content & Hero Section */
+/* --- Page Structure & Sections --- */
 main {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 100%; /* Allow full width for scrolling */
+    margin: 2rem auto;
+    padding: 0 2rem;
 }
 
-.hero-section {
+section {
+    background-color: var(--surface-color);
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    overflow: hidden; /* Hide overflowing content for scrolling section */
+}
+
+/* --- Hero Section --- */
+#hero {
     text-align: center;
+    background: linear-gradient(45deg, var(--primary-color), #0052cc);
+    color: var(--surface-color);
     padding: 4rem 2rem;
-    background-color: #0052cc;
-    color: #fff;
-    border-radius: 8px;
-    margin-bottom: 2rem;
 }
 
-.hero-section h1 {
-    font-family: 'Inter', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
+#hero h2 {
+    color: var(--surface-color);
+    font-size: 2.8rem;
 }
 
-.hero-section p {
+#hero p {
     font-size: 1.2rem;
+    max-width: 600px;
+    margin: 1rem auto 0;
 }
 
-/* Resume Section */
-.resume-section {
-    text-align: center;
-    padding: 2rem;
-    background-color: #e9f2ff;
-    border-radius: 8px;
-    margin-bottom: 2rem;
+/* --- Scrolling Dashboard --- */
+#dashboard {
+    padding: 2rem 0; /* Remove horizontal padding to allow full-width scroll */
 }
 
-.resume-section h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    color: #333;
-    margin-bottom: 1rem;
-}
-
-.resume-section p {
-    font-size: 1.1rem;
-    color: #555;
-    margin-bottom: 1.5rem;
-}
-
-#resume-file {
-    margin-bottom: 1rem;
-}
-
-#scan-resume-btn {
-    background-color: #0052cc;
-    color: #fff;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#scan-resume-btn:hover {
-    background-color: #003d99;
-}
-
-#salary-estimate {
-    margin-top: 1.5rem;
-    font-size: 1.1rem;
-}
-
-
-/* Stats Section */
-.stats-section h2 {
-    text-align: center;
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #333;
+.scrolling-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-shrink: 0;
     gap: 1.5rem;
+    padding: 0 1.5rem; /* Add padding to the sides of the content */
+    animation: scroll 60s linear infinite;
+}
+
+.scrolling-wrapper:hover .stats-grid {
+    animation-play-state: paused; /* Pause animation on hover */
+}
+
+@keyframes scroll {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 .stat-card {
-    background-color: #fff;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-color);
     border-radius: 8px;
     padding: 1.5rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    width: 280px; /* Fixed width for each card */
+    flex-shrink: 0;
+    background-color: var(--surface-color);
 }
 
-.stat-card h3 {
-    font-family: 'Inter', sans-serif;
-    color: #0052cc;
-    margin-top: 0;
-}
-
-/* Blog Content Styles */
-.blog-content {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-}
-
-.blog-title {
-    font-family: 'Inter', sans-serif;
-    font-size: 2.8rem;
-    color: #333;
-    margin-bottom: 0.5rem;
-}
-
-.blog-meta {
-    font-size: 0.9rem;
-    color: #777;
-    margin-bottom: 2rem;
-}
-
-.blog-header-image {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-}
-
-.blog-content h2 {
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    color: #0052cc;
-    margin-top: 3rem;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 0.5rem;
-}
-
-.blog-content h3 {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
-    color: #333;
-    margin-top: 2rem;
-}
-
-.blog-image {
-    max-width: 100%;
-    border-radius: 8px;
-    margin: 1rem 0;
-}
-
-/* Table Styles */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 2rem 0;
-}
-
-table th, table td {
-    border: 1px solid #ddd;
-    padding: 0.8rem 1rem;
-    text-align: left;
-}
-
-table th {
-    background-color: #f2f2f2;
+.stat-card .salary-range {
+    font-size: 1.3rem;
     font-weight: 700;
+    color: var(--primary-color);
+    margin-top: 1rem;
 }
 
-/* Lists */
-ul {
-    padding-left: 20px;
+/* --- Blog Section --- */
+.blog-layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 2rem;
 }
 
-ul li {
-    margin-bottom: 0.5rem;
+#post-list-container {
+    border-right: 1px solid var(--border-color);
+    padding-right: 1.5rem;
 }
 
-/* Disclaimer */
-.disclaimer {
-    font-size: 0.8rem;
-    color: #888;
-    margin-top: 3rem;
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
+#post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-/* Footer */
+#post-list li a {
+    display: block;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: var(--secondary-color);
+    border-radius: 5px;
+    font-weight: 700;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#post-list li a:hover {
+    background-color: #e9ecef;
+    color: var(--primary-color);
+}
+
+#post-content-container {
+    padding-left: 1.5rem;
+}
+
+/* --- Other Sections (Resume, Contact, Footer) --- */
+input[type="file"], button {
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    padding: 0.8rem 1.2rem;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+button {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #003366;
+}
+
 footer {
     text-align: center;
     padding: 2rem;
     margin-top: 2rem;
-    background-color: #333;
-    color: #fff;
+    color: var(--secondary-color);
 }
+
