@@ -1,10 +1,14 @@
 
-const fs = require('fs');
+const fs = require('fs-extra');
 const path = require('path');
 const cheerio = require('cheerio');
 
 const postsDir = path.join(__dirname, '..', 'posts');
-const outputFilePath = path.join(__dirname, '..', 'salary_data.json');
+const outputDir = path.join(__dirname, '..', 'dist');
+const outputFilePath = path.join(outputDir, 'salary_data.json');
+
+// Ensure the output directory exists
+fs.ensureDirSync(outputDir);
 
 let salaryData = [];
 
@@ -21,6 +25,7 @@ fs.readdir(postsDir, (err, files) => {
         const htmlContent = fs.readFileSync(filePath, 'utf-8');
         const $ = cheerio.load(htmlContent);
 
+        // ... (The data extraction logic remains the same as before)
         // Strategy 1: Find data in tables
         let foundDataInTable = false;
         $('table').each((i, table) => {
@@ -71,10 +76,8 @@ fs.readdir(postsDir, (err, files) => {
 
                 if (match && match[1]) {
                     try {
-                        // This is a bit risky, but necessary for this specific script structure.
-                        // We'll wrap it in a Function constructor to parse the object literal.
                         const dataObject = new Function(`return ${match[1]}`)();
-                        const experienceLabels = ['Entry Level', 'Mid-Level', 'Senior Level', 'Expert Level']; // Assume this order
+                        const experienceLabels = ['Entry Level', 'Mid-Level', 'Senior Level', 'Expert Level'];
 
                         for (const category in dataObject) {
                             const jobTitle = `Driver (${category.charAt(0).toUpperCase() + category.slice(1)})`;
@@ -82,13 +85,11 @@ fs.readdir(postsDir, (err, files) => {
                             
                             salaries.forEach((salary, index) => {
                                 if (experienceLabels[index]) {
-                                    // In this file, the data is a single value, not a range.
-                                    // We'll create a small artificial range for consistency.
                                     salaryData.push({
                                         jobTitle: jobTitle,
                                         experienceLevel: experienceLabels[index],
                                         salaryRangeLow: salary, 
-                                        salaryRangeHigh: salary + 5000, // Create a small range
+                                        salaryRangeHigh: salary + 5000, 
                                         location: "Philippines"
                                     });
                                 }
@@ -102,10 +103,25 @@ fs.readdir(postsDir, (err, files) => {
         }
     });
 
-    // Remove duplicates before writing
+    // 1. Write the salary data to the dist directory
     const uniqueSalaryData = Array.from(new Set(salaryData.map(e => JSON.stringify(e))))
         .map(e => JSON.parse(e));
-
     fs.writeFileSync(outputFilePath, JSON.stringify(uniqueSalaryData, null, 2), 'utf-8');
     console.log(`Successfully generated salary_data.json with ${uniqueSalaryData.length} entries.`);
+
+    // 2. Copy all necessary static files and folders to the dist directory
+    const projectRoot = path.join(__dirname, '..');
+    const filesToCopy = ['index.html', 'style.css', 'main.js', 'job_data.json'];
+    
+    filesToCopy.forEach(file => {
+        fs.copySync(path.join(projectRoot, file), path.join(outputDir, file));
+        console.log(`Copied ${file} to dist.`);
+    });
+
+    // 3. Copy the posts directory recursively
+    fs.copySync(postsDir, path.join(outputDir, 'posts'));
+    console.log('Copied posts directory to dist.');
+
+    console.log('Build process complete. The `dist` directory is ready for deployment.');
 });
+
