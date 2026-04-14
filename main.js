@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.myCharts = {}; // Global container for chart instances
     const availablePosts = [
         { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
-        { title: '2026 Philippine Tech & IT Salary Report', file: 'posts/tech-salary-report-2026.html' },
+        { title: '2026 Philippine Driver Salary & Labor Market Analysis', file: 'posts/driver-salary-report-2026.html' },
         { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' }
     ];
     const loadPost = (postFile) => {
