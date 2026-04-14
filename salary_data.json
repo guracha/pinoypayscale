@@ -1,5 +1,89 @@
 [
   {
+    "jobTitle": "Driver (Private)",
+    "experienceLevel": "Entry Level",
+    "salaryRangeLow": 18000,
+    "salaryRangeHigh": 23000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Private)",
+    "experienceLevel": "Mid-Level",
+    "salaryRangeLow": 24000,
+    "salaryRangeHigh": 29000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Private)",
+    "experienceLevel": "Senior Level",
+    "salaryRangeLow": 32000,
+    "salaryRangeHigh": 37000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Private)",
+    "experienceLevel": "Expert Level",
+    "salaryRangeLow": 42000,
+    "salaryRangeHigh": 47000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Corporate)",
+    "experienceLevel": "Entry Level",
+    "salaryRangeLow": 22000,
+    "salaryRangeHigh": 27000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Corporate)",
+    "experienceLevel": "Mid-Level",
+    "salaryRangeLow": 30000,
+    "salaryRangeHigh": 35000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Corporate)",
+    "experienceLevel": "Senior Level",
+    "salaryRangeLow": 40000,
+    "salaryRangeHigh": 45000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Corporate)",
+    "experienceLevel": "Expert Level",
+    "salaryRangeLow": 52000,
+    "salaryRangeHigh": 57000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Executive)",
+    "experienceLevel": "Entry Level",
+    "salaryRangeLow": 35000,
+    "salaryRangeHigh": 40000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Executive)",
+    "experienceLevel": "Mid-Level",
+    "salaryRangeLow": 50000,
+    "salaryRangeHigh": 55000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Executive)",
+    "experienceLevel": "Senior Level",
+    "salaryRangeLow": 75000,
+    "salaryRangeHigh": 80000,
+    "location": "Philippines"
+  },
+  {
+    "jobTitle": "Driver (Executive)",
+    "experienceLevel": "Expert Level",
+    "salaryRangeLow": 95000,
+    "salaryRangeHigh": 100000,
+    "location": "Philippines"
+  },
+  {
     "jobTitle": "Information Technology & Software Development",
     "experienceLevel": "Entry Level",
     "salaryRangeLow": 40000,
