@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const closeModalButton = document.querySelector('.close-button');
     const resultContainer = document.getElementById('salary-estimate-result');
 
-    // --- RESUME ANALYZER LOGIC (unchanged) ---
+    // --- RESUME ANALYZER LOGIC ---
     const handleFile = (file) => {
         if (!file) return;
         analyzeButton.style.display = 'block';
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const content = e.target.result;
                 if (file.type === "application/pdf") {
                     pdfjsLib.getDocument({ data: content }).promise.then(pdf => {
-                        let text = '';
                         const promises = Array.from({ length: pdf.numPages }, (_, i) => pdf.getPage(i + 1).then(page => page.getTextContent()));
                         return Promise.all(promises);
                     }).then(textContents => {
@@ -74,27 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
     closeModalButton.onclick = () => modal.style.display = 'none';
     window.onclick = (e) => { if (e.target === modal) { modal.style.display = 'none'; } };
 
-    // --- NEW BLOG SYSTEM LOGIC ---
+    // --- BLOG SYSTEM LOGIC ---
     const postList = document.querySelector('#post-list-container ul');
     const postContentContainer = document.getElementById('post-content-container');
-
     const availablePosts = [
         { title: '2026 Philippine Driver Salary & Labor Market', file: 'posts/driver-salary-report-2026.html' },
         // Add new posts here in the future
     ];
-
     const loadPost = (postFile) => {
         postContentContainer.innerHTML = '<p>Loading post...</p>';
         fetch(postFile)
             .then(response => response.text())
             .then(html => {
                 postContentContainer.innerHTML = html;
-                // Find and execute the script tag from the loaded content
                 const scriptTag = postContentContainer.querySelector('script');
                 if (scriptTag) {
                     const newScript = document.createElement('script');
                     newScript.textContent = scriptTag.textContent;
-                    document.body.appendChild(newScript).remove(); // Append, execute, and then remove
+                    document.body.appendChild(newScript).remove();
                 }
             })
             .catch(error => {
@@ -102,9 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.error('Error fetching post:', error);
             });
     };
-
-    // Clear static list and build it dynamically
-    postList.innerHTML = ''; 
+    postList.innerHTML = '';
     availablePosts.forEach((post, index) => {
         const li = document.createElement('li');
         const a = document.createElement('a');
@@ -120,13 +114,58 @@ document.addEventListener('DOMContentLoaded', () => {
         li.appendChild(a);
         postList.appendChild(li);
     });
-
-    // Auto-load the first post and set it as active
     if (availablePosts.length > 0) {
         const firstLink = postList.querySelector('a');
         firstLink.classList.add('active');
         loadPost(availablePosts[0].file);
     } else {
         postContentContainer.innerHTML = '<p>No posts available.</p>';
+    }
+
+    // --- SPA-like NAVIGATION LOGIC ---
+    const mainSections = {
+        hero: document.getElementById('hero'),
+        analyzer: document.getElementById('resume-analyzer'),
+        dashboard: document.getElementById('dashboard'),
+        blog: document.getElementById('blog'),
+        contact: document.getElementById('contact'),
+    };
+    const navHome = document.querySelector('header h1');
+
+    function handleNavigation() {
+        const hash = window.location.hash;
+
+        // Hide all main sections by default
+        Object.values(mainSections).forEach(section => {
+            if (section) section.style.display = 'none';
+        });
+
+        if (hash === '#blog') {
+            // Show only the blog section
+            if (mainSections.blog) mainSections.blog.style.display = 'block';
+        } else if (hash === '#dashboard') {
+            // Show only the dashboard section
+            if (mainSections.dashboard) mainSections.dashboard.style.display = 'block';
+        } else if (hash === '#contact') {
+            // Show only the contact section
+            if (mainSections.contact) mainSections.contact.style.display = 'block';
+        } else {
+            // Default "home" view: show all sections
+            Object.values(mainSections).forEach(section => {
+                if (section) section.style.display = 'block';
+            });
+        }
+    }
+
+    // Handle navigation on page load and hash changes
+    window.addEventListener('hashchange', handleNavigation);
+    handleNavigation(); // For initial page load
+
+    // Make the site title a "home" button
+    if (navHome) {
+        navHome.style.cursor = 'pointer';
+        navHome.addEventListener('click', () => {
+            window.location.hash = '';
+        });
     }
 });
