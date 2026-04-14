@@ -222,15 +222,15 @@ footer {
     color: var(--secondary-color);
 }
 
-/* --- Salary Sonar (New Feature) --- */
-#salary-sonar {
+/* --- Resume Analyzer (New Feature) --- */
+#resume-analyzer {
     background-color: transparent; /* Make section background transparent */
     box-shadow: none; /* Remove shadow from the section itself */
     padding: 2rem 0;
     text-align: center;
 }
 
-.sonar-box {
+.analyzer-box {
     border: 3px dashed var(--border-color);
     border-radius: 15px;
     padding: 3rem;
@@ -241,7 +241,7 @@ footer {
     margin: 0 auto;
 }
 
-.sonar-box:hover {
+.analyzer-box:hover {
     border-color: var(--primary-color);
     background-color: #f8f9fa;
     transform: translateY(-5px);
@@ -249,31 +249,31 @@ footer {
 }
 
 /* Style for when a file is being dragged over the drop zone */
-.sonar-box.drag-over {
+.analyzer-box.drag-over {
     border-style: solid;
     border-color: #0052cc;
     background-color: #e9ecef;
     transform: scale(1.02);
 }
 
-.sonar-box h2 {
+.analyzer-box h2 {
     font-size: 2.2rem;
     margin-top: 0;
 }
 
-.sonar-box p {
+.analyzer-box p {
     color: var(--secondary-color);
     font-size: 1.1rem;
 }
 
-.sonar-button {
+.analyzer-button {
     margin-top: 1rem;
     padding: 1rem 2rem;
     font-size: 1.1rem;
     font-weight: 700;
 }
 
-.sonar-disclaimer {
+.analyzer-disclaimer {
     font-size: 0.9rem;
     margin-top: 1.5rem;
     color: #888;

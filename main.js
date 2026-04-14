@@ -36,8 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // --- Salary Sonar (New Feature Logic) ---
-    const sonarDropZone = document.getElementById('sonar-drop-zone');
+    // --- Resume Analyzer (New Feature Logic) ---
+    const analyzerDropZone = document.getElementById('analyzer-drop-zone');
     const resumeFileInput = document.getElementById('resume-file-input');
     const resultModal = document.getElementById('result-modal');
     const closeButton = document.querySelector('.close-button');
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to process the uploaded file
     const processResumeFile = (file) => {
-        if (!file || !file.type === 'text/plain') {
+        if (!file || file.type !== 'text/plain') {
             alert('Please upload a valid .txt file.');
             return;
         }
@@ -80,29 +80,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Modal control functions
     const openModal = () => {
-        if (resultModal) resultModal.classList.add('visible');
+        if (resultModal) resultModal.style.display = 'flex'; // Changed for visibility
+        setTimeout(() => {
+            if (resultModal) resultModal.classList.add('visible');
+        }, 10); // small delay to allow display property to apply before transition
     };
     const closeModal = () => {
         if (resultModal) resultModal.classList.remove('visible');
+        setTimeout(() => { // wait for transition to finish
+            if (resultModal) resultModal.style.display = 'none';
+        }, 300);
     };
 
-    if (sonarDropZone) {
+    if (analyzerDropZone) {
         // Trigger file input click when the drop zone is clicked
-        sonarDropZone.addEventListener('click', () => resumeFileInput.click());
+        analyzerDropZone.addEventListener('click', () => resumeFileInput.click());
 
         // Drag and drop event listeners
-        sonarDropZone.addEventListener('dragover', (e) => {
+        analyzerDropZone.addEventListener('dragover', (e) => {
             e.preventDefault(); // Necessary to allow drop
-            sonarDropZone.classList.add('drag-over');
+            analyzerDropZone.classList.add('drag-over');
         });
 
-        sonarDropZone.addEventListener('dragleave', () => {
-            sonarDropZone.classList.remove('drag-over');
+        analyzerDropZone.addEventListener('dragleave', () => {
+            analyzerDropZone.classList.remove('drag-over');
         });
 
-        sonarDropZone.addEventListener('drop', (e) => {
+        analyzerDropZone.addEventListener('drop', (e) => {
             e.preventDefault();
-            sonarDropZone.classList.remove('drag-over');
+            analyzerDropZone.classList.remove('drag-over');
             const files = e.dataTransfer.files;
             if (files.length > 0) {
                 processResumeFile(files[0]);
