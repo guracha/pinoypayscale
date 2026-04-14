@@ -1,229 +1,316 @@
+<article class="salary-report">
+    <style>
+        .salary-report {
+            --primary-color: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary-color: #ef4444;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #f1f5f9;
+            --bg-light: #ffffff;
+            --bg-medium: #f8fafc;
+            --bg-dark: #0f172a;
+            --border-color: #e2e8f0;
+        }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Kasambahay & Yaya Market Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="font-sans">
-    <div class="p-6 lg:p-10 max-w-4xl mx-auto">
-        <header class="mb-8">
-            <h1 class="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">
-                2026 Philippine Domestic Worker (Kasambahay) & Babysitter (Yaya) Market Analysis Report
-            </h1>
-            <p class="text-slate-600">
-                An analysis of the legal framework, wage benchmarks, and employment trends for household employers.
-            </p>
-            <p class="text-sm text-slate-500 mt-2">Published on: October 27, 2023</p>
-        </header>
+        .salary-report h1, .salary-report h2, .salary-report h3 {
+            font-weight: 800;
+            color: var(--text-dark);
+            letter-spacing: -0.025em;
+        }
+        .salary-report h1 { font-size: 2rem; line-height: 2.5rem; margin-bottom: 0.5rem; }
+        .salary-report h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
+        .salary-report h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 700; }
+        .salary-report p { line-height: 1.75; color: var(--text-medium); margin-bottom: 1.25rem; }
+        .salary-report strong { color: var(--text-dark); font-weight: 600; }
+        .salary-report ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-medium); }
+        .salary-report li { margin-bottom: 0.5rem; }
 
-        <article class="prose lg:prose-xl max-w-none">
+        .salary-report section { margin-bottom: 2.5rem; }
+        .info-card {
+            background-color: var(--bg-medium);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
+        }
+        .salary-table {
+            width: 100%;
+            text-align: left;
+            border-collapse: collapse;
+        }
+        .salary-table th, .salary-table td {
+            padding: 1rem 1.25rem;
+            white-space: nowrap;
+        }
+        .salary-table thead {
+            background-color: var(--bg-medium);
+        }
+        .salary-table th {
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+            text-transform: uppercase;
+        }
+        .salary-table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+         .salary-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .calculator-box {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            border-radius: 1.5rem;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin-top: 2rem;
+        }
+        .calculator-box h2 { color: var(--text-light); border: none; }
+        .calculator-box p { color: #94a3b8; }
+        .calculator-box label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--primary-color);
+        }
+        .calculator-box select, .calculator-box .skill-checkbox {
+            width: 100%;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-top: 0.5rem;
+            color: var(--text-light);
+        }
+        .calculator-box .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            margin-top: 0.5rem;
+            cursor: pointer;
+        }
+        .calculator-box .skill-checkbox { width: auto; margin: 0; }
+        .calculator-box button {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            padding: 0.875rem 1.5rem;
+            border-radius: 9999px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-top: 1.5rem;
+            width: 100%;
+        }
+        .calculator-box button:hover { background-color: var(--primary-dark); }
+        #calcResultArea {
+            background-color: #1e293b;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            margin-top: 1.5rem;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+    </style>
+
+    <header>
+        <h1>The 2026 Guide to Hiring Housekeepers & Babysitters (Ate & Yaya)</h1>
+        <p>
+            Understanding the compensation landscape for domestic helpers in the Philippines, driven by inflation, specialized skills, and the Kasambahay Law.
+        </p>
+    </header>
+
+    <section>
+        <h2>Executive Summary</h2>
+        <p>
+            The domestic labor market in 2026 has professionalized significantly. Employers are shifting from purely informal arrangements to structured compensation packages, heavily influenced by regional minimum wages and the demand for specialized childcare and culinary skills.
+        </p>
+        <div class="info-card">
+            <h3>Key Market Insights</h3>
+            <ul>
+                <li><strong>8.5% Average Wage Growth:</strong> National average increase in base pay for domestic helpers year-over-year.</li>
+                <li><strong>Newborn Specialist in Demand:</strong> 'Yayas' with infant care and CPR certifications command the highest salary premiums.</li>
+                <li><strong>Mandatory Benefits:</strong> Strict enforcement of employer contributions for SSS, PhilHealth, and Pag-IBIG is now the standard.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section>
+        <h2>Baseline Compensation Matrix</h2>
+        <p>
+            The table below shows the average monthly base salaries in Metro Manila for 2026. Note the disparity between general housekeeping and specialized childcare, and between stay-in and stay-out arrangements.
+        </p>
+        <div class="table-container">
+            <table class="salary-table">
+                <thead>
+                    <tr>
+                        <th>Job Role</th>
+                        <th>Average Monthly Salary (PHP)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Housekeeper (Ate) - Stay-in</td>
+                        <td>₱10,000</td>
+                    </tr>
+                    <tr>
+                        <td>Housekeeper (Ate) - Stay-out</td>
+                        <td>₱13,000</td>
+                    </tr>
+                    <tr>
+                        <td>Babysitter (Yaya) - Stay-in, Toddler</td>
+                        <td>₱12,000</td>
+                    </tr>
+                    <tr>
+                        <td>Babysitter (Yaya) - Stay-out, Toddler</td>
+                        <td>₱15,000</td>
+                    </tr>
+                    <tr>
+                        <td>Newborn Specialist (Yaya) - Stay-in</td>
+                        <td>₱18,000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section>
+        <h2>The Skill Premium</h2>
+        <p>
+            In 2026, hiring specialists is becoming more common than finding "generalists." Specific skills allow domestic helpers to negotiate significant premiums on top of their base salary.
+        </p>
+        <ul>
+            <li><strong>English Fluency (+15%):</strong> Highly sought after by expat families and households emphasizing early childhood language development.</li>
+            <li><strong>Specialized Cooking (+20%):</strong> Ability to follow dietary restrictions (vegan, keto) or cook specific international cuisines.</li>
+            <li><strong>Infant Care & First Aid (+25%):</strong> Formal training in newborn handling, CPR, and pediatric first aid commands the highest premium.</li>
+        </ul>
+    </section>
+
+    <section>
+        <div class="calculator-box">
+            <h2>Kasambahay Cost Estimator</h2>
             <p>
-                The Philippine domestic work sector in 2026 is a highly regulated professional service industry governed by <strong>Republic Act No. 10361</strong>, known as the <strong>Batas Kasambahay (Domestic Workers Act)</strong>. What was once considered informal labor has evolved into a structured domain where workers are protected by statutory minimum wages, mandatory social security coverage, and defined human rights. This report analyzes the 2026 landscape, contrasting legal minimums with current market realities ("Street Rates") and detailing the statutory obligations for household employers.
+                Calculate the estimated total monthly cost for hiring domestic help in 2026, including skill premiums and mandatory government contributions.
             </p>
 
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">1. Legal Foundations: The Batas Kasambahay (RA 10361)</h2>
-                <p>
-                    The Batas Kasambahay ensures that domestic workers are treated with dignity, equating their labor to formal sector work.
-                </p>
-                <h3 class="text-xl font-semibold mt-4">Mandatory Human Rights and Working Conditions</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Basic Necessities:</strong> Employers must provide at least three adequate meals per day and humane sleeping arrangements that ensure safety and privacy.</li>
-                    <li><strong>Rest Periods:</strong> Workers are entitled to an aggregate daily rest period of <strong>8 hours</strong> and a weekly rest period of <strong>24 consecutive hours</strong>.</li>
-                    <li><strong>Privacy and Communication:</strong> Respect for the worker's privacy is guaranteed at all times, extending to all forms of communication and personal effects.</li>
-                    <li><strong>Prohibition on Deductions:</strong> Employers are strictly forbidden from seizing a worker's ID or passport, requiring "security deposits" for potential damage, or deducting recruitment fees from the worker’s salary.</li>
-                </ul>
-                <h3 class="text-xl font-semibold mt-4">Formal Employment Contracts</h3>
-                <p>
-                    All domestic work must begin with a <strong>written contract registered in the worker's Barangay</strong>. This contract must specify duties, salary, work hours, rest days, and benefits to prevent future labor disputes.
-                </p>
-            </section>
-
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">2. 2026 Wage Benchmarks: Legal vs. Market Reality</h2>
-                <p>
-                    A significant gap—referred to by analysts as the <strong>"Survival Floor"</strong>—has emerged between the government-mandated minimum wage and the actual salary required to hire and retain quality help.
-                </p>
-                <h3 class="text-xl font-semibold mt-4">Statutory Minimum Wages (2026 Updates)</h3>
-                <p>
-                    Regional Tripartite Wages and Productivity Boards (RTWPB) implemented major adjustments in early 2026 to combat inflation.
-                </p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100">
-                                <th class="p-3 font-semibold border">Region</th>
-                                <th class="p-3 font-semibold border">Wage Order</th>
-                                <th class="p-3 font-semibold border">Effective Date</th>
-                                <th class="p-3 font-semibold border">2026 Monthly Minimum</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3 border">Metro Manila (NCR)</td>
-                                <td class="p-3 border">NCR-DW-06</td>
-                                <td class="p-3 border">Feb 7, 2026</td>
-                                <td class="p-3 border"><strong>₱7,800</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Central Visayas (Cebu)</td>
-                                <td class="p-3 border">ROVII-DW</td>
-                                <td class="p-3 border">Oct 4, 2025</td>
-                                <td class="p-3 border"><strong>₱7,000</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Davao (Region XI)</td>
-                                <td class="p-3 border">RB XI-DW-04</td>
-                                <td class="p-3 border">Mar 13, 2026</td>
-                                <td class="p-3 border"><strong>₱6,500</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Northern Mindanao (X)</td>
-                                <td class="p-3 border">RX-DW-06</td>
-                                <td class="p-3 border">Jan 16, 2026</td>
-                                <td class="p-3 border"><strong>₱6,500</strong></td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Caraga (Region XIII)</td>
-                                <td class="p-3 border">RXIII-DW-06</td>
-                                <td class="p-3 border">Jan 3, 2026</td>
-                                <td class="p-3 border"><strong>₱6,500</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem;">
+                <div>
+                    <label for="calcRole">Primary Role</label>
+                    <select id="calcRole">
+                        <option value="ate_stayin">Housekeeper (Ate) - Stay-in</option>
+                        <option value="ate_stayout">Housekeeper (Ate) - Stay-out</option>
+                        <option value="yaya_stayin">Babysitter (Yaya) - Stay-in</option>
+                        <option value="yaya_stayout">Babysitter (Yaya) - Stay-out</option>
+                        <option value="yaya_newborn">Newborn Specialist - Stay-in</option>
+                    </select>
                 </div>
-
-                <h3 class="text-xl font-semibold mt-6">The "Survival Floor" and Market Street Rates</h3>
-                <p>
-                    While the legal minimum in Manila is ₱7,800, recruitment data from early 2026 shows that most experienced, medically cleared workers will not accept less than <strong>₱12,000</strong>. This is driven by the rising cost of rice, utilities, and transportation, which have eroded real purchasing power.
-                </p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse">
-                        <thead>
-                            <tr class="bg-slate-100">
-                                <th class="p-3 font-semibold border">Role (NCR Baseline)</th>
-                                <th class="p-3 font-semibold border">Legal Min (2026)</th>
-                                <th class="p-3 font-semibold border">Market Hire Rate</th>
-                                <th class="p-3 font-semibold border">Retention/Expert Rate</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="p-3 border">All-Around Maid (Ate)</td>
-                                <td class="p-3 border">₱7,800</td>
-                                <td class="p-3 border"><strong>₱10,000 – ₱12,000</strong></td>
-                                <td class="p-3 border">₱13,000+</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Nanny (Yaya) Pro</td>
-                                <td class="p-3 border">₱7,800</td>
-                                <td class="p-3 border"><strong>₱13,000 – ₱16,000</strong></td>
-                                <td class="p-3 border">₱18,000+</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Household Cook Pro</td>
-                                <td class="p-3 border">₱7,800</td>
-                                <td class="p-3 border"><strong>₱18,000 – ₱20,000</strong></td>
-                                <td class="p-3 border">₱25,000+</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border">Private Tutor/Specialist</td>
-                                <td class="p-3 border">₱7,800</td>
-                                <td class="p-3 border"><strong>₱18,000 – ₱25,000</strong></td>
-                                <td class="p-3 border">₱30,000+</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div>
+                    <label for="calcRegion">Household Location</label>
+                    <select id="calcRegion">
+                        <option value="1.0">Metro Manila (NCR)</option>
+                        <option value="0.85">Metro Cebu</option>
+                        <option value="0.80">Metro Davao</option>
+                        <option value="0.65">Provincial / Rural Areas</option>
+                    </select>
                 </div>
-            </section>
+            </div>
 
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">3. Mandatory Benefits and 2026 Statutory Contributions</h2>
-                <p>
-                    Employers are legally required to register their workers with the <strong>SSS, PhilHealth, and Pag-IBIG</strong>.
+            <div style="margin-top: 1.5rem;">
+                <label>Required Specialized Skills</label>
+                <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.5rem;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="skill-checkbox" value="0.15">
+                        <span>Fluent English</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="skill-checkbox" value="0.20">
+                        <span>Specialized Cooking</span>
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="skill-checkbox" value="0.25">
+                        <span>First Aid / CPR</span>
+                    </label>
+                </div>
+            </div>
+
+            <button id="calculateBtn">Calculate Estimated Cost</button>
+
+            <div id="calcResultArea" style="display: none; transition: opacity 0.5s;">
+                <p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #94a3b8;">Total Estimated Monthly Cost</p>
+                <div style="font-weight: 800; font-size: 2.5rem; color: white; margin: 0.5rem 0;">
+                    ₱<span id="totalCost">0</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-top: 1px solid #334155; padding-top: 1rem; margin-top: 1rem; text-align: left;">
+                    <div>
+                        <p style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 600;">Est. Base + Premium</p>
+                        <p style="font-weight: 600; color: var(--text-light);">₱<span id="baseCost">0</span></p>
+                    </div>
+                    <div>
+                        <p style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 600;">Mandatory Benefits (Est.)</p>
+                        <p style="font-weight: 600; color: var(--text-light);">₱<span id="benefitsCost">0</span></p>
+                    </div>
+                </div>
+                <p style="font-size: 0.75rem; color: #64748b; margin-top: 1.5rem; font-style: italic;">
+                    * Benefits estimate is approximate. Excludes 13th-month pay and other potential costs.
                 </p>
-                 <ul class="list-disc list-inside space-y-4">
-                    <li>
-                        <h4 class="font-bold">Social Security System (SSS)</h4>
-                        As of January 2026, the SSS contribution rate is <strong>15%</strong> of the Monthly Salary Credit (MSC).
-                        <ul class="list-disc list-inside ml-4 mt-2">
-                            <li><strong>Split:</strong> 10% employer share, 5% employee share.</li>
-                            <li><strong>Rule for low wages:</strong> If the worker earns less than ₱5,000, the employer must shoulder the <strong>full 15% contribution</strong>.</li>
-                            <li><strong>Pension Booster:</strong> Contributions for salaries over ₱20,000 are credited to the "MySSS Pension Booster" account.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h4 class="font-bold">PhilHealth (Healthcare)</h4>
-                        The premium rate is <strong>5.0%</strong> for 2026.
-                         <ul class="list-disc list-inside ml-4 mt-2">
-                            <li><strong>Low Earners:</strong> For those earning ₱10,000 or below, the monthly premium is fixed at ₱500 (₱250 each for employer and employee).</li>
-                            <li><strong>Employer Note:</strong> If the worker earns ₱5,000 or below, the employer pays the <strong>full ₱250 share</strong> for the worker.</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <h4 class="font-bold">Pag-IBIG (Housing Fund)</h4>
-                        Contributions remain at 2% for both parties, but are capped based on a ₱10,000 salary base.
-                        <ul class="list-disc list-inside ml-4 mt-2">
-                             <li><strong>Maximum Contribution:</strong> ₱200 from the employer and ₱200 from the worker (Total ₱400/month).</li>
-                        </ul>
-                    </li>
-                </ul>
-            </section>
+            </div>
+        </div>
+    </section>
+
+</article>
+
+<script>
+    (() => {
+        const calcButton = document.getElementById('calculateBtn');
+        if (!calcButton || calcButton.dataset.listenerAttached === 'true') {
+            return;
+        }
+
+        calcButton.dataset.listenerAttached = 'true';
+
+        const executeCalculation = () => {
+            const roleBases = {
+                'ate_stayin': 10000, 'ate_stayout': 13000,
+                'yaya_stayin': 12000, 'yaya_stayout': 15000,
+                'yaya_newborn': 18000
+            };
+
+            const roleKey = document.getElementById('calcRole').value;
+            const regionMultiplier = parseFloat(document.getElementById('calcRegion').value);
+            let baseSalary = roleBases[roleKey] * regionMultiplier;
             
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">4. The 13th Month Pay Mandate</h2>
-                <p>
-                    13th month pay is a <strong>mandatory statutory requirement</strong>, not a discretionary "Christmas bonus".
-                </p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Eligibility:</strong> Any domestic worker who has served at least one month is entitled to it.</li>
-                    <li><strong>Deadline:</strong> Must be paid on or before <strong>December 24</strong> of each year.</li>
-                    <li><strong>Calculation:</strong> (Total Basic Salary Earned in the Calendar Year) / 12.</li>
-                    <li><em>Example:</em> If a Yaya started in April at ₱12,000/month: (₱12,000 x 9 months) / 12 = <strong>₱9,000</strong>.</li>
-                </ul>
-            </section>
+            let skillMultiplier = 0;
+            document.querySelectorAll('.skill-checkbox:checked').forEach(checkbox => {
+                skillMultiplier += parseFloat(checkbox.value);
+            });
 
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">5. Comparative Analysis: Stay-In vs. Stay-Out</h2>
-                <p>
-                    In 2026, the cost of hiring a "stay-out" helper is effectively <strong>double</strong> that of a "stay-in" helper due to external living costs.
-                </p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Stay-In Advantage:</strong> A ₱12,000 salary is almost pure net income as the employer provides food, lodging, and utilities.</li>
-                    <li><strong>Stay-Out Reality:</strong> A stay-out worker must self-fund bedspace (₱2,500–₱4,000), daily commute, and food. To reach the same net income as a stay-in helper, a stay-out worker typically requires a minimum of <strong>₱21,000</strong>.</li>
-                </ul>
-            </section>
+            const finalSalary = Math.round(baseSalary + (baseSalary * skillMultiplier));
+            const benefitsEst = Math.round(finalSalary * 0.11);
+            const totalCost = finalSalary + benefitsEst;
 
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">6. 2026 Retention Trends: The "Connectivity" Premium</h2>
-                <p>
-                    With increased global demand for Filipino labor (Hong Kong rates at ₱35,000+; Middle East at ₱25,000+), local employers are using non-monetary perks to retain high-quality help.
-                </p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Connectivity:</strong> Free Wi-Fi or a ₱300–₱500 monthly mobile load allowance is now a standard expectation to allow workers to video-call their families.</li>
-                    <li><strong>HMO/Medical Cards:</strong> Prepaid medical cards (₱1,500–₱3,000/year) for outpatient care are becoming common retention tools to minimize absences from minor illnesses.</li>
-                    <li><strong>De Minimis Benefits:</strong> Under RR 29-2025, employers can give tax-free rice subsidies (up to ₱2,500/month) and clothing allowances (₱8,000/year) to boost take-home pay.</li>
-                </ul>
-            </section>
+            const resultArea = document.getElementById('calcResultArea');
+            resultArea.style.display = 'block';
 
-            <section class="mt-8">
-                <h2 class="text-2xl font-bold mb-4">7. Conclusion: Strategic Advice for Household Employers</h2>
-                <p>
-                    To ensure household stability in 2026, employers should:
-                </p>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><strong>Budget for Market Rates:</strong> Use <strong>₱12,000 as the baseline</strong> for a qualified Kasambahay in Manila to avoid constant churn.</li>
-                    <li><strong>Prioritize Safety Compliance:</strong> Hire workers with verified NBI clearances and medical checks. Clean LTO/Safety records command a ₱1,500–₱2,500 premium.</li>
-                    <li><strong>Transparent SSS Payments:</strong> Providing the worker with physical copies of contribution receipts builds trust and long-term loyalty.</li>
-                </ul>
-                <p class="mt-4">
-                    The 2026 Philippine domestic labor market is defined by a shift toward professionalization. Households that treat their staff as partners through fair wages and comprehensive benefits achieve significantly higher retention and a safer home environment.
-                </p>
-            </section>
-        </article>
-    </div>
-</body>
-</html>
+            requestAnimationFrame(() => {
+                resultArea.style.opacity = 1;
+            });
+
+            document.getElementById('totalCost').textContent = totalCost.toLocaleString();
+            document.getElementById('baseCost').textContent = finalSalary.toLocaleString();
+            document.getElementById('benefitsCost').textContent = benefitsEst.toLocaleString();
+        };
+
+        calcButton.addEventListener('click', executeCalculation);
+    })();
+</script>
