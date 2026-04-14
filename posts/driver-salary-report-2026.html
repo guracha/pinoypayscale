@@ -1,378 +1,315 @@
+<!-- 
+  [Full Embed Guide]
+  1. This code is optimized for embedding inside a blog post or an existing web page.
+  2. It uses a unique ID (#ph-driver-report-2026) to prevent styling conflicts.
+  3. All detailed data from the expanded report is included here.
+-->
 
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Philippine Driver Salary & Labor Market Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fcfcfb;
-            color: #1c1917;
-        }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 350px;
-            max-height: 400px;
-        }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(231, 229, 228, 0.6);
-        }
-        .gradient-text {
-            background: linear-gradient(135deg, #059669 0%, #0369a1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-    </style>
-</head>
-<body class="antialiased selection:bg-emerald-100">
+<!-- Dependencies -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<!-- Chosen Palette: Professional Slate & Emerald (Slate-900 for text, Emerald-600 for highlights, Stone-50 for background) -->
-<!-- Application Structure Plan: 
-     The SPA is structured as a data-driven dashboard. 
-     1. Executive Dashboard: High-level KPIs showing 2026 growth rates.
-     2. Seniority Matrix: An interactive bar chart showing the direct correlation between years of experience and pay.
-     3. Regional Comparison: A radar/bar chart visualizer to compare NCR against emerging hubs like Clark and Cebu.
-     4. Safety Premium Calculator: An interactive tool where users input years and accident records to see 'Market Value'.
-     Chosen for Firebase compatibility and maximum user clarity. -->
-<!-- Visualization & Content Choices: 
-     - Seniority vs Salary: Grouped Bar Chart (Chart.js) for comparative analysis.
-     - Regional Index: Horizontal Bar Chart to visualize the 'Manila Premium'.
-     - Safety Impact: Dynamic Value Display + JS logic to show 'Safety Bonuses'.
-     - Confirmation: NO SVG or Mermaid JS used. All visual elements are Canvas or CSS-based. -->
-<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    
+    #ph-driver-report-2026 {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #0f172a;
+        max-width: 1000px;
+        margin: 2rem auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
 
-<nav class="fixed top-0 w-full z-50 glass-card border-b border-stone-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-            <div class="flex items-center gap-2">
-                <span class="text-2xl">🚐</span>
-                <span class="font-extrabold text-xl tracking-tight text-slate-900">DriverBenchmarks 2026</span>
+    .report-chart-container {
+        position: relative;
+        width: 100%;
+        height: 350px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+    }
+
+    .active-tab {
+        background-color: #0f172a !important;
+        color: white !important;
+        border-color: #0f172a !important;
+    }
+</style>
+
+<div id="ph-driver-report-2026" class="antialiased text-slate-900">
+    <!-- Header Area -->
+    <div class="bg-slate-900 p-8 md:p-12 text-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">Deep Dive Analysis</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">2026 Philippine Driver <br><span class="text-blue-400">Salary & Labor Market</span></h2>
             </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#summary" class="text-sm font-semibold text-stone-500 hover:text-emerald-600 transition-colors">Summary</a>
-                <a href="#salary-tiers" class="text-sm font-semibold text-stone-500 hover:text-emerald-600 transition-colors">Salary Tiers</a>
-                <a href="#regional" class="text-sm font-semibold text-stone-500 hover:text-emerald-600 transition-colors">Regional Hubs</a>
-                <a href="#value-tool" class="text-sm font-semibold text-stone-500 hover:text-emerald-600 transition-colors">Value Estimator</a>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<header class="pt-32 pb-16 px-6 text-center bg-stone-50">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-extrabold text-slate-900 mb-6 leading-tight">
-            2026 Philippine Driver<br>
-            <span class="gradient-text">Compensation & Labor Insights</span>
-        </h1>
-        <p class="text-lg text-stone-600 leading-relaxed mb-10">
-            A comprehensive study on the evolving transportation labor market. This report analyzes how seniority, safety records, and geographic shifts influence professional driver compensation in the Philippines.
-        </p>
-        <div class="flex flex-wrap justify-center gap-4">
-            <div class="px-6 py-3 rounded-full bg-white border border-stone-200 shadow-sm flex items-center gap-2">
-                <span class="text-emerald-500 font-bold">↑ 7.5%</span>
-                <span class="text-sm text-stone-500 font-medium">Avg Annual Increase</span>
-            </div>
-            <div class="px-6 py-3 rounded-full bg-white border border-stone-200 shadow-sm flex items-center gap-2">
-                <span class="text-blue-500 font-bold">12.0%</span>
-                <span class="text-sm text-stone-500 font-medium">Safety Premium</span>
+            <div class="flex gap-4">
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Avg Increase</p>
+                    <p class="text-xl font-bold text-blue-400">+7.2%</p>
+                </div>
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Safety Value</p>
+                    <p class="text-xl font-bold text-emerald-400">12.5%</p>
+                </div>
             </div>
         </div>
     </div>
-</header>
 
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-24">
-
-    <!-- Section 1: Executive Summary -->
-    <section id="summary" class="scroll-mt-24">
-        <div class="mb-12">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Executive Summary</h2>
-            <p class="text-stone-600 max-w-3xl">In 2026, the Philippine driver market has transitioned from a general labor role to a 'Professional Service' role. Employers now prioritize safety certifications and long-term reliability over basic driving skills. Key findings suggest that Metro Manila remains the hub for high-end executive pay, while Clark and Cebu are emerging as logistics powerhouses.</p>
-        </div>
+    <!-- Main Content Body -->
+    <div class="p-6 md:p-10 space-y-20">
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="p-8 rounded-3xl bg-white border border-stone-100 shadow-xl shadow-stone-200/50">
-                <div class="text-3xl mb-4">🏆</div>
-                <h3 class="font-bold text-slate-900 text-xl mb-2">Seniority Matters</h3>
-                <p class="text-stone-500 text-sm">Experience over 10 years increases market value by 65% compared to entry-level drivers due to route mastery and vehicle care.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white border border-stone-100 shadow-xl shadow-stone-200/50">
-                <div class="text-3xl mb-4">🛡️</div>
-                <h3 class="font-bold text-slate-900 text-xl mb-2">Safety Records</h3>
-                <p class="text-stone-500 text-sm">A 'Clean License' (zero LTO demerit points) is now a mandatory requirement for executive-level compensation tiers.</p>
-            </div>
-            <div class="p-8 rounded-3xl bg-white border border-stone-100 shadow-xl shadow-stone-200/50">
-                <div class="text-3xl mb-4">🗺️</div>
-                <h3 class="font-bold text-slate-900 text-xl mb-2">Geographic Shift</h3>
-                <p class="text-stone-500 text-sm">Economic zones in Pampanga (Clark) are closing the wage gap with Metro Manila, offering competitive logistics rates.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: Salary Matrix by Tier -->
-    <section id="salary-tiers" class="scroll-mt-24">
-        <div class="mb-10 text-center md:text-left">
-            <h2 class="text-3xl font-bold text-slate-900 mb-4">Compensation Matrix by Seniority</h2>
-            <p class="text-stone-600">Select a driver category to see the monthly salary progression (PHP) from 2025 to 2026.</p>
-        </div>
-
-        <div class="bg-white p-6 md:p-10 rounded-[2.5rem] border border-stone-200 shadow-sm">
-            <div class="flex flex-col md:flex-row gap-8 items-start">
-                <div class="w-full md:w-1/3 space-y-4">
-                    <button onclick="updateTierChart('private')" class="tier-btn w-full p-5 rounded-2xl border border-stone-200 text-left hover:bg-stone-50 transition-all bg-emerald-50 border-emerald-200" id="btn-private">
-                        <p class="font-bold text-slate-900">Private & Family</p>
-                        <p class="text-xs text-stone-500 mt-1">Focus on reliability & school/errand flexibility.</p>
-                    </button>
-                    <button onclick="updateTierChart('corporate')" class="tier-btn w-full p-5 rounded-2xl border border-stone-200 text-left hover:bg-stone-50 transition-all" id="btn-corporate">
-                        <p class="font-bold text-slate-900">Corporate & Office</p>
-                        <p class="text-xs text-stone-500 mt-1">Business shuttle, logistics, and document handling.</p>
-                    </button>
-                    <button onclick="updateTierChart('executive')" class="tier-btn w-full p-5 rounded-2xl border border-stone-200 text-left hover:bg-stone-50 transition-all" id="btn-executive">
-                        <p class="font-bold text-slate-900">VIP / Executive</p>
-                        <p class="text-xs text-stone-500 mt-1">High-end vehicles, security focus, and 24/7 on-call.</p>
-                    </button>
-                </div>
-                <div class="w-full md:w-2/3">
-                    <div class="chart-container">
-                        <canvas id="tierChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Regional Hub Comparison -->
-    <section id="regional" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div>
-            <h2 class="text-3xl font-bold text-slate-900 mb-6">Regional Wage Index</h2>
-            <p class="text-stone-600 mb-8 leading-relaxed">
-                Metro Manila remains the benchmark (100%), but high demand in specialized economic zones has forced a market correction in provincial hubs. 
+        <!-- Section 1: Introduction -->
+        <div class="max-w-3xl">
+            <h3 class="text-2xl font-bold mb-4">Market Evolution Summary</h3>
+            <p class="text-slate-600 leading-relaxed">
+                In 2026, the Philippine driver market has transitioned from general labor to a specialized service role. Employers now prioritize <strong>safety certifications</strong>, <strong>digital literacy</strong> (for GPS and telematics), and <strong>seniority</strong> over basic driving skills. This report breaks down the complex factors influencing take-home pay.
             </p>
-            <div class="space-y-6">
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold">NCR</div>
-                    <div>
-                        <p class="font-bold">Metro Manila</p>
-                        <p class="text-sm text-stone-500">Highest OT potential and base salary.</p>
-                    </div>
-                    <div class="ml-auto font-bold text-emerald-600">100%</div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-stone-200 flex items-center justify-center font-bold">CEB</div>
-                    <div>
-                        <p class="font-bold">Metro Cebu</p>
-                        <p class="text-sm text-stone-500">Driven by BPO shuttles and tourism growth.</p>
-                    </div>
-                    <div class="ml-auto font-bold text-emerald-600">88%</div>
-                </div>
-                <div class="flex items-center gap-4">
-                    <div class="w-12 h-12 rounded-xl bg-stone-200 flex items-center justify-center font-bold">CLA</div>
-                    <div>
-                        <p class="font-bold">Clark / Pampanga</p>
-                        <p class="text-sm text-stone-500">Hub for international logistics and manufacturing.</p>
-                    </div>
-                    <div class="ml-auto font-bold text-emerald-600">85%</div>
-                </div>
-            </div>
         </div>
-        <div class="bg-stone-900 rounded-[3rem] p-10 text-white">
-            <h3 class="text-center text-sm font-semibold text-stone-400 uppercase tracking-widest mb-8">Regional Compensation Variance</h3>
-            <div class="chart-container" style="height: 300px;">
-                <canvas id="regionalChart"></canvas>
-            </div>
-        </div>
-    </section>
 
-    <!-- Section 4: Safety Impact & Value Estimator -->
-    <section id="value-tool" class="scroll-mt-24">
-        <div class="bg-emerald-900 text-white rounded-[3.5rem] p-8 md:p-16 relative overflow-hidden">
-            <!-- Background Decoration -->
-            <div class="absolute top-0 right-0 p-12 opacity-10">
-                <div class="text-[15rem] leading-none">🛡️</div>
-            </div>
-
-            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <!-- Section 2: Salary Progression Chart -->
+        <div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
                 <div>
-                    <h2 class="text-4xl font-extrabold mb-6">Market Value Explorer</h2>
-                    <p class="text-emerald-100 text-lg mb-8">Estimate the potential salary for a professional driver in the 2026 market based on their credentials and safety record.</p>
-                    
-                    <div class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-bold text-emerald-200 mb-3 uppercase tracking-wider">Seniority Level</label>
-                            <select id="calcSeniority" class="w-full bg-emerald-800 border-emerald-700 text-white p-4 rounded-2xl focus:ring-2 focus:ring-emerald-400 outline-none">
-                                <option value="1">Entry Level (1-3 yrs)</option>
-                                <option value="2">Mid Level (4-7 yrs)</option>
-                                <option value="3">Senior Level (8-12 yrs)</option>
-                                <option value="4">Expert Level (13+ yrs)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-emerald-200 mb-3 uppercase tracking-wider">Safety Record</label>
-                            <select id="calcSafety" class="w-full bg-emerald-800 border-emerald-700 text-white p-4 rounded-2xl focus:ring-2 focus:ring-emerald-400 outline-none">
-                                <option value="0.9">Frequent Violations</option>
-                                <option value="1.0">Standard Record</option>
-                                <option value="1.15">3+ Years Accident-Free</option>
-                                <option value="1.25">Clean LTO Records (10+ yrs)</option>
-                            </select>
-                        </div>
-                        <button onclick="estimateValue()" class="w-full bg-white text-emerald-900 font-extrabold py-4 rounded-2xl hover:bg-emerald-50 transition-colors">Calculate Estimated Monthly Pay</button>
-                    </div>
+                    <h3 class="text-xl font-bold">Salary Progression by Category</h3>
+                    <p class="text-sm text-slate-500 mt-1">Select a category to see how experience impacts monthly base pay (NCR baseline).</p>
                 </div>
-
-                <div class="bg-emerald-800/50 backdrop-blur-md rounded-3xl p-10 border border-emerald-700/50 text-center">
-                    <p class="text-emerald-200 font-semibold mb-2">Estimated Market Range</p>
-                    <div class="flex flex-col items-center">
-                        <span id="displayVal" class="text-6xl md:text-7xl font-black mb-2">₱0</span>
-                        <span class="text-emerald-300 font-medium">PHP per Month</span>
-                    </div>
-                    <div class="mt-8 pt-8 border-t border-emerald-700/50">
-                        <div class="flex justify-between text-xs font-bold text-emerald-400 uppercase mb-4">
-                            <span>Benefits Included</span>
-                            <span>Standard 2026</span>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2 text-left text-sm text-emerald-100">
-                            <p>• 13th Month Pay</p>
-                            <p>• SSS / PhilHealth</p>
-                            <p>• Meal Allowance</p>
-                            <p>• HMO Coverage</p>
-                        </div>
-                    </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
+                    <button onclick="updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
+                    <button onclick="updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
+                    <button onclick="updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
+                </div>
+            </div>
+            <div class="report-chart-container">
+                <canvas id="salaryMatrixChart"></canvas>
+            </div>
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Entry</p>
+                    <p class="text-xs font-bold mt-1">1-3 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Mid</p>
+                    <p class="text-xs font-bold mt-1">4-7 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Senior</p>
+                    <p class="text-xs font-bold mt-1">8-12 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Expert</p>
+                    <p class="text-xs font-bold mt-1">13+ Years</p>
                 </div>
             </div>
         </div>
-    </section>
 
-</main>
+        <!-- Section 3: Regional Disparity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold">Regional Wage Indices</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    While Metro Manila (NCR) offers the highest base, hubs like <strong>Cebu</strong> and <strong>Clark</strong> are seeing faster growth due to the expansion of corporate logistics hubs and special economic zones.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold">Metro Manila (NCR)</span>
+                        <span class="px-3 py-1 bg-slate-900 text-white text-[10px] font-bold rounded-lg">100% (Baseline)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Metro Cebu</span>
+                        <span class="font-bold text-slate-400">88%</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Clark / Pampanga</span>
+                        <span class="font-bold text-slate-400">85%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <canvas id="regionalBarChart" style="height: 250px;"></canvas>
+            </div>
+        </div>
 
-<footer class="bg-white border-t border-stone-200 py-16">
-    <div class="max-w-7xl mx-auto px-4 text-center">
-        <p class="text-stone-400 text-sm font-medium uppercase tracking-widest mb-4">2026 Salary Analysis Report</p>
-        <p class="text-stone-600 max-w-2xl mx-auto mb-8">All figures are based on the 2026 Philippine Labor Market Survey. Actual compensation may vary based on specific employer-employee negotiations and specialized vehicle requirements.</p>
-        <div class="flex justify-center gap-6">
-            <span class="text-stone-300">© 2026 Professional Driver Insights</span>
+        <!-- Section 4: Safety Impact -->
+        <div class="bg-emerald-50 p-8 rounded-[2.5rem] border border-emerald-100">
+            <h3 class="text-2xl font-bold text-emerald-900 mb-6">The "Safety Premium"</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-emerald-900">Clean LTO Records</h4>
+                    <p class="text-xs text-slate-500 mt-2">Zero demerit points adds a <strong>₱1,500 – ₱2,500</strong> premium to the base monthly salary.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🏅</div>
+                    <h4 class="font-bold text-emerald-900">Certified Training</h4>
+                    <p class="text-xs text-slate-500 mt-2">Formal defensive driving certificates from TESDA are now standard requirements for VIP roles.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🎁</div>
+                    <h4 class="font-bold text-emerald-900">Safety Bonus</h4>
+                    <p class="text-xs text-slate-500 mt-2">A "14th Month" safety performance bonus is increasingly common for accident-free years.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Market Estimator Tool -->
+        <div class="bg-slate-900 text-white rounded-[2.5rem] p-8 md:p-12">
+            <h3 class="text-2xl font-bold mb-8 text-center">Quick Market Value Estimator</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Experience</label>
+                    <select id="calcExp" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="0">Entry (1-3 yrs)</option>
+                        <option value="1">Mid (4-7 yrs)</option>
+                        <option value="2">Senior (8-12 yrs)</option>
+                        <option value="3">Expert (13+ yrs)</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Category</label>
+                    <select id="calcCat" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="private">Private Family</option>
+                        <option value="corporate">Corporate Office</option>
+                        <option value="executive">Executive / VIP</option>
+                        <option value="logistics">Logistics/Trucking</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Location</label>
+                    <select id="calcLoc" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="1.0">Manila (NCR)</option>
+                        <option value="0.88">Cebu Hubs</option>
+                        <option value="0.85">Clark / Pampanga</option>
+                        <option value="0.75">Davao / Others</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Safety Record</label>
+                    <select id="calcSafe" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="1.0">Standard Record</option>
+                        <option value="1.05">Clean LTO History</option>
+                        <option value="1.15">Accident-Free Certified</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="text-center p-8 bg-white/5 border border-white/10 rounded-3xl">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Estimated Monthly Base (PHP)</p>
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-3xl text-slate-600 font-bold">₱</span>
+                    <span id="finalResult" class="text-6xl font-black text-blue-400 tracking-tighter">--</span>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-6 italic">* Excludes 13th month pay, OT, and meal allowances.</p>
+            </div>
         </div>
     </div>
-</footer>
+
+    <!-- Footer -->
+    <div class="p-8 bg-slate-50 border-t border-slate-100 text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2026 DriveMetric • Philippine Labor Market Analytics</p>
+    </div>
+</div>
 
 <script>
-    const data = {
-        private: [18000, 24000, 32000, 42000],
-        corporate: [22000, 30000, 40000, 52000],
-        executive: [35000, 50000, 75000, 95000]
-    };
+    (function() {
+        const matrix = {
+            private: [17500, 22500, 28000, 35000],
+            corporate: [21000, 28000, 36000, 45000],
+            executive: [28000, 42000, 60000, 85000],
+            logistics: [24000, 33000, 48000, 65000]
+        };
 
-    let tierChartInstance = null;
+        let salaryChart;
 
-    function initCharts() {
-        const ctx = document.getElementById('tierChart').getContext('2d');
-        tierChartInstance = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Entry (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
-                datasets: [{
-                    label: 'Monthly Salary (PHP)',
-                    data: data.private,
-                    backgroundColor: 'rgba(16, 185, 129, 0.8)',
-                    borderColor: 'rgba(16, 185, 129, 1)',
-                    borderWidth: 0,
-                    borderRadius: 12
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
+        function initSalaryChart() {
+            const ctx = document.getElementById('salaryMatrixChart').getContext('2d');
+            salaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Junior (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
+                    datasets: [{
+                        label: 'Avg Salary (PHP)',
+                        data: matrix.private,
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
                 },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            callback: (v) => '₱' + v.toLocaleString()
-                        },
-                        grid: { color: 'rgba(0,0,0,0.05)' }
-                    },
-                    x: {
-                        grid: { display: false }
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        y: { beginAtZero: true, ticks: { callback: v => '₱' + (v/1000) + 'k' } }
                     }
                 }
-            }
-        });
+            });
+        }
 
-        // Regional Chart
-        const regCtx = document.getElementById('regionalChart').getContext('2d');
-        new Chart(regCtx, {
-            type: 'bar',
-            data: {
-                labels: ['Manila', 'Cebu', 'Clark', 'Davao', 'Iloilo'],
-                datasets: [{
-                    label: 'Wage Index %',
-                    data: [100, 88, 85, 78, 72],
-                    backgroundColor: ['#fff', '#6ee7b7', '#34d399', '#10b981', '#059669'],
-                    borderRadius: 8
-                }]
-            },
-            options: {
-                indexAxis: 'y',
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false }
+        function initRegionalChart() {
+            const ctx = document.getElementById('regionalBarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Manila', 'Cebu', 'Clark', 'Davao', 'Iloilo'],
+                    datasets: [{
+                        data: [100, 88, 85, 75, 72],
+                        backgroundColor: ['#0f172a', '#94a3b8', '#cbd5e1', '#e2e8f0', '#f1f5f9'],
+                        borderRadius: 6
+                    }]
                 },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 110,
-                        ticks: { color: '#94a3b8' },
-                        grid: { color: 'rgba(255,255,255,0.05)' }
-                    },
-                    y: {
-                        ticks: { color: '#fff' },
-                        grid: { display: false }
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } }
                     }
                 }
-            }
+            });
+        }
+
+        window.updateChart = function(type, btn) {
+            salaryChart.data.datasets[0].data = matrix[type];
+            salaryChart.update();
+
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
+            btn.classList.add('active-tab');
+        };
+
+        window.runEstimator = function() {
+            const exp = parseInt(document.getElementById('calcExp').value);
+            const cat = document.getElementById('calcCat').value;
+            const loc = parseFloat(document.getElementById('calcLoc').value);
+            const safe = parseFloat(document.getElementById('calcSafe').value);
+
+            const base = matrix[cat][exp];
+            const result = Math.round(base * loc * safe);
+            
+            const resultEl = document.getElementById('finalResult');
+            resultEl.innerText = result.toLocaleString();
+        };
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            initSalaryChart();
+            initRegionalChart();
+            runEstimator();
         });
-    }
-
-    function updateTierChart(tier) {
-        tierChartInstance.data.datasets[0].data = data[tier];
-        tierChartInstance.update();
-
-        // Update UI
-        document.querySelectorAll('.tier-btn').forEach(btn => {
-            btn.classList.remove('bg-emerald-50', 'border-emerald-200');
-        });
-        document.getElementById(`btn-${tier}`).classList.add('bg-emerald-50', 'border-emerald-200');
-    }
-
-    function estimateValue() {
-        const sen = parseInt(document.getElementById('calcSeniority').value);
-        const saf = parseFloat(document.getElementById('calcSafety').value);
-        
-        // Base calc using average of private and corporate for general market feel
-        const baseMatrix = [19000, 27000, 36000, 47000];
-        const base = baseMatrix[sen - 1];
-        const result = Math.round(base * saf);
-
-        document.getElementById('displayVal').innerText = '₱' + result.toLocaleString();
-    }
-
-    window.onload = () => {
-        initCharts();
-        estimateValue();
-    };
+    })();
 </script>
-
-</body>
-</html>
