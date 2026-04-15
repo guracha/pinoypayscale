@@ -19,8 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         postContentContainer: document.getElementById('post-content-container'),
 
         // Navigation
+        header: document.querySelector('header'),
         navHome: document.querySelector('header h1'),
-        navLinks: document.querySelectorAll('header nav a[href^="#"]' )
+        navLinks: document.querySelectorAll('header nav a[href^="#"]')
     };
 
     window.myCharts = {}; // Global container for chart instances
@@ -109,9 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!postFile || !elements.postContentContainer) return;
         
         elements.postContentContainer.classList.remove('post-content-placeholder');
-        elements.postContentContainer.innerHTML = '<p class="p-4 text-center">Loading post...</p>';
+        elements.postContentContainer.innerHTML = '<div class="p-8 text-center"><i class="fas fa-circle-notch fa-spin text-3xl text-indigo-500"></i><p class="mt-3">Loading Post...</p></div>';
 
-        // Destroy old charts
         Object.values(window.myCharts).forEach(chart => chart?.destroy());
         window.myCharts = {};
 
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (scriptTag) {
                     const newScript = document.createElement('script');
                     newScript.textContent = scriptTag.textContent;
-                    document.body.appendChild(newScript).remove(); // Execute the new script
+                    document.body.appendChild(newScript).remove();
                 }
             })
             .catch(error => {
@@ -141,42 +141,55 @@ document.addEventListener('DOMContentLoaded', () => {
             a.href = `#post-${index}`;
             a.textContent = post.title;
             a.dataset.file = post.file;
-            a.onclick = (e) => {
-                e.preventDefault();
-                document.querySelectorAll('#post-list-container a').forEach(link => link.classList.remove('active'));
-                a.classList.add('active');
-                history.pushState(null, '', a.href); // Update URL hash
-                loadPost(post.file);
-            };
             li.appendChild(a);
             elements.postList.appendChild(li);
         });
-
-        // Auto-load a post based on the hash or default to the first one
-        handleHashChange(); 
     }
 
-    // --- NAVIGATION & ROUTING --- //
+    // --- NAVIGATION & ROUTING (REVISED & IMPROVED) --- //
 
-    function handleHashChange() {
-        const hash = window.location.hash;
-        const postIndex = hash.startsWith('#post-') ? parseInt(hash.replace('#post-', ''), 10) : -1;
+    function getHeaderHeight() {
+        return elements.header ? elements.header.offsetHeight : 80;
+    }
 
-        if (postIndex >= 0 && postIndex < availablePosts.length) {
-            const postLink = elements.postList.querySelector(`a[href="#post-${postIndex}"]`);
-            if (postLink) {
-                postLink.click(); // This will handle loading and active state
+    function customScrollTo(targetElement) {
+        if (!targetElement) return;
+        const headerHeight = getHeaderHeight();
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight - 20; // 20px extra padding
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+        });
+    }
+    
+    function handleNavigation(hash) {
+        if (!hash || hash === '#') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        const targetId = hash.substring(1);
+
+        if (targetId.startsWith('post-')) {
+            const postIndex = parseInt(targetId.replace('post-', ''), 10);
+            if (postIndex >= 0 && postIndex < availablePosts.length) {
+                const postLink = elements.postList.querySelector(`a[href="#post-${postIndex}"]`);
+                
+                if (postLink && !postLink.classList.contains('active')) {
+                    document.querySelectorAll('#post-list-container a').forEach(link => link.classList.remove('active'));
+                    postLink.classList.add('active');
+                    loadPost(postLink.dataset.file);
+                }
+                
+                // Scroll to the blog section itself, not the post content
+                customScrollTo(elements.blogSection);
             }
-        } else if (hash.startsWith('#')) {
-             const targetElement = document.getElementById(hash.substring(1));
-             if(targetElement) {
-                targetElement.scrollIntoView({ behavior: 'smooth' });
-             }
         } else {
-            // Default state (no hash or invalid post hash)
-            const firstLink = elements.postList?.querySelector('a');
-            if (firstLink && !elements.postList.querySelector('a.active')) {
-                 firstLink.click();
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                customScrollTo(targetElement);
             }
         }
     }
@@ -210,27 +223,53 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Navigation Events
-    window.addEventListener('hashchange', handleHashChange);
-    elements.navHome.addEventListener('click', () => {
-        window.location.hash = '';
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-    elements.navLinks.forEach(link => {
-        link.addEventListener('click', e => {
-            const hash = link.getAttribute('href');
-            if (hash.startsWith('#') && hash.length > 1) {
-                const targetId = hash.substring(1);
-                // If it's a post, let the blog handler do its thing
-                if (targetId.startsWith('post-')) return;
+    document.body.addEventListener('click', e => {
+        const anchor = e.target.closest('a');
+        if (!anchor) return;
 
-                e.preventDefault();
-                history.pushState(null, '', hash); // Update URL without page jump
-                handleHashChange(); // Manually trigger scroll
-            }
-        });
+        const href = anchor.getAttribute('href');
+        
+        // Handle header home click
+        if (anchor.parentElement.tagName === 'H1') {
+            e.preventDefault();
+            history.pushState(null, '', ' ');
+            handleNavigation('#');
+            return;
+        }
+
+        if (href && href.startsWith('#')) {
+            e.preventDefault();
+            history.pushState(null, '', href);
+            handleNavigation(href);
+        }
+    });
+
+    window.addEventListener('popstate', () => {
+        handleNavigation(window.location.hash);
     });
 
     // --- INITIALIZATION --- //
-    initializeBlog();
+    function initializeApp() {
+        initializeBlog();
+        
+        // Handle initial page load based on URL
+        const initialHash = window.location.hash;
+        if (initialHash) {
+            handleNavigation(initialHash);
+        } else {
+            // Load the first post by default if no hash
+            const firstPost = availablePosts[0];
+            if (firstPost) {
+                const firstLink = elements.postList.querySelector(`a[data-file="${firstPost.file}"]`);
+                if(firstLink) {
+                    firstLink.classList.add('active');
+                    // Use replaceState to not pollute history on first load
+                    history.replaceState(null, '', firstLink.href); 
+                    loadPost(firstPost.file);
+                }
+            }
+        }
+    }
 
+    initializeApp();
 });

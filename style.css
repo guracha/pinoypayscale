@@ -12,6 +12,7 @@
 
 html {
     scroll-behavior: smooth;
+    /* scroll-padding-top is handled by JS now for more accuracy */
 }
 
 body {
@@ -47,7 +48,7 @@ header {
     position: sticky;
     top: 0;
     z-index: 1000;
-    height: auto;
+    height: 80px; /* Explicit height */
 }
 
 header h1 {
@@ -55,6 +56,7 @@ header h1 {
     font-weight: 900;
     color: var(--primary-color);
     margin: 0;
+    cursor: pointer;
 }
 
 header nav ul {
@@ -97,11 +99,6 @@ section {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
-/* Overlap Fix: Add scroll margin to all sections with an ID */
-section[id] {
-    scroll-margin-top: 100px;
-}
-
 /* --- Hero Section --- */
 #hero {
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -112,12 +109,14 @@ section[id] {
 
 /* --- Blog Section --- */
 #blog h2 {
-    margin-bottom: 1rem;
+    margin-top: 0;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .blog-layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: minmax(250px, 30%) 1fr;
     gap: 2.5rem;
 }
 
@@ -146,7 +145,7 @@ section[id] {
 }
 
 #post-list-container li a:hover {
-    background-color: #f8fafc; /* Slate-50 */
+    background-color: #f8fafc;
     color: var(--primary-color);
 }
 
@@ -157,10 +156,9 @@ section[id] {
 }
 
 #post-content-container {
-    border-left: 1px solid var(--border-color);
     padding-left: 2.5rem;
+    border-left: 1px solid var(--border-color);
     min-height: 400px;
-    overflow-x: auto; /* Responsive Improvement: Handle wide content */
 }
 
 #post-content-container.post-content-placeholder {
@@ -171,19 +169,18 @@ section[id] {
     color: var(--secondary-color);
     border-left: none;
     padding-left: 0;
-    overflow-x: hidden;
 }
 
 /* --- Resume Analyzer --- */
 #resume-analyzer.bg-slate-100 { background-color: #f1f5f9; }
 
 #analyzer-drop-zone.drag-over {
-    border-color: #4f46e5; /* Indigo-600 */
-    background-color: #eef2ff; /* Indigo-50 */
+    border-color: #4f46e5;
+    background-color: #eef2ff;
 }
 #analyzer-drop-zone.drag-over i {
     transform: scale(1.1) translateY(-4px);
-    color: #4f46e5; /* Indigo-600 */
+    color: #4f46e5;
 }
 
 /* --- Salary Ticker Animation --- */
@@ -192,14 +189,14 @@ section[id] {
     100% { transform: translateX(-50%); }
 }
 #salary-ticker-container {
-    background-color: #1e293b; /* Slate-800 */
-    color: #f8fafc; /* Slate-50 */
+    background-color: #1e293b;
+    color: #f8fafc;
     padding: 0.75rem 0;
     overflow: hidden;
     white-space: nowrap;
     width: 100%;
-    border-top: 1px solid #334155; /* Slate-700 */
-    border-bottom: 1px solid #334155; /* Slate-700 */
+    border-top: 1px solid #334155;
+    border-bottom: 1px solid #334155;
 }
 .ticker-wrap { display: inline-block; }
 .ticker-move {
@@ -214,18 +211,18 @@ section[id] {
     margin: 0 2rem;
     font-size: 1rem;
     font-weight: 500;
-    color: #e2e8f0; /* Slate-200 */
+    color: #e2e8f0;
 }
 .ticker-move li span {
-    color: #93c5fd; /* Blue-300 */
+    color: #93c5fd;
     font-weight: 600;
     margin-left: 0.5rem;
 }
 
-/* --- Contact Section (Cleaned) --- */
+/* --- Contact Section (Restored Specificity) --- */
 .contact-section-updated {
-    background-color: #1e3a8a;
-    color: white;
+    background-color: #1e3a8a !important;
+    color: white !important;
 }
 
 .contact-container {
@@ -235,91 +232,39 @@ section[id] {
 }
 
 .contact-section-updated h3 {
-    color: white;
+    color: white !important;
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
 }
 
-.contact-section-updated .form-group {
-    margin-bottom: 1.5rem;
-}
-
 .contact-section-updated .form-group label {
-    display: block;
-    color: #dbeafe; /* Blue-200 */
-    margin-bottom: 0.5rem;
-    font-weight: 500;
+    color: #dbeafe !important;
 }
 
 .contact-section-updated .form-group input,
 .contact-section-updated .form-group textarea {
-    width: 100%;
-    background-color: #2b4b8a;
-    color: white;
-    border: 1px solid #4a6baa;
-    border-radius: 8px;
-    padding: 0.875rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.contact-section-updated .form-group input::placeholder,
-.contact-section-updated .form-group textarea::placeholder {
-    color: #93c5fd; /* Blue-300 */
-    opacity: 0.7;
-}
-
-.contact-section-updated .form-group input:focus,
-.contact-section-updated .form-group textarea:focus {
-    outline: none;
-    border-color: #60a5fa; /* Blue-400 */
-    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+    background-color: #2b4b8a !important;
+    color: white !important;
+    border-color: #4a6baa !important;
 }
 
 .contact-section-updated .submit-btn {
-    width: 100%;
-    background-color: #60a5fa; /* Blue-400 */
-    color: #1e293b; /* Slate-800 */
-    font-weight: bold;
-    padding: 1rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.contact-section-updated .submit-btn:hover {
-    background-color: #93c5fd; /* Blue-300 */
-}
-
-.contact-info {
-    padding-left: 2rem;
-    border-left: 1px solid #4a6baa;
-}
-
-.contact-info-item {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1.5rem;
+    background-color: #60a5fa !important;
+    color: #1e293b !important;
 }
 
 .contact-info-item i {
-    font-size: 1.5rem;
-    color: #93c5fd;
-    margin-right: 1.5rem;
-    width: 30px;
-    text-align: center;
+    color: #93c5fd !important;
 }
 
 .contact-info-item span {
-    color: #dbeafe;
-    font-size: 1rem;
+    color: #dbeafe !important;
 }
-
 
 /* --- Modal Styles --- */
 .modal-overlay {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(15, 23, 42, 0.7); /* Slate-900 with opacity */
+    background: rgba(15, 23, 42, 0.7);
     display: flex; align-items: center; justify-content: center;
     z-index: 2000; opacity: 0; visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
@@ -356,9 +301,10 @@ footer {
 }
 
 /* --- Responsive Design --- */
+
 @media (max-width: 992px) {
     .blog-layout {
-        grid-template-columns: 250px 1fr;
+        grid-template-columns: minmax(220px, 35%) 1fr;
     }
 }
 
@@ -367,20 +313,14 @@ footer {
     h2 { font-size: 1.75rem; }
 
     header {
-        padding: 1rem;
+        height: auto; /* Let it wrap */
         flex-direction: column;
         align-items: flex-start;
+        padding: 1rem;
     }
     header nav ul { 
         margin-top: 1rem;
-        margin-left: 0;
-        padding-left: 0;
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-    }
-    header nav li { 
-      margin-left: 0;
+        margin-left: -1.5rem; /* Counteract li margin */
     }
 
     main {
@@ -391,23 +331,9 @@ footer {
     section {
         padding: 1.5rem;
     }
-    
-    /* Overlap Fix for Mobile: Increase top margin as header is taller */
-    section[id] {
-        scroll-margin-top: 140px; 
-    }
-
-    #hero {
-        padding: 3rem 1.5rem;
-        scroll-margin-top: 0; /* Hero is at the top, no offset needed */
-    }
 
     .blog-layout {
         grid-template-columns: 1fr;
-    }
-
-    #post-list-container {
-        margin-bottom: 2rem;
     }
 
     #post-content-container {
@@ -422,6 +348,7 @@ footer {
     .contact-container {
         grid-template-columns: 1fr;
     }
+
     .contact-info {
         padding-left: 0;
         border-left: none;
@@ -429,17 +356,12 @@ footer {
         padding-top: 2rem;
         border-top: 1px solid #4a6baa;
     }
-}
 
-@media (max-width: 480px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 1rem;
+    #hero {
+        padding: 3rem 1.5rem;
     }
-    section[id] {
-        scroll-margin-top: 180px; /* Header is even taller now */
-    }
+
+    /* Increase touch target size for mobile nav */
+    header nav li { margin-left: 1rem; }
+    header nav a { padding: 0.5rem; }
 }
