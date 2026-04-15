@@ -1,14 +1,13 @@
-
 /* --- Global Styles & Variables --- */
 :root {
-    --primary-color: #004080; /* A deeper, more professional blue */
-    --secondary-color: #6c757d; /* A neutral, secondary text color */
-    --background-color: #f8f9fa; /* A very light grey for the background */
-    --surface-color: #ffffff; /* For cards and surfaces */
-    --text-color: #212529; /* Dark grey for primary text, better than pure black */
-    --border-color: #dee2e6;
-    --font-primary: 'Inter', sans-serif;
-    --font-secondary: 'Roboto', sans-serif;
+    --primary-color: #312e81; /* Indigo-900 */
+    --secondary-color: #475569; /* Slate-600 */
+    --background-color: #f1f5f9; /* Slate-100 */
+    --surface-color: #ffffff; /* White */
+    --text-color: #1e293b; /* Slate-800 */
+    --border-color: #e2e8f0; /* Slate-200 */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-secondary: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 body {
@@ -16,18 +15,19 @@ body {
     margin: 0;
     background-color: var(--background-color);
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.6;
 }
 
 /* --- Typography --- */
 h1, h2, h3, h4 {
     font-family: var(--font-primary);
-    font-weight: 700;
-    color: var(--primary-color);
+    font-weight: 800; /* Extra-bold */
+    color: var(--text-color);
+    letter-spacing: -0.025em; /* Tighter tracking */
 }
 
 h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; margin-bottom: 1.5rem; }
+h2 { font-size: 2.25rem; margin-bottom: 1.5rem; }
 h3 { font-size: 1.5rem; }
 h4 { font-size: 1.2rem; margin: 0.5rem 0; }
 
@@ -56,17 +56,18 @@ header nav ul {
     margin: 0;
     padding: 0;
     list-style: none;
+    display: flex;
+    align-items: center;
 }
 
 header nav li {
-    display: inline-block;
-    margin-left: 2rem;
+    margin-left: 2.5rem;
 }
 
 header nav a {
     text-decoration: none;
     color: var(--secondary-color);
-    font-weight: 700;
+    font-weight: 600;
     font-family: var(--font-primary);
     transition: color 0.3s ease;
 }
@@ -80,151 +81,212 @@ main {
     max-width: 1200px;
     margin: 2rem auto;
     padding: 0 2rem;
+    display: grid;
+    gap: 2rem;
 }
 
 section {
     background-color: var(--surface-color);
-    border-radius: 8px;
-    padding: 2rem;
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border-radius: 12px; /* Softer radius */
+    padding: 2.5rem;
+    margin-bottom: 0; /* Removed margin as main is now a grid */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* --- Hero Section --- */
+#hero {
+    /* These styles are applied via Tailwind classes in the HTML now */
+    /* But we can add text-shadow helpers */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.text-shadow-light {
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15);
 }
 
 /* --- Blog Section --- */
+#blog h2 {
+    margin-bottom: 1rem;
+}
+
 .blog-layout {
     display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
+    grid-template-columns: 300px 1fr;
+    gap: 2.5rem;
 }
 
-#post-list-container {
-    border-right: 1px solid var(--border-color);
-    padding-right: 1.5rem;
+#post-list-container h3 {
+    font-size: 1.25rem;
+    color: var(--text-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
 }
 
-#post-list {
+#post-list-container ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin-top: 1rem;
 }
 
-#post-list li a {
+#post-list-container li a {
     display: block;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
+    padding: 0.875rem 1rem;
+    margin-bottom: 0.5rem;
     color: var(--secondary-color);
-    border-radius: 5px;
-    font-weight: 700;
-    transition: background-color 0.2s, color 0.2s;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 
-#post-list li a:hover {
-    background-color: #e9ecef;
+#post-list-container li a:hover {
+    background-color: #f8fafc; /* Slate-50 */
     color: var(--primary-color);
 }
 
-#post-content-container {
-    padding-left: 1.5rem;
+#post-list-container li a.active {
+    background-color: var(--primary-color);
+    color: white;
+    box-shadow: 0 2px 8px rgba(49, 46, 129, 0.2);
 }
+
+#post-content-container {
+    border-left: 1px solid var(--border-color);
+    padding-left: 2.5rem;
+}
+
+#post-content-container.post-content-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--secondary-color);
+    min-height: 400px; 
+    border-left: none;
+    padding-left: 0;
+}
+
+
+/* --- Resume Analyzer --- */
+#resume-analyzer.bg-slate-100 { background-color: #f1f5f9; }
+
+#analyzer-drop-zone.drag-over {
+    border-color: #4f46e5; /* Indigo-600 */
+    background-color: #eef2ff; /* Indigo-50 */
+}
+#analyzer-drop-zone.drag-over i {
+    transform: scale(1.1) translateY(-4px);
+    color: #4f46e5; /* Indigo-600 */
+}
+
+/* --- Salary Ticker Animation --- */
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+#salary-ticker-container {
+    background-color: #1e293b; /* Slate-800 */
+    color: #f8fafc; /* Slate-50 */
+    padding: 0.75rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    border-top: 1px solid #334155; /* Slate-700 */
+    border-bottom: 1px solid #334155; /* Slate-700 */
+}
+.ticker-wrap { display: inline-block; }
+.ticker-move {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    animation: scroll-left 45s linear infinite;
+}
+.ticker-move li {
+    display: inline-block;
+    margin: 0 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #e2e8f0; /* Slate-200 */
+}
+.ticker-move li span {
+    color: #93c5fd; /* Blue-300 */
+    font-weight: 600;
+    margin-left: 0.5rem;
+}
+
+/* --- Contact Section --- */
+.contact-section-updated { background-color: #1e3a8a; }
+/* Other contact styles remain largely the same */
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(15, 23, 42, 0.7); /* Slate-900 with opacity */
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2000; opacity: 0; visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+.modal-overlay.active { opacity: 1; visibility: visible; }
+
+.modal-content {
+    background: white; padding: 2rem; border-radius: 12px;
+    max-width: 90%; width: 600px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-20px) scale(0.95);
+    transition: transform 0.3s ease-out;
+    position: relative;
+}
+.modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+
+.close-button {
+    position: absolute; top: 1rem; right: 1rem; width: 32px; height: 32px;
+    background: #f1f5f9; color: #64748b;
+    border-radius: 50%; border: none; font-size: 1.2rem; font-weight: bold;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background-color 0.2s, color 0.2s;
+}
+.close-button:hover { background: #e2e8f0; color: #1e293b; }
 
 /* --- Footer --- */
 footer {
     text-align: center;
     padding: 2rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
     color: var(--secondary-color);
+    background-color: var(--surface-color);
+    border-top: 1px solid var(--border-color);
 }
 
-/* --- Table Styles --- */
-.table-zoomable {
-    cursor: zoom-in;
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .blog-layout {
+        grid-template-columns: 250px 1fr;
+    }
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-}
-
-th, td {
-    padding: 0.75rem 1rem;
-    border: 1px solid var(--border-color);
-    text-align: left;
-}
-
-thead {
-    background-color: #f1f5f9;
-}
-
-/* --- Table Modal --- */
-.table-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 3000;
-    padding: 1rem;
-    box-sizing: border-box;
-}
-
-.table-modal-content {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    max-width: 95%;
-    max-height: 90%;
-    overflow: auto;
-    position: relative;
-}
-
-.table-modal-close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #6c757d;
-    cursor: pointer;
-    line-height: 1;
-}
-.table-modal-close:hover {
-    color: var(--text-color);
-}
-
-
-/* --- Media Queries for Responsiveness --- */
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
-    h3 { font-size: 1.25rem; }
 
     header {
+        padding: 1rem;
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
-
-    header nav ul {
-        margin-top: 1rem;
-    }
-
-    header nav li {
-        display: block;
-        margin-left: 0;
-        margin-bottom: 0.5rem;
-    }
+    header nav ul { margin-top: 1rem; }
+    header nav li { margin-left: 1.5rem; }
 
     main {
-        padding: 0; /* Use full width */
+        padding: 0 1rem;
         margin: 1rem auto;
     }
 
     section {
-        padding: 1.5rem 0; /* Remove horizontal padding */
+        padding: 1.5rem;
+    }
+
+    #hero {
+        padding: 3rem 1.5rem;
     }
 
     .blog-layout {
@@ -232,21 +294,19 @@ thead {
     }
 
     #post-list-container {
-        border-right: none;
-        border-bottom: 1px solid var(--border-color);
-        padding-right: 0;
-        padding-bottom: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 2rem;
     }
 
     #post-content-container {
+        border-left: none;
         padding-left: 0;
-        overflow-x: auto; /* Allow horizontal scroll for wide tables/charts */
+        min-height: auto;
+    }
+    #post-content-container.post-content-placeholder {
+        padding: 2rem 0;
     }
 
-    /* Responsive table styles */
-    th, td {
-        padding: 0.5rem;
-        font-size: 0.875rem;
+    .contact-container {
+        grid-template-columns: 1fr;
     }
 }

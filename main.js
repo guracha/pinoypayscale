@@ -1,51 +1,53 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    // --- COMMON ELEMENTS ---
-    const dropZone = document.getElementById('analyzer-drop-zone');
-    const fileInput = document.getElementById('resume-file-input');
-    const analyzeButton = document.getElementById('analyze-button');
-    const modal = document.getElementById('result-modal');
-    const closeModalButton = document.querySelector('.close-button');
-    const resultContainer = document.getElementById('salary-estimate-result');
 
-    // --- RESUME ANALYZER LOGIC ---
-    const handleFile = (file) => {
-        if (!file) return;
-        analyzeButton.style.display = 'block';
-        dropZone.querySelector('p').textContent = `File selected: ${file.name}`;
-        analyzeButton.onclick = () => {
-            resultContainer.innerHTML = '<p class="text-center">Analyzing your resume...</p>';
-            modal.style.display = 'flex';
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const content = e.target.result;
-                if (file.type === "application/pdf") {
-                    pdfjsLib.getDocument({ data: content }).promise.then(pdf => {
-                        const promises = Array.from({ length: pdf.numPages }, (_, i) => pdf.getPage(i + 1).then(page => page.getTextContent()));
-                        return Promise.all(promises);
-                    }).then(textContents => {
-                        const text = textContents.map(tc => tc.items.map(item => item.str).join(' ')).join('\n');
-                        displayAnalysis(text);
-                    });
-                } else if (file.name.endsWith('.docx')) {
-                    mammoth.extractRawText({ arrayBuffer: content })
-                        .then(result => displayAnalysis(result.value))
-                        .catch(err => { resultContainer.innerHTML = '<p class="text-center text-red-500">Error processing .docx file.</p>'; });
-                } else {
-                    displayAnalysis(content);
-                }
-            };
-            if (file.type === "application/pdf" || file.name.endsWith('.docx')) {
-                reader.readAsArrayBuffer(file);
-            } else {
-                reader.readAsText(file);
-            }
-        };
+    // --- CACHE DOM ELEMENTS --- //
+    const elements = {
+        // Resume Analyzer
+        analyzerSection: document.getElementById('resume-analyzer'),
+        dropZone: document.getElementById('analyzer-drop-zone'),
+        fileInput: document.getElementById('resume-file-input'),
+        fileInfo: document.getElementById('file-info'),
+        fileNameDisplay: document.getElementById('file-name-display'),
+        analyzeButton: document.getElementById('analyze-button'),
+        modal: document.getElementById('result-modal'),
+        closeModalButton: document.querySelector('#result-modal .close-button'),
+        resultContainer: document.getElementById('salary-estimate-result'),
+        
+        // Blog
+        blogSection: document.getElementById('blog'),
+        postList: document.querySelector('#post-list-container ul'),
+        postContentContainer: document.getElementById('post-content-container'),
+
+        // Navigation
+        navHome: document.querySelector('header h1'),
+        navLinks: document.querySelectorAll('header nav a[href^="#"]' )
     };
-    const displayAnalysis = (text) => {
+
+    window.myCharts = {}; // Global container for chart instances
+
+    const availablePosts = [
+        { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
+        { title: '2026 Philippine Driver Salary & Labor Market Analysis', file: 'posts/driver-salary-report-2026.html' },
+        { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' }
+    ];
+
+    // --- RESUME ANALYZER --- //
+
+    function handleFile(file) {
+        if (!file) {
+            elements.fileInfo.style.display = 'none';
+            return;
+        }
+        elements.fileNameDisplay.textContent = file.name;
+        elements.fileInfo.style.display = 'block';
+    }
+
+    function displayAnalysis(text) {
         const keywords = {
-            'senior developer': 150000, 'project manager': 120000, 'data scientist': 180000,
-            'registered nurse': 45000, 'call center agent': 28000, 'driver': 25000,
+            'senior software developer': 115000, 'cloud architect': 160000, 'project manager': 120000,
+            'data scientist': 180000, 'fp&a manager': 72500, 'senior tech support': 120000,
+            'data analyst': 32500, 'registered nurse': 27000, 'customer service': 24000,
+            'call center': 28000, 'driver': 25000,
         };
         let estimatedSalary = 40000, jobTitle = 'Entry-Level Professional';
         for (const [key, value] of Object.entries(keywords)) {
@@ -55,123 +57,180 @@ document.addEventListener('DOMContentLoaded', () => {
                 break;
             }
         }
-        estimatedSalary = Math.round(estimatedSalary * (0.85 + Math.random() * 0.3));
+        estimatedSalary = Math.round(estimatedSalary * (0.9 + Math.random() * 0.2));
+        
         setTimeout(() => {
-            resultContainer.innerHTML = `
-                <h3 class="text-xl font-bold text-center mb-4">Salary Analysis Complete</h3>
-                <p class="text-center font-bold text-lg text-blue-600 mb-6">${jobTitle}</p>
-                <p class="text-center text-sm uppercase font-bold text-gray-500">Est. Monthly Salary (PHP)</p>
-                <p class="text-center text-5xl font-extrabold text-gray-800 mt-2 mb-4">₱${estimatedSalary.toLocaleString()}</p>
-                <p class="text-xs text-center text-gray-500 italic mt-6">*Estimate based on market trends.</p>
+            elements.resultContainer.innerHTML = `
+                <h3 class="text-2xl font-bold text-center text-slate-800 mb-2">Salary Analysis Complete</h3>
+                <p class="text-center text-lg text-slate-600 mb-6">Based on your resume, we identified a potential role of:</p>
+                <p class="text-center font-bold text-2xl text-indigo-600 mb-4">${jobTitle}</p>
+                <div class="bg-slate-100 rounded-lg p-6 my-4">
+                    <p class="text-center text-sm uppercase font-bold text-slate-500">Estimated Monthly Salary (PHP)</p>
+                    <p class="text-center text-5xl font-extrabold text-slate-900 mt-2 mb-2">₱${estimatedSalary.toLocaleString()}</p>
+                </div>
+                <p class="text-xs text-center text-slate-500 italic mt-6">*This is an AI-generated estimate based on current market data and may vary.</p>
             `;
-        }, 2000);
-    };
-    dropZone.addEventListener('dragover', (e) => e.preventDefault());
-    dropZone.addEventListener('drop', (e) => { e.preventDefault(); handleFile(e.dataTransfer.files[0]); });
-    dropZone.addEventListener('click', () => fileInput.click());
-    fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
-    closeModalButton.onclick = () => modal.style.display = 'none';
-    window.onclick = (e) => { if (e.target === modal) { modal.style.display = 'none'; } };
+        }, 1500);
+    }
 
-    // --- BLOG SYSTEM LOGIC ---
-    const postList = document.querySelector('#post-list-container ul');
-    const postContentContainer = document.getElementById('post-content-container');
-    window.myCharts = {}; // Global container for chart instances
-    const availablePosts = [
-        { title: '2026 PH Labor Market & Compensation Analysis', file: 'posts/labor-market-report-2026.html' },
-        { title: '2026 Philippine Driver Salary & Labor Market Analysis', file: 'posts/driver-salary-report-2026.html' },
-        { title: '2026 Kasambahay & Yaya Market Report', file: 'posts/kasambahay-report-2026.html' }
-    ];
-    const loadPost = (postFile) => {
-        // Destroy all existing chart instances before loading new content
-        Object.values(window.myCharts).forEach(chart => {
-            if (chart && typeof chart.destroy === 'function') {
-                chart.destroy();
+    function analyzeResume(file) {
+        elements.resultContainer.innerHTML = `
+            <div class="text-center">
+                <i class="fas fa-circle-notch fa-spin text-4xl text-indigo-500"></i>
+                <p class="mt-4 text-lg font-medium text-slate-700">Analyzing your resume...</p>
+                <p class="text-sm text-slate-500">This may take a moment.</p>
+            </div>`;
+        elements.modal.classList.add('active');
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const content = e.target.result;
+            let textPromise;
+            if (file.type === "application/pdf") {
+                textPromise = pdfjsLib.getDocument({ data: content }).promise.then(pdf => Promise.all(
+                    Array.from({ length: pdf.numPages }, (_, i) => pdf.getPage(i + 1).then(p => p.getTextContent()))
+                )).then(contents => contents.map(tc => tc.items.map(i => i.str).join(' ')).join('\n'));
+            } else if (file.name.endsWith('.docx')) {
+                textPromise = mammoth.extractRawText({ arrayBuffer: content }).then(r => r.value);
+            } else {
+                textPromise = Promise.resolve(content);
             }
-        });
-        window.myCharts = {}; // Reset container for a clean slate
+            textPromise.then(displayAnalysis).catch(err => {
+                elements.resultContainer.innerHTML = '<p class="text-center text-red-500">Error processing file. Please try another.</p>';
+                console.error("File processing error:", err);
+            });
+        };
+        reader.readAsArrayBuffer(file);
+    }
 
-        postContentContainer.innerHTML = '<p>Loading post...</p>';
+    // --- BLOG SYSTEM --- //
+
+    function loadPost(postFile) {
+        if (!postFile || !elements.postContentContainer) return;
+        
+        elements.postContentContainer.classList.remove('post-content-placeholder');
+        elements.postContentContainer.innerHTML = '<p class="p-4 text-center">Loading post...</p>';
+
+        // Destroy old charts
+        Object.values(window.myCharts).forEach(chart => chart?.destroy());
+        window.myCharts = {};
+
         fetch(postFile)
-            .then(response => response.text())
+            .then(response => response.ok ? response.text() : Promise.reject(response.statusText))
             .then(html => {
-                postContentContainer.innerHTML = html;
-                const scriptTag = postContentContainer.querySelector('script');
+                elements.postContentContainer.innerHTML = html;
+                const scriptTag = elements.postContentContainer.querySelector('script');
                 if (scriptTag) {
                     const newScript = document.createElement('script');
                     newScript.textContent = scriptTag.textContent;
-                    document.body.appendChild(newScript).remove();
+                    document.body.appendChild(newScript).remove(); // Execute the new script
                 }
             })
             .catch(error => {
-                postContentContainer.innerHTML = '<p class="text-red-500">Error loading post.</p>';
+                elements.postContentContainer.innerHTML = '<p class="p-4 text-center text-red-500">Error loading post. Please try again later.</p>';
                 console.error('Error fetching post:', error);
             });
-    };
-    postList.innerHTML = '';
-    availablePosts.forEach((post, index) => {
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#post-${index}`;
-        a.textContent = post.title;
-        a.dataset.file = post.file;
-        a.onclick = (e) => {
-            e.preventDefault();
-            document.querySelectorAll('#post-list-container a').forEach(link => link.classList.remove('active'));
-            a.classList.add('active');
-            loadPost(post.file);
-        };
-        li.appendChild(a);
-        postList.appendChild(li);
-    });
-    if (availablePosts.length > 0) {
-        const firstLink = postList.querySelector('a');
-        if (firstLink) {
-            firstLink.classList.add('active');
-            loadPost(availablePosts[0].file);
-        }
-    } else {
-        postContentContainer.innerHTML = '<p>No posts available.</p>';
     }
 
-    // --- SPA-like NAVIGATION LOGIC ---
-    const mainSections = {
-        hero: document.getElementById('hero'),
-        analyzer: document.getElementById('resume-analyzer'),
-        dashboard: document.getElementById('dashboard'),
-        blog: document.getElementById('blog'),
-        contact: document.getElementById('contact'),
-    };
-    const navHome = document.querySelector('header h1');
+    function initializeBlog() {
+        if (!elements.postList) return;
+        elements.postList.innerHTML = '';
+        availablePosts.forEach((post, index) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = `#post-${index}`;
+            a.textContent = post.title;
+            a.dataset.file = post.file;
+            a.onclick = (e) => {
+                e.preventDefault();
+                document.querySelectorAll('#post-list-container a').forEach(link => link.classList.remove('active'));
+                a.classList.add('active');
+                history.pushState(null, '', a.href); // Update URL hash
+                loadPost(post.file);
+            };
+            li.appendChild(a);
+            elements.postList.appendChild(li);
+        });
 
-    function handleNavigation() {
+        // Auto-load a post based on the hash or default to the first one
+        handleHashChange(); 
+    }
+
+    // --- NAVIGATION & ROUTING --- //
+
+    function handleHashChange() {
         const hash = window.location.hash;
-        Object.values(mainSections).forEach(section => {
-            if (section) section.style.display = 'none';
-        });
+        const postIndex = hash.startsWith('#post-') ? parseInt(hash.replace('#post-', ''), 10) : -1;
 
-        if (hash.startsWith('#post')) {
-             if (mainSections.blog) mainSections.blog.style.display = 'block';
-        } else if (hash === '#blog') {
-            if (mainSections.blog) mainSections.blog.style.display = 'block';
-        } else if (hash === '#dashboard') {
-            if (mainSections.dashboard) mainSections.dashboard.style.display = 'block';
-        } else if (hash === '#contact') {
-            if (mainSections.contact) mainSections.contact.style.display = 'block';
+        if (postIndex >= 0 && postIndex < availablePosts.length) {
+            const postLink = elements.postList.querySelector(`a[href="#post-${postIndex}"]`);
+            if (postLink) {
+                postLink.click(); // This will handle loading and active state
+            }
+        } else if (hash.startsWith('#')) {
+             const targetElement = document.getElementById(hash.substring(1));
+             if(targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+             }
         } else {
-            Object.values(mainSections).forEach(section => {
-                if (section) section.style.display = 'block';
-            });
+            // Default state (no hash or invalid post hash)
+            const firstLink = elements.postList?.querySelector('a');
+            if (firstLink && !elements.postList.querySelector('a.active')) {
+                 firstLink.click();
+            }
         }
     }
 
-    window.addEventListener('hashchange', handleNavigation);
-    handleNavigation();
+    // --- EVENT LISTENERS --- //
 
-    if (navHome) {
-        navHome.style.cursor = 'pointer';
-        navHome.addEventListener('click', () => {
-            window.location.hash = '';
+    // Resume Analyzer Events
+    if (elements.dropZone) {
+        elements.dropZone.addEventListener('dragenter', e => { e.preventDefault(); elements.dropZone.classList.add('drag-over'); });
+        elements.dropZone.addEventListener('dragover', e => { e.preventDefault(); elements.dropZone.classList.add('drag-over'); });
+        elements.dropZone.addEventListener('dragleave', e => { e.preventDefault(); elements.dropZone.classList.remove('drag-over'); });
+        elements.dropZone.addEventListener('drop', e => {
+            e.preventDefault();
+            elements.dropZone.classList.remove('drag-over');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                elements.fileInput.files = files;
+                handleFile(files[0]);
+            }
+        });
+        elements.dropZone.addEventListener('click', () => elements.fileInput.click());
+        elements.fileInput.addEventListener('change', () => handleFile(elements.fileInput.files[0]));
+        elements.analyzeButton.addEventListener('click', () => {
+            const file = elements.fileInput.files[0];
+            if (file) analyzeResume(file);
+        });
+        elements.closeModalButton.addEventListener('click', () => elements.modal.classList.remove('active'));
+        elements.modal.addEventListener('click', e => {
+            if (e.target === elements.modal) elements.modal.classList.remove('active');
         });
     }
+
+    // Navigation Events
+    window.addEventListener('hashchange', handleHashChange);
+    elements.navHome.addEventListener('click', () => {
+        window.location.hash = '';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    elements.navLinks.forEach(link => {
+        link.addEventListener('click', e => {
+            const hash = link.getAttribute('href');
+            if (hash.startsWith('#') && hash.length > 1) {
+                const targetId = hash.substring(1);
+                // If it's a post, let the blog handler do its thing
+                if (targetId.startsWith('post-')) return;
+
+                e.preventDefault();
+                history.pushState(null, '', hash); // Update URL without page jump
+                handleHashChange(); // Manually trigger scroll
+            }
+        });
+    });
+
+    // --- INITIALIZATION --- //
+    initializeBlog();
+
 });
