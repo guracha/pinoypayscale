@@ -1,165 +1,315 @@
-<link rel="stylesheet" href="post-style.css">
+<!-- 
+  [Full Embed Guide]
+  1. This code is optimized for embedding inside a blog post or an existing web page.
+  2. It uses a unique ID (#ph-driver-report-2026) to prevent styling conflicts.
+  3. All detailed data from the expanded report is included here.
+-->
 
-<div class="post-container">
+<!-- Dependencies -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <div class="post-section">
-        <h2>1. Executive Summary</h2>
-        <p>
-            The 2026 Philippine Driver Salary & Labor Market Analysis projects a <strong>median monthly salary of <span class="highlight-value">₱25,000</span></strong> for non-specialized drivers, with significant variations based on location, specialization, and vehicle type. The market is shaped by urbanization, the rise of logistics, and high demand in the gig economy. Key trends include a growing demand for specialized drivers (e.g., heavy machinery, private chauffeurs) and a persistent labor shortage, driving incremental wage growth.
-        </p>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+    
+    #ph-driver-report-2026 {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        color: #0f172a;
+        max-width: 1000px;
+        margin: 2rem auto;
+        border: 1px solid #e2e8f0;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+
+    .report-chart-container {
+        position: relative;
+        width: 100%;
+        height: 350px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+    }
+
+    .active-tab {
+        background-color: #0f172a !important;
+        color: white !important;
+        border-color: #0f172a !important;
+    }
+</style>
+
+<div id="ph-driver-report-2026" class="antialiased text-slate-900">
+    <!-- Header Area -->
+    <div class="bg-slate-900 p-8 md:p-12 text-white">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <span class="inline-block px-3 py-1 rounded-full bg-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-4">Deep Dive Analysis</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight">2026 Philippine Driver <br><span class="text-blue-400">Salary & Labor Market</span></h2>
+            </div>
+            <div class="flex gap-4">
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Avg Increase</p>
+                    <p class="text-xl font-bold text-blue-400">+7.2%</p>
+                </div>
+                <div class="text-center bg-white/5 p-4 rounded-2xl border border-white/10">
+                    <p class="text-[10px] text-slate-400 font-bold uppercase">Safety Value</p>
+                    <p class="text-xl font-bold text-emerald-400">12.5%</p>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="post-section">
-        <h2>2. Driver Salary Benchmarks for 2026</h2>
-        <p>
-            Salaries for drivers in the Philippines are influenced by multiple factors. Below is a detailed breakdown of expected monthly salary ranges for 2026 across different categories.
-        </p>
-
-        <div class="post-table-wrapper">
-            <table class="post-table">
-                <thead>
-                    <tr>
-                        <th>Driver Category</th>
-                        <th>Experience Level</th>
-                        <th>Location</th>
-                        <th>Estimated Monthly Salary (PHP)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Personal/Family Driver</td>
-                        <td>Mid-Level (3-5 years)</td>
-                        <td>Metro Manila (NCR)</td>
-                        <td>₱22,000 - ₱30,000</td>
-                    </tr>
-                    <tr>
-                        <td>Delivery Driver (Motorcycle)</td>
-                        <td>Entry-Level</td>
-                        <td>Urban Centers</td>
-                        <td>₱18,000 - ₱26,000 (net of fuel)</td>
-                    </tr>
-                    <tr>
-                        <td>Light Truck/Van Driver</td>
-                        <td>Mid-Level</td>
-                        <td>Nationwide</td>
-                        <td>₱25,000 - ₱35,000</td>
-                    </tr>
-                    <tr>
-                        <td>Heavy Truck Driver (10-wheeler+)</td>
-                        <td>Experienced (5+ years)</td>
-                        <td>Logistics Hubs</td>
-                        <td>₱35,000 - ₱55,000+</td>
-                    </tr>
-                    <tr>
-                        <td>Bus Driver (Provincial)</td>
-                        <td>Experienced</td>
-                        <td>Nationwide</td>
-                        <td>₱30,000 - ₱45,000 (incentive-based)</td>
-                    </tr>
-                    <tr>
-                        <td>Corporate Chauffeur</td>
-                        <td>High-Level</td>
-                        <td>Makati/BGC</td>
-                        <td>₱28,000 - ₱40,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p>
-            These figures represent base pay and may not include overtime, allowances (e.g., meal, accommodation), and other benefits which can significantly increase total compensation.
-        </p>
-    </div>
-
-    <div class="post-section">
-        <h2>3. Market Trends & Analysis</h2>
-
-        <h3>Demand & Supply Dynamics</h3>
-        <p>
-            The demand for skilled drivers, particularly in logistics and e-commerce, continues to outpace supply. This shortage is exacerbated by the migration of drivers to other countries for higher pay. Consequently, local employers are compelled to offer more competitive salaries and benefits to attract and retain talent.
-        </p>
-
-        <div class="post-media-container">
-            <canvas id="driverDemandChart"></canvas>
-            <p class="post-media-caption">Chart: Projected demand growth for specialized vs. non-specialized drivers (2024-2026).</p>
-        </div>
-
-        <h3>Impact of the Gig Economy</h3>
-        <p>
-            The rise of ride-hailing and delivery apps has created a flexible but competitive environment. While it offers low barriers to entry, income can be inconsistent. App-based drivers often earn on a per-trip basis, with net income heavily dependent on factors like fuel costs, vehicle maintenance, and platform fees. The average take-home pay often aligns with the lower end of the personal driver salary range.
-        </p>
+    <!-- Main Content Body -->
+    <div class="p-6 md:p-10 space-y-20">
         
-        <h3>Geographical Variances</h3>
-        <p>
-            As indicated in the salary table, compensation is highest in major economic hubs like Metro Manila, CALABARZON, and Central Luzon due to higher living costs and concentrated demand from corporations and logistics firms. Salaries in Visayas and Mindanao are typically 15-25% lower but are gradually increasing with infrastructure development.
-        </p>
+        <!-- Section 1: Introduction -->
+        <div class="max-w-3xl">
+            <h3 class="text-2xl font-bold mb-4">Market Evolution Summary</h3>
+            <p class="text-slate-600 leading-relaxed">
+                In 2026, the Philippine driver market has transitioned from general labor to a specialized service role. Employers now prioritize <strong>safety certifications</strong>, <strong>digital literacy</strong> (for GPS and telematics), and <strong>seniority</strong> over basic driving skills. This report breaks down the complex factors influencing take-home pay.
+            </p>
+        </div>
+
+        <!-- Section 2: Salary Progression Chart -->
+        <div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+                <div>
+                    <h3 class="text-xl font-bold">Salary Progression by Category</h3>
+                    <p class="text-sm text-slate-500 mt-1">Select a category to see how experience impacts monthly base pay (NCR baseline).</p>
+                </div>
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
+                    <button onclick="updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
+                    <button onclick="updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
+                    <button onclick="updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
+                </div>
+            </div>
+            <div class="report-chart-container">
+                <canvas id="salaryMatrixChart"></canvas>
+            </div>
+            <div class="mt-8 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Entry</p>
+                    <p class="text-xs font-bold mt-1">1-3 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Mid</p>
+                    <p class="text-xs font-bold mt-1">4-7 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Senior</p>
+                    <p class="text-xs font-bold mt-1">8-12 Years</p>
+                </div>
+                <div class="p-4 rounded-xl bg-slate-50 border border-slate-100">
+                    <p class="text-[10px] font-black text-slate-400 uppercase">Expert</p>
+                    <p class="text-xs font-bold mt-1">13+ Years</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Regional Disparity -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <h3 class="text-2xl font-bold">Regional Wage Indices</h3>
+                <p class="text-slate-600 leading-relaxed">
+                    While Metro Manila (NCR) offers the highest base, hubs like <strong>Cebu</strong> and <strong>Clark</strong> are seeing faster growth due to the expansion of corporate logistics hubs and special economic zones.
+                </p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold">Metro Manila (NCR)</span>
+                        <span class="px-3 py-1 bg-slate-900 text-white text-[10px] font-bold rounded-lg">100% (Baseline)</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Metro Cebu</span>
+                        <span class="font-bold text-slate-400">88%</span>
+                    </div>
+                    <div class="flex items-center justify-between p-4 bg-white border border-slate-100 rounded-xl shadow-sm">
+                        <span class="font-bold text-slate-600">Clark / Pampanga</span>
+                        <span class="font-bold text-slate-400">85%</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-slate-50 p-6 rounded-3xl border border-slate-100">
+                <canvas id="regionalBarChart" style="height: 250px;"></canvas>
+            </div>
+        </div>
+
+        <!-- Section 4: Safety Impact -->
+        <div class="bg-emerald-50 p-8 rounded-[2.5rem] border border-emerald-100">
+            <h3 class="text-2xl font-bold text-emerald-900 mb-6">The "Safety Premium"</h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🛡️</div>
+                    <h4 class="font-bold text-emerald-900">Clean LTO Records</h4>
+                    <p class="text-xs text-slate-500 mt-2">Zero demerit points adds a <strong>₱1,500 – ₱2,500</strong> premium to the base monthly salary.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🏅</div>
+                    <h4 class="font-bold text-emerald-900">Certified Training</h4>
+                    <p class="text-xs text-slate-500 mt-2">Formal defensive driving certificates from TESDA are now standard requirements for VIP roles.</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-emerald-100 shadow-sm">
+                    <div class="text-2xl mb-2">🎁</div>
+                    <h4 class="font-bold text-emerald-900">Safety Bonus</h4>
+                    <p class="text-xs text-slate-500 mt-2">A "14th Month" safety performance bonus is increasingly common for accident-free years.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Market Estimator Tool -->
+        <div class="bg-slate-900 text-white rounded-[2.5rem] p-8 md:p-12">
+            <h3 class="text-2xl font-bold mb-8 text-center">Quick Market Value Estimator</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Experience</label>
+                    <select id="calcExp" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="0">Entry (1-3 yrs)</option>
+                        <option value="1">Mid (4-7 yrs)</option>
+                        <option value="2">Senior (8-12 yrs)</option>
+                        <option value="3">Expert (13+ yrs)</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Category</label>
+                    <select id="calcCat" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="private">Private Family</option>
+                        <option value="corporate">Corporate Office</option>
+                        <option value="executive">Executive / VIP</option>
+                        <option value="logistics">Logistics/Trucking</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Location</label>
+                    <select id="calcLoc" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="1.0">Manila (NCR)</option>
+                        <option value="0.88">Cebu Hubs</option>
+                        <option value="0.85">Clark / Pampanga</option>
+                        <option value="0.75">Davao / Others</option>
+                    </select>
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Safety Record</label>
+                    <select id="calcSafe" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                        <option value="1.0">Standard Record</option>
+                        <option value="1.05">Clean LTO History</option>
+                        <option value="1.15">Accident-Free Certified</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="text-center p-8 bg-white/5 border border-white/10 rounded-3xl">
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Estimated Monthly Base (PHP)</p>
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-3xl text-slate-600 font-bold">₱</span>
+                    <span id="finalResult" class="text-6xl font-black text-blue-400 tracking-tighter">--</span>
+                </div>
+                <p class="text-[10px] text-slate-500 mt-6 italic">* Excludes 13th month pay, OT, and meal allowances.</p>
+            </div>
+        </div>
     </div>
 
-    <div class="post-section">
-        <h2>4. Key Takeaways for Employers</h2>
-        <ul>
-            <li><strong>Retention is Key:</strong> With a clear labor shortage, focusing on driver retention through competitive pay, benefits, and positive working conditions is more cost-effective than frequent hiring.</li>
-            <li><strong>Specialization Commands a Premium:</strong> Companies requiring drivers with special licenses (e.g., for hazardous materials or heavy machinery) must be prepared to offer premium compensation packages.</li>
-            <li><strong>Look Beyond Base Salary:</strong> Offering comprehensive benefits, including health insurance, performance bonuses, and allowances for fuel and maintenance, can be a significant differentiator in attracting top talent.</li>
-        </ul>
+    <!-- Footer -->
+    <div class="p-8 bg-slate-50 border-t border-slate-100 text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest">© 2026 DriveMetric • Philippine Labor Market Analytics</p>
     </div>
 </div>
 
 <script>
-    // Use a timeout to ensure the canvas is ready
-    setTimeout(() => {
-        const ctx = document.getElementById('driverDemandChart');
-        if (ctx && typeof Chart !== 'undefined') {
-            // Destroy existing chart if it exists
-            if (window.myCharts && window.myCharts.driverDemandChart) {
-                window.myCharts.driverDemandChart.destroy();
-            }
+    (function() {
+        const matrix = {
+            private: [17500, 22500, 28000, 35000],
+            corporate: [21000, 28000, 36000, 45000],
+            executive: [28000, 42000, 60000, 85000],
+            logistics: [24000, 33000, 48000, 65000]
+        };
 
-            const chartData = {
-                labels: ['2024', '2025', '2026'],
-                datasets: [{
-                    label: 'Specialized Drivers (e.g., Heavy Trucks)',
-                    data: [100, 115, 130],
-                    borderColor: '#312e81',
-                    backgroundColor: 'rgba(49, 46, 129, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }, {
-                    label: 'Non-Specialized Drivers (e.g., Delivery)',
-                    data: [100, 108, 115],
-                    borderColor: '#475569',
-                    backgroundColor: 'rgba(71, 85, 105, 0.2)',
-                    borderWidth: 2,
-                    fill: true,
-                    tension: 0.4
-                }]
-            };
+        let salaryChart;
 
-            const chartConfig = {
-                type: 'line',
-                data: chartData,
+        function initSalaryChart() {
+            const ctx = document.getElementById('salaryMatrixChart').getContext('2d');
+            salaryChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Junior (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
+                    datasets: [{
+                        label: 'Avg Salary (PHP)',
+                        data: matrix.private,
+                        backgroundColor: '#3b82f6',
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
                     scales: {
-                        y: {
-                            beginAtZero: false,
-                            title: { display: true, text: 'Indexed Demand (100 = 2024)' }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        title: {
-                            display: true,
-                            text: 'Projected Driver Demand Growth',
-                            font: { size: 16, family: 'var(--font-primary)' }
-                        }
+                        y: { beginAtZero: true, ticks: { callback: v => '₱' + (v/1000) + 'k' } }
                     }
                 }
-            };
-
-            // Store the new chart instance
-            window.myCharts.driverDemandChart = new Chart(ctx, chartConfig);
+            });
         }
-    }, 200); // A small delay can help prevent race conditions
+
+        function initRegionalChart() {
+            const ctx = document.getElementById('regionalBarChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Manila', 'Cebu', 'Clark', 'Davao', 'Iloilo'],
+                    datasets: [{
+                        data: [100, 88, 85, 75, 72],
+                        backgroundColor: ['#0f172a', '#94a3b8', '#cbd5e1', '#e2e8f0', '#f1f5f9'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+        window.updateChart = function(type, btn) {
+            salaryChart.data.datasets[0].data = matrix[type];
+            salaryChart.update();
+
+            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
+            btn.classList.add('active-tab');
+        };
+
+        window.runEstimator = function() {
+            const exp = parseInt(document.getElementById('calcExp').value);
+            const cat = document.getElementById('calcCat').value;
+            const loc = parseFloat(document.getElementById('calcLoc').value);
+            const safe = parseFloat(document.getElementById('calcSafe').value);
+
+            const base = matrix[cat][exp];
+            const result = Math.round(base * loc * safe);
+            
+            const resultEl = document.getElementById('finalResult');
+            resultEl.innerText = result.toLocaleString();
+        };
+
+        // Initialize on Load
+        window.addEventListener('load', () => {
+            initSalaryChart();
+            initRegionalChart();
+            runEstimator();
+        });
+    })();
 </script>
