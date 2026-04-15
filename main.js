@@ -18,6 +18,10 @@ document.addEventListener('DOMContentLoaded', () => {
         postList: document.querySelector('#post-list-container ul'),
         postContentContainer: document.getElementById('post-content-container'),
 
+        // Contact Form
+        contactForm: document.getElementById('contact-form'),
+        contactFormStatus: document.getElementById('contact-form-status'),
+
         // Navigation
         header: document.querySelector('header'),
         navHome: document.querySelector('header h1'),
@@ -146,6 +150,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- CONTACT FORM --- //
+    async function handleContactFormSubmit(event) {
+        event.preventDefault();
+        const form = event.target;
+        const data = new FormData(form);
+        const status = elements.contactFormStatus;
+
+        status.innerHTML = 'Sending...';
+        status.style.color = 'inherit';
+
+        try {
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                status.innerHTML = "Thanks for your message! We'll be in touch soon.";
+                status.style.color = 'green';
+                form.reset();
+            } else {
+                const responseData = await response.json();
+                if (Object.hasOwn(responseData, 'errors')) {
+                    status.innerHTML = responseData["errors"].map(error => error["message"]).join(", ");
+                } else {
+                    status.innerHTML = "Oops! There was a problem submitting your form.";
+                }
+                 status.style.color = 'red';
+            }
+        } catch (error) {
+            status.innerHTML = "Oops! There was a problem submitting your form.";
+            status.style.color = 'red';
+        }
+    }
+
+
     // --- NAVIGATION & ROUTING (REVISED & IMPROVED) --- //
 
     function getHeaderHeight() {
@@ -220,6 +263,11 @@ document.addEventListener('DOMContentLoaded', () => {
         elements.modal.addEventListener('click', e => {
             if (e.target === elements.modal) elements.modal.classList.remove('active');
         });
+    }
+
+    // Contact Form Event
+    if (elements.contactForm) {
+        elements.contactForm.addEventListener('submit', handleContactFormSubmit);
     }
 
     // Navigation Events

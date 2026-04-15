@@ -119,7 +119,7 @@
             <div class="contact-container">
                 <div class="contact-form">
                     <h3>Get in Touch</h3>
-                    <form action="mailto:marcocha84@gmail.com" method="post" enctype="text/plain">
+                    <form id="contact-form" action="https://formspree.io/f/xqkrpznl" method="POST">
                         <div class="form-group">
                             <label for="name">Your Name</label>
                             <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required>
@@ -133,6 +133,7 @@
                             <textarea id="message" name="message" rows="5" placeholder="Let us know how we can help..." required></textarea>
                         </div>
                         <button type="submit" class="submit-btn">Send Message</button>
+                        <p id="contact-form-status" class="mt-4 text-center"></p>
                     </form>
                 </div>
                 <div class="contact-info">
