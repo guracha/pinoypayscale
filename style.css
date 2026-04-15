@@ -337,6 +337,7 @@ footer {
     }
 
     #post-content-container {
+        position: static;
         border-left: none;
         padding-left: 0;
         min-height: auto;
