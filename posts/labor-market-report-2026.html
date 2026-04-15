@@ -1,362 +1,150 @@
+<link rel="stylesheet" href="post-style.css">
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 PH Labor Market Report</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="bg-slate-50">
-<div class="report-container bg-white rounded-none shadow-none px-0 py-4 md:p-10">
+<div class="post-container">
 
-    <!-- Header -->
-    <header class="mb-10 px-4 md:px-0">
-        <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-widest mb-4">Comprehensive Analysis</span>
-        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">2026 Philippine Labor Market & Compensation Analysis Report</h1>
-        <p class="mt-4 text-lg text-slate-600">Salary Benchmarks and Macroeconomic Strategies for the Modern Workforce</p>
-    </header>
+    <div class="post-section">
+        <h2>1. Macroeconomic Context & 2026 Wage Guidelines</h2>
+        <p>
+            In 2026, the Philippine economy stands at a pivotal juncture where macroeconomic stabilization meets global uncertainty. According to the Department of Finance (DOF), the inflation rate in January 2026 was recorded at <strong>2.0%</strong>, settling within the government's target range of 2.0% to 4.0%. This stability indicates resilient domestic demand and robust household spending.
+        </p>
+        <p>
+            In this environment, Philippine employers are projecting a median salary increase of approximately <span class="highlight-value">5.5%</span> for 2026. This mirrors 2025 levels, though higher increases are expected in high-growth sectors such as technology, finance, and Business Process Outsourcing (BPO) where talent competition is most intense.
+        </p>
+    </div>
 
-    <!-- Body -->
-    <main class="space-y-16">
+    <div class="post-section">
+        <h2>2. Salary Increase Projections by Industry</h2>
+        <p>
+            The projected 5.5% median increase is not uniform across all sectors. High-growth, high-demand industries are expected to offer significantly higher raises to attract and retain specialized talent. The table below details the projected salary budget increases for 2026.
+        </p>
 
-        <!-- 1. Macroeconomic Context -->
-        <section class="px-4 md:px-0">
-            <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">1. Macroeconomic Context & 2026 Wage Guidelines</h2>
-            <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
-                <p>In 2026, the Philippine economy stands at a pivotal juncture where macroeconomic stabilization meets global uncertainty. According to the Department of Finance (DOF), the inflation rate in January 2026 was recorded at <strong>2.0%</strong>, settling within the government's target range of 2.0% to 4.0%. This stability indicates resilient domestic demand and robust household spending. However, the Bangko Sentral ng Pilipinas (BSP) remains cautious, noting that supply-side factors such as global oil price volatility, rice tariff adjustments, and electricity rate hikes could keep inflation at an elevated path.</p>
-                <p>In this environment, Philippine employers are projecting a median salary increase of approximately <strong>5.5%</strong> for 2026. This mirrors 2025 levels, though higher increases are expected in high-growth sectors such as technology, finance, and Business Process Outsourcing (BPO) where talent competition is most intense. The Asian Development Bank (ADB) has highlighted that while growth remains strong, external risks—particularly geopolitical tensions in the Middle East—could fuel inflation toward the 4.0% mark. Consequently, many employers are shifting their focus from aggressive base pay hikes toward productivity-linked incentives and the efficient use of tax-free "De Minimis" benefits.</p>
-                <p>The overarching theme for 2026 compensation strategy is "Quality over Quantity". Businesses are recruiting selectively for strategic roles that offer direct financial impact, such as Cloud Architects, FP&A Managers, and Strategic HR Business Partners (HRBPs).</p>
-            </div>
-        </section>
+        <div class="post-table-wrapper">
+            <table class="post-table">
+                <thead>
+                    <tr>
+                        <th>Industry</th>
+                        <th>Projected Salary Increase (Median)</th>
+                        <th>Key Drivers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Technology & Software Development</td>
+                        <td>8.0% - 12.0%</td>
+                        <td>AI, Cloud, Cybersecurity Talent Shortage</td>
+                    </tr>
+                    <tr>
+                        <td>Finance & Fintech</td>
+                        <td>7.5% - 10.0%</td>
+                        <td>Digital Banking, Data Analytics</td>
+                    </tr>
+                    <tr>
+                        <td>Business Process Outsourcing (BPO)</td>
+                        <td>6.0% - 8.0%</td>
+                        <td>Higher-Value Services, AI Integration</td>
+                    </tr>
+                    <tr>
+                        <td>Healthcare & Pharmaceuticals</td>
+                        <td>5.5% - 7.0%</td>
+                        <td>Aging Population, Health Infra Dev.</td>
+                    </tr>
+                    <tr>
+                        <td>Consumer Goods & Retail</td>
+                        <td>4.5% - 5.5%</td>
+                        <td>Inflationary Pressures, Domestic Demand</td>
+                    </tr>
+                    <tr>
+                        <td>Manufacturing & Logistics</td>
+                        <td>5.0% - 6.0%</td>
+                        <td>Supply Chain Optimization, E-commerce</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
-        <!-- 2. Regional Minimum Wage -->
-        <section>
-            <div class="px-4 md:px-0">
-                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">2. Statutory Minimum Wage and Regional Living Cost Analysis</h2>
-                <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
-                    <p>The foundation of the Philippine wage structure is the statutory minimum wage set by Regional Tripartite Wages and Productivity Boards (RTWPB). In 2026, several regions are implementing significant updates or tranches of previous wage orders.</p>
-                    <p>In Metro Manila (NCR), the daily minimum wage for non-agricultural workers is set at ₱695, effective until late 2026. While this represents a nominal increase from previous years, real purchasing power remains a challenge as the cost of essentials like rice and transportation continues to rise. Data suggests that for a typical family of five, the daily minimum wage is often just at or below the poverty threshold in urban centers.</p>
-                </div>
-            </div>
-            <div class="my-8 overflow-x-auto">
-                <div class="px-4 md:px-0">
-                    <h3 class="font-bold text-lg mb-4">2026 Key Regional Minimum Wage Benchmarks (Non-Agricultural)</h3>
-                </div>
-                <table class="w-full text-left border-collapse table-zoomable">
-                    <thead class="bg-slate-100">
-                        <tr>
-                            <th class="p-3 border">Region</th>
-                            <th class="p-3 border">Daily Minimum Wage (PHP)</th>
-                            <th class="p-3 border">Monthly Equiv. (26 Days)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="p-3 border">NCR (Metro Manila)</td><td class="p-3 border">₱658 – ₱695</td><td class="p-3 border">~₱18,070</td></tr>
-                        <tr><td class="p-3 border">Region VII (C. Visayas)</td><td class="p-3 border">₱540</td><td class="p-3 border">₱14,040</td></tr>
-                        <tr><td class="p-3 border">Region XI (Davao)</td><td class="p-3 border">₱540</td><td class="p-3 border">₱14,085</td></tr>
-                        <tr><td class="p-3 border">Region III (C. Luzon)</td><td class="p-3 border">₱515 – ₱600</td><td class="p-3 border">~₱15,600</td></tr>
-                        <tr><td class="p-3 border">Region IV-A (Calabarzon)</td><td class="p-3 border">₱525 – ₱600</td><td class="p-3 border">~₱15,600</td></tr>
-                        <tr><td class="p-3 border">Region X (N. Mindanao)</td><td class="p-3 border">₱485 – ₱500</td><td class="p-3 border">~₱13,000</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-4 md:px-0">
-                <p class="text-slate-600 leading-relaxed max-w-4xl mb-8">
-                    The chart below visualizes the maximum daily minimum wage benchmarks for non-agricultural workers across these key regions.
-                </p>
-            </div>
-            <div class="px-4 md:px-0">
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 overflow-x-auto">
-                    <div class="relative h-[300px] w-full min-w-[600px]">
-                        <canvas id="regionalWageChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <div class="post-section">
+        <h2>3. Key Compensation Strategy Themes for 2026</h2>
 
-        <!-- 3. Salary Progression by Career Level -->
-        <section>
-            <div class="px-4 md:px-0">
-                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">3. General Job Levels and Experience-Based Salary Progression</h2>
-                 <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
-                    <p>Compensation in the Philippines follows a steep pyramid structure, with the most significant jumps occurring between mid-level and senior management. The national average monthly salary for full-time workers is approximately ₱44,800, but this is heavily skewed by high-paying executive and tech roles. A more realistic indicator is the median monthly salary, which falls between ₱20,500 and ₱30,000 for the typical mid-market professional.</p>
-                    <p>For fresh graduates, the average starting salary is approximately ₱20,019 as of early 2026. However, those in specialized fields like software development or data analytics can command starting packages as high as ₱35,000. By 2026, AI literacy has become a "non-negotiable" skill, with candidates possessing AI-integrated workflows earning a premium across all levels.</p>
-                </div>
-            </div>
-            <div class="my-8 overflow-x-auto">
-                 <div class="px-4 md:px-0">
-                    <h3 class="font-bold text-lg mb-4">2026 Standard Salary Benchmarks by Career Level</h3>
-                </div>
-                <table class="w-full text-left border-collapse table-zoomable">
-                     <thead class="bg-slate-100">
-                        <tr>
-                            <th class="p-3 border">Career Level</th>
-                            <th class="p-3 border">Monthly Salary Range (PHP)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="p-3 border">Intern</td><td class="p-3 border">₱8,000 – ₱15,000</td></tr>
-                        <tr><td class="p-3 border">Entry-Level</td><td class="p-3 border">₱18,000 – ₱30,000</td></tr>
-                        <tr><td class="p-3 border">Mid-Level</td><td class="p-3 border">₱35,000 – ₱60,000</td></tr>
-                        <tr><td class="p-3 border">Senior/Manager</td><td class="p-3 border">₱70,000 – ₱150,000</td></tr>
-                        <tr><td class="p-3 border">Executive/C-Level</td><td class="p-3 border">₱150,000 – ₱1,000,000+</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-4 md:px-0">
-                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 overflow-x-auto">
-                    <div class="relative h-[350px] w-full min-w-[500px]">
-                        <canvas id="careerLevelChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <div class="post-media-container">
+            <canvas id="compensationStrategyChart"></canvas>
+            <p class="post-media-caption">Chart: Shift in employer focus for compensation strategies.</p>
+        </div>
 
-        <!-- 4. Industry In-Depth Analysis -->
-        <section class="px-4 md:px-0">
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">4. In-Depth Analysis by Core Industry</h2>
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.1. Information & Communications Technology (ICT)</h3>
-                    <p class="mb-4">ICT remains the highest-paying industry in the country, with an average monthly wage of ₱43,676. The demand for cybersecurity, cloud computing, and full-stack development continues to outpace the local supply of talent.</p>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left border-collapse table-zoomable">
-                            <thead class="bg-slate-100">
-                                <tr><th class="p-3 border">IT Specific Role</th><th class="p-3 border">Level</th><th class="p-3 border">Monthly Range (PHP)</th></tr>
-                            </thead>
-                            <tbody>
-                                <tr><td class="p-3 border">Software Developer</td><td class="p-3 border">Senior</td><td class="p-3 border">₱80,000 – ₱150,000</td></tr>
-                                <tr><td class="p-3 border">Cloud Architect</td><td class="p-3 border">Senior</td><td class="p-3 border">₱120,000 – ₱200,000+</td></tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.2. Financial Services and Banking</h3>
-                     <ul class="list-disc list-inside prose">
-                        <li>The banking sector is experiencing high demand for risk and compliance professionals.</li>
-                        <li><strong>FP&A Managers:</strong> Earn between ₱60,000 and ₱85,000.</li>
-                        <li><strong>CPA Premiums:</strong> CPAs often earn 30% to 60% more than non-certified peers.</li>
-                        <li><strong>Banking Average:</strong> The industry average monthly salary is estimated at ₱38,000.</li>
-                    </ul>
-                </div>
-                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.3. Healthcare and Pharmaceuticals</h3>
-                    <p>While the industry average is around ₱29,000, specialized roles in Healthcare Information Management (HIMS) such as Medical Coders and Revenue Cycle Management (RCM) specialists earn between ₱35,000 and ₱50,000. Registered Nurses in the private sector start at approximately ₱27,000.</p>
-                </div>
-                 <div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-4">4.4. Manufacturing and Logistics</h3>
-                    <p>Manufacturing average wages hover around ₱23,500. Logistics is a key growth area for 2026, with heavy-truck drivers and warehouse managers seeing salary increases due to the e-commerce boom.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. IT-BPM (BPO) Strategic Evolution -->
-        <section>
-            <div class="px-4 md:px-0">
-                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">5. IT-BPM (BPO) Strategic Evolution and TCO Models</h2>
-                <p class="mb-4">The IT-BPM industry is projected to reach $42 billion in export revenues and employ 1.97 million people by late 2026. The industry is shifting from basic voice services to high-value segments like Knowledge Process Outsourcing (KPO) and Global Capability Centers (GCC).</p>
-            </div>
-            <div class="my-8 overflow-x-auto">
-                <div class="px-4 md:px-0">
-                    <h3 class="font-bold text-lg mb-4">5.1. BPO Salary Benchmarks for 2026</h3>
-                </div>
-                <table class="w-full text-left border-collapse table-zoomable">
-                    <thead class="bg-slate-100">
-                        <tr>
-                            <th class="p-3 border">BPO Role</th>
-                            <th class="p-3 border">Entry-Level (PHP)</th>
-                            <th class="p-3 border">Senior/Specialized (PHP)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td class="p-3 border">Customer Service (Voice)</td><td class="p-3 border">₱19,500 – ₱28,000</td><td class="p-3 border">₱60,000 – ₱95,000</td></tr>
-                        <tr><td class="p-3 border">Technical Support</td><td class="p-3 border">₱25,000 – ₱35,000</td><td class="p-3 border">₱90,000 – ₱150,000+</td></tr>
-                        <tr><td class="p-3 border">FinTech / Compliance</td><td class="p-3 border">₱30,000 – ₱45,000</td><td class="p-3 border">₱110,000 – ₱180,000</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="px-4 md:px-0">
-                 <h3 class="font-bold text-lg mb-4">5.2. Total Cost of Ownership (TCO) for Global Firms</h3>
-                 <p>The primary driver for outsourcing to the Philippines remains the 60% to 75% cost delta. A "fully loaded" labor rate in Manila averages $14/hour ($2,400/month), which includes salary (60%), benefits (15%), facilities (15%), and compliance/management (10%).</p>
-            </div>
-        </section>
+        <h3>Theme 1: "Quality over Quantity" Hiring</h3>
+        <p>
+            The overarching theme for 2026 is a strategic shift away from aggressive mass hiring towards recruiting selectively for high-impact roles. Businesses are prioritizing positions that offer direct financial impact, such as Cloud Architects, FP&A Managers, and Strategic HR Business Partners (HRBPs). This approach aims to maximize ROI on talent acquisition by focusing on roles that drive innovation and efficiency.
+        </p>
         
-        <!-- 6. Statutory Benefits -->
-        <section class="px-4 md:px-0">
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">6. Statutory Benefits and 2026 Contribution Adjustments</h2>
-            <div class="space-y-4 prose max-w-none">
-                <p><strong>Social Security System (SSS):</strong> Effective January 2026, the contribution rate increases to 15% (10% employer, 5% employee). The maximum Monthly Salary Credit (MSC) is ₱35,000.</p>
-                <p><strong>PhilHealth and Pag-IBIG:</strong> The PhilHealth rate is maintained at 5.0% (split 2.5% each). Pag-IBIG remains 2% for both employer and employee, capped at a ₱10,000 salary.</p>
-                <p><strong>13th Month Pay:</strong> This is a mandatory benefit equivalent to 1/12 of the total basic salary earned during the year.</p>
-            </div>
-        </section>
+        <h3>Theme 2: Productivity-Linked Incentives</h3>
+        <p>
+            Many employers are moving from aggressive base pay hikes toward productivity-linked incentives and the efficient use of tax-free "De Minimis" benefits. This strategy allows companies to reward high-performers and manage fixed costs more effectively. Variable pay, performance bonuses, and profit-sharing schemes are becoming increasingly integral components of the total rewards package.
+        </p>
 
-        <!-- 7. Tax Environment -->
-        <section class="px-4 md:px-0">
-            <div class="bg-indigo-50/60 p-6 rounded-lg border border-indigo-200/80">
-                <h2 class="text-2xl font-bold text-indigo-900 mb-6 text-center">7. Tax Environment & De Minimis Benefits</h2>
-                <p class="text-center text-slate-600 max-w-3xl mx-auto mb-8">Individuals earning ₱250,000 or less annually are exempt from income tax. Effective January 6, 2026, BIR Regulation RR 29-2025 significantly raised the non-taxable ceilings for small perks ("De Minimis" benefits).</p>
-                <div class="overflow-x-auto">
-                     <table class="w-full text-center border-collapse table-zoomable">
-                        <thead class="bg-white">
-                            <tr>
-                                <th class="p-3 border">Benefit Item</th>
-                                <th class="p-3 border">2026 New Ceiling (PHP)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-white/80">
-                            <tr><td class="p-2 border">Rice Subsidy</td><td class="p-2 border font-mono">₱2,500 / month</td></tr>
-                            <tr><td class="p-2 border">Clothing/Uniform</td><td class="p-2 border font-mono">₱8,000 / year</td></tr>
-                            <tr><td class="p-2 border">Medical Assistance</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
-                            <tr><td class="p-2 border">CBA/Productivity</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </section>
+        <h3>Theme 3: The Rise of Counter-Offers</h3>
+        <p>
+            With talent scarcity in critical roles, the practice of making counter-offers to retain departing employees is becoming more prevalent. While often effective in the short term, employers are cautioned that this can disrupt internal pay equity and may not address the root causes of employee dissatisfaction. A proactive approach focusing on career development and a positive work environment is recommended as a more sustainable retention strategy.
+        </p>
+    </div>
 
-        <!-- 8. Executive Compensation -->
-        <section class="px-4 md:px-0">
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">8. Executive and C-Suite Compensation</h2>
-             <ul class="list-disc list-inside prose">
-                <li><strong>CEO Compensation:</strong> Average basic pay is ~₱4.45M/year, with top packages exceeding ₱10M.</li>
-                <li><strong>CTO/CFO:</strong> The Chief Technology Officer role averages ₱2.72M/year.</li>
-                <li><strong>Perks:</strong> 75% of executives receive comprehensive medical benefits (HMO).</li>
-            </ul>
-        </section>
-
-        <!-- 9. Conclusion -->
-        <section class="px-4 md:px-0">
-             <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">9. Conclusion: Strategic Insights for Employers</h2>
-             <ul class="list-disc list-inside prose max-w-none text-slate-700 leading-relaxed space-y-2">
-                <li><strong>Inflation Readiness:</strong> Plan for a minimum 5.5% annual increase and account for the 15% SSS contribution rate.</li>
-                <li><strong>Geographic Optimization:</strong> Explore hubs like Cebu, Clark, and Iloilo for 10-20% cost savings.</li>
-                <li><strong>Smart Benefits Design:</strong> Maximize new tax-free benefit thresholds to boost take-home pay.</li>
-                <li><strong>Talent Value Proposition:</strong> Prioritize security, progression, and hybrid work arrangements.</li>
-             </ul>
-        </section>
-
-    </main>
+    <div class="post-section">
+        <h2>4. Macroeconomic Risks & Outlook</h2>
+        <p>
+            While the domestic outlook is stable, external risks remain. The Asian Development Bank (ADB) has highlighted that geopolitical tensions, particularly in the Middle East, could fuel inflation toward the 4.0% mark through oil price volatility. Furthermore, a slowdown in major global economies could temper the growth of the export-oriented BPO sector. Businesses are advised to build resilience and adopt agile compensation strategies that can adapt to a fluctuating economic environment.
+        </p>
+    </div>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        // Initialize Charts
-        (function() {
-            if (window.myCharts && window.myCharts.laborMarketReport) {
-                return;
+    setTimeout(() => {
+        const ctx = document.getElementById('compensationStrategyChart');
+        if (ctx && typeof Chart !== 'undefined') {
+            if (window.myCharts && window.myCharts.compensationStrategyChart) {
+                window.myCharts.compensationStrategyChart.destroy();
             }
-
-            const regionalWageData = {
-                labels: ['NCR', 'C. Visayas', 'Davao', 'C. Luzon', 'Calabarzon', 'N. Mindanao'],
-                data: [695, 540, 540, 600, 600, 500]
-            };
-            const careerLevelData = {
-                labels: ['Intern', 'Entry-Level', 'Mid-Level', 'Senior/Manager', 'Executive'],
-                data: [11500, 24000, 47500, 110000, 300000]
-            };
-
-            function initLaborMarketCharts() {
-                if(window.myCharts) {
-                    if(window.myCharts.salary) window.myCharts.salary.destroy();
-                    if(window.myCharts.regional) window.myCharts.regional.destroy();
-                }
-
-                const regionalCtx = document.getElementById('regionalWageChart')?.getContext('2d');
-                if (regionalCtx) {
-                    const regionalChart = new Chart(regionalCtx, {
-                        type: 'bar',
-                        data: {
-                            labels: regionalWageData.labels,
-                            datasets: [{
-                                label: 'Max Daily Minimum Wage (PHP)',
-                                data: regionalWageData.data,
-                                backgroundColor: '#6366f1',
-                                borderRadius: 6,
-                                barPercentage: 0.7
-                            }]
-                        },
-                        options: {
-                            responsive: true, maintainAspectRatio: false,
-                            plugins: { legend: { display: false } },
-                            scales: { 
-                                x: { grid: { display: false } }, 
-                                y: { min: 450, ticks: { callback: value => '₱' + value } }
-                            }
-                        }
-                    });
-                    window.myCharts = { ...window.myCharts, regional: regionalChart };
-                }
-
-                const careerCtx = document.getElementById('careerLevelChart')?.getContext('2d');
-                if (careerCtx) {
-                    const salaryChart = new Chart(careerCtx, {
-                        type: 'bar',
-                         data: {
-                            labels: careerLevelData.labels,
-                            datasets: [{
-                                label: 'Average Monthly Salary (PHP)',
-                                data: careerLevelData.data,
-                                backgroundColor: ['#cbd5e1', '#94a3b8', '#64748b', '#475569', '#1e293b'],
-                                borderRadius: 6
-                            }]
-                        },
-                        options: {
-                            indexAxis: 'y',
-                            responsive: true, maintainAspectRatio: false,
-                            plugins: { legend: { display: false } },
-                            scales: {
-                                x: { grid: { display: true }, ticks: { callback: value => '₱' + (value / 1000) + 'k' } },
-                                y: { grid: { display: false } }
-                            }
-                        }
-                    });
-                     window.myCharts = { ...window.myCharts, salary: salaryChart };
-                }
-            }
-            window.myCharts = { ...window.myCharts, laborMarketReport: true };
-            initLaborMarketCharts();
-        })();
-
-        // Initialize Table Modal
-        document.querySelectorAll('.table-zoomable').forEach(table => {
-            table.addEventListener('click', function () {
-                createModal(this);
-            });
-        });
-
-        function createModal(table) {
-            const overlay = document.createElement('div');
-            overlay.className = 'table-modal-overlay';
-            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 3000; padding: 1rem;';
-
-            const content = document.createElement('div');
-            content.className = 'table-modal-content';
-            content.style.cssText = 'background: white; padding: 1.5rem; border-radius: 8px; max-width: 95%; max-height: 90%; overflow: auto; position: relative;';
             
-            const closeButton = document.createElement('span');
-            closeButton.className = 'table-modal-close';
-            closeButton.innerHTML = '&times;';
-            closeButton.style.cssText = 'position: absolute; top: 10px; right: 15px; font-size: 2rem; font-weight: bold; color: #6c757d; cursor: pointer; line-height: 1;';
+            const chartData = {
+                labels: ['Aggressive Base Pay Hikes', 'Productivity-Linked Bonuses', 'Enhanced Health Benefits', 'Retention Counter-Offers'],
+                datasets: [{
+                    label: '2024 Focus',
+                    data: [65, 40, 55, 30],
+                    backgroundColor: 'rgba(71, 85, 105, 0.6)', // Slate-500
+                    borderColor: 'rgba(71, 85, 105, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '2026 Projected Focus',
+                    data: [45, 75, 65, 50],
+                    backgroundColor: 'rgba(49, 46, 129, 0.7)', // Indigo-700
+                    borderColor: 'rgba(49, 46, 129, 1)',
+                    borderWidth: 1
+                }]
+            };
 
-            const clonedTable = table.cloneNode(true);
-            clonedTable.style.cursor = 'auto';
-            
-            content.appendChild(closeButton);
-            content.appendChild(clonedTable);
-            overlay.appendChild(content);
-            document.body.appendChild(overlay);
-
-            overlay.addEventListener('click', function(e) {
-                if (e.target === overlay || e.target === closeButton) {
-                    document.body.removeChild(overlay);
+            const chartConfig = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Employer Priority Score' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Shifting Compensation Priorities',
+                            font: { size: 16, family: 'var(--font-primary)' }
+                        }
+                    }
                 }
-            });
+            };
+
+            window.myCharts.compensationStrategyChart = new Chart(ctx, chartConfig);
         }
-    });
+    }, 200);
 </script>
-</body>
-</html>
