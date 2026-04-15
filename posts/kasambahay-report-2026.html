@@ -1,3 +1,12 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 Kasambahay Report</title>
+</head>
+<body>
 <article class="salary-report">
     <style>
         .salary-report {
@@ -122,6 +131,20 @@
             text-align: center;
             border: 1px solid #334155;
         }
+         @media (max-width: 768px) {
+            .salary-report h1 {
+                font-size: 1.75rem;
+            }
+            .salary-report h2 {
+                font-size: 1.5rem;
+            }
+            .calculator-box {
+                padding: 1.5rem;
+            }
+            .calculator-box .grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 
     <header>
@@ -204,7 +227,7 @@
                 Calculate the estimated total monthly cost for hiring domestic help in 2026, including skill premiums and mandatory government contributions.
             </p>
 
-            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem;">
+            <div class="grid" style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem;">
                 <div>
                     <label for="calcRole">Primary Role</label>
                     <select id="calcRole">
@@ -314,3 +337,5 @@
         calcButton.addEventListener('click', executeCalculation);
     })();
 </script>
+</body>
+</html>
