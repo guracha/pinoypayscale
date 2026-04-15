@@ -1,7 +1,6 @@
 <link rel="stylesheet" href="post-style.css">
 
 <div class="post-container">
-    <h1>2026 PH Labor Market & Compensation Analysis</h1>
 
     <div class="post-section">
         <h2>1. Macroeconomic Context & 2026 Wage Guidelines</h2>
@@ -97,49 +96,55 @@
 </div>
 
 <script>
-    window.myCharts = window.myCharts || {};
-    const ctx = document.getElementById('compensationStrategyChart');
-    if (ctx && typeof Chart !== 'undefined') {
-        const chartData = {
-            labels: ['Aggressive Base Pay Hikes', 'Productivity-Linked Bonuses', 'Enhanced Health Benefits', 'Retention Counter-Offers'],
-            datasets: [{
-                label: '2024 Focus',
-                data: [65, 40, 55, 30],
-                backgroundColor: 'rgba(71, 85, 105, 0.6)', // Slate-500
-                borderColor: 'rgba(71, 85, 105, 1)',
-                borderWidth: 1
-            }, {
-                label: '2026 Projected Focus',
-                data: [45, 75, 65, 50],
-                backgroundColor: 'rgba(49, 46, 129, 0.7)', // Indigo-700
-                borderColor: 'rgba(49, 46, 129, 1)',
-                borderWidth: 1
-            }]
-        };
+    setTimeout(() => {
+        const ctx = document.getElementById('compensationStrategyChart');
+        if (ctx && typeof Chart !== 'undefined') {
+            if (window.myCharts && window.myCharts.compensationStrategyChart) {
+                window.myCharts.compensationStrategyChart.destroy();
+            }
+            
+            const chartData = {
+                labels: ['Aggressive Base Pay Hikes', 'Productivity-Linked Bonuses', 'Enhanced Health Benefits', 'Retention Counter-Offers'],
+                datasets: [{
+                    label: '2024 Focus',
+                    data: [65, 40, 55, 30],
+                    backgroundColor: 'rgba(71, 85, 105, 0.6)', // Slate-500
+                    borderColor: 'rgba(71, 85, 105, 1)',
+                    borderWidth: 1
+                }, {
+                    label: '2026 Projected Focus',
+                    data: [45, 75, 65, 50],
+                    backgroundColor: 'rgba(49, 46, 129, 0.7)', // Indigo-700
+                    borderColor: 'rgba(49, 46, 129, 1)',
+                    borderWidth: 1
+                }]
+            };
 
-        const chartConfig = {
-            type: 'bar',
-            data: chartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                indexAxis: 'y', // Horizontal bar chart
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Employer Priority Score' }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    title: {
-                        display: true,
-                        text: 'Shifting Compensation Priorities',
-                        font: { size: 16, family: 'var(--font-primary)' }
+            const chartConfig = {
+                type: 'bar',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    indexAxis: 'y', // Horizontal bar chart
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: { display: true, text: 'Employer Priority Score' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Shifting Compensation Priorities',
+                            font: { size: 16, family: 'var(--font-primary)' }
+                        }
                     }
                 }
-            }
-        };
-        window.myCharts.compensationStrategyChart = new Chart(ctx, chartConfig);
-    }
+            };
+
+            window.myCharts.compensationStrategyChart = new Chart(ctx, chartConfig);
+        }
+    }, 200);
 </script>

@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
         availablePosts.forEach((post, index) => {
             const li = document.createElement('li');
             const a = document.createElement('a');
-            a.href = `#post-${index}`;'''
+            a.href = `#post-${index}`;
             a.textContent = post.title;
             a.dataset.file = post.file;
             li.appendChild(a);

@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="post-style.css">
 
 <div class="post-container">
-    <h1>2026 Kasambahay & Yaya Salary Guide (Philippines)</h1>
+
     <div class="post-section">
         <h2>1. Executive Summary & Median Wage</h2>
         <p>
@@ -74,7 +74,7 @@
 
         <h3>Impact of Batas Kasambahay (Republic Act 10361)</h3>
         <p>
-            The Domestic Workers Act has been pivotal in formalizing the sector. It mandates minimum wages, social security contributions, and proper employment contracts. While enforcement remains a challenge, it has empowered domestic workers and led to gradual improvements in working conditions and compensation.
+            The Domestic Workers Act has been pivotal in formalizing the sector. It mandates minimum wages, social security contributions, and proper employment contracts. While enforcement remains a challenge, it has empowered domestic workers and set a legal standard for employers, leading to gradual improvements in working conditions and compensation.
         </p>
         
         <h3>Live-In vs. Live-Out Arrangements</h3>
@@ -99,53 +99,59 @@
 </div>
 
 <script>
-    window.myCharts = window.myCharts || {};
-    const ctx = document.getElementById('kasambahayDemandChart');
-    if (ctx && typeof Chart !== 'undefined') {
-        const chartData = {
-            labels: ['2023', '2024', '2025', '2026'],
-            datasets: [{
-                label: 'NCR (Metro Manila)',
-                data: [6000, 6500, 7000, 7500],
-                borderColor: '#312e81', 
-                backgroundColor: 'transparent',
-                borderWidth: 3,
-                type: 'line',
-                tension: 0.3
-            }, {
-                label: 'Provincial Areas',
-                data: [4000, 4500, 5000, 5000],
-                borderColor: '#475569', 
-                backgroundColor: 'transparent',
-                borderWidth: 3,
-                type: 'line', 
-                borderDash: [5, 5],
-                tension: 0.3
-            }]
-        };
+    setTimeout(() => {
+        const ctx = document.getElementById('kasambahayDemandChart');
+        if (ctx && typeof Chart !== 'undefined') {
+            if (window.myCharts && window.myCharts.kasambahayDemandChart) {
+                window.myCharts.kasambahayDemandChart.destroy();
+            }
 
-        const chartConfig = {
-            type: 'bar', 
-            data: chartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        title: { display: true, text: 'Average Monthly Wage (PHP)' }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    title: {
-                        display: true,
-                        text: 'Kasambahay Wage Growth (Live-In)',
-                        font: { size: 16, family: 'var(--font-primary)' }
+            const chartData = {
+                labels: ['2023', '2024', '2025', '2026'],
+                datasets: [{
+                    label: 'NCR (Metro Manila)',
+                    data: [6000, 6500, 7000, 7500],
+                    borderColor: '#312e81', 
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    type: 'line',
+                    tension: 0.3
+                }, {
+                    label: 'Provincial Areas',
+                    data: [4000, 4500, 5000, 5000],
+                    borderColor: '#475569', 
+                    backgroundColor: 'transparent',
+                    borderWidth: 3,
+                    type: 'line', 
+                    borderDash: [5, 5],
+                    tension: 0.3
+                }]
+            };
+
+            const chartConfig = {
+                type: 'bar', 
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: { display: true, text: 'Average Monthly Wage (PHP)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Kasambahay Wage Growth (Live-In)',
+                            font: { size: 16, family: 'var(--font-primary)' }
+                        }
                     }
                 }
-            }
-        };
-        window.myCharts.kasambahayDemandChart = new Chart(ctx, chartConfig);
-    }
+            };
+
+            window.myCharts.kasambahayDemandChart = new Chart(ctx, chartConfig);
+        }
+    }, 200);
 </script>

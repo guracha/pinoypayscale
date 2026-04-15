@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="post-style.css">
 
 <div class="post-container">
-    <h1>2026 Philippine Driver Salary & Labor Market Analysis</h1>
+
     <div class="post-section">
         <h2>1. Executive Summary</h2>
         <p>
@@ -105,52 +105,61 @@
 </div>
 
 <script>
-    window.myCharts = window.myCharts || {};
-    const ctx = document.getElementById('driverDemandChart');
-    if (ctx && typeof Chart !== 'undefined') {
-        const chartData = {
-            labels: ['2024', '2025', '2026'],
-            datasets: [{
-                label: 'Specialized Drivers (e.g., Heavy Trucks)',
-                data: [100, 115, 130],
-                borderColor: '#312e81',
-                backgroundColor: 'rgba(49, 46, 129, 0.2)',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.4
-            }, {
-                label: 'Non-Specialized Drivers (e.g., Delivery)',
-                data: [100, 108, 115],
-                borderColor: '#475569',
-                backgroundColor: 'rgba(71, 85, 105, 0.2)',
-                borderWidth: 2,
-                fill: true,
-                tension: 0.4
-            }]
-        };
+    // Use a timeout to ensure the canvas is ready
+    setTimeout(() => {
+        const ctx = document.getElementById('driverDemandChart');
+        if (ctx && typeof Chart !== 'undefined') {
+            // Destroy existing chart if it exists
+            if (window.myCharts && window.myCharts.driverDemandChart) {
+                window.myCharts.driverDemandChart.destroy();
+            }
 
-        const chartConfig = {
-            type: 'line',
-            data: chartData,
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        title: { display: true, text: 'Indexed Demand (100 = 2024)' }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom' },
-                    title: {
-                        display: true,
-                        text: 'Projected Driver Demand Growth',
-                        font: { size: 16, family: 'var(--font-primary)' }
+            const chartData = {
+                labels: ['2024', '2025', '2026'],
+                datasets: [{
+                    label: 'Specialized Drivers (e.g., Heavy Trucks)',
+                    data: [100, 115, 130],
+                    borderColor: '#312e81',
+                    backgroundColor: 'rgba(49, 46, 129, 0.2)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }, {
+                    label: 'Non-Specialized Drivers (e.g., Delivery)',
+                    data: [100, 108, 115],
+                    borderColor: '#475569',
+                    backgroundColor: 'rgba(71, 85, 105, 0.2)',
+                    borderWidth: 2,
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+
+            const chartConfig = {
+                type: 'line',
+                data: chartData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            title: { display: true, text: 'Indexed Demand (100 = 2024)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' },
+                        title: {
+                            display: true,
+                            text: 'Projected Driver Demand Growth',
+                            font: { size: 16, family: 'var(--font-primary)' }
+                        }
                     }
                 }
-            }
-        };
-        window.myCharts.driverDemandChart = new Chart(ctx, chartConfig);
-    }
+            };
+
+            // Store the new chart instance
+            window.myCharts.driverDemandChart = new Chart(ctx, chartConfig);
+        }
+    }, 200); // A small delay can help prevent race conditions
 </script>
