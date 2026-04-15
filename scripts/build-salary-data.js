@@ -1,127 +1,50 @@
 
-const fs = require('fs-extra');
+const fs = require('fs').promises;
 const path = require('path');
-const cheerio = require('cheerio');
+require('dotenv').config();
+const { GoogleGenerativeAI } = require('@google/generative-ai');
 
-const postsDir = path.join(__dirname, '..', 'posts');
-const outputDir = path.join(__dirname, '..', 'dist');
-const outputFilePath = path.join(outputDir, 'salary_data.json');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// Ensure the output directory exists
-fs.ensureDirSync(outputDir);
-
-let salaryData = [];
-
-fs.readdir(postsDir, (err, files) => {
-    if (err) {
-        console.error('Error reading posts directory:', err);
-        return;
-    }
-
-    files.forEach(file => {
-        if (path.extname(file) !== '.html') return;
-
-        const filePath = path.join(postsDir, file);
-        const htmlContent = fs.readFileSync(filePath, 'utf-8');
-        const $ = cheerio.load(htmlContent);
-
-        // ... (The data extraction logic remains the same as before)
-        // Strategy 1: Find data in tables
-        let foundDataInTable = false;
-        $('table').each((i, table) => {
-            const jobCategory = $(table).prevAll('h3').first().text().trim().replace(/^[A-Z]\.\s/, '');
-            if (!jobCategory) return;
-
-            const rows = $(table).find('tr');
-            if (rows.length < 2) return;
-
-            const headers = [];
-            $(rows[0]).find('th').each((i, header) => {
-                headers[i] = $(header).text().trim();
-            });
-
-            const jobLevelIndex = headers.indexOf('Job Level');
-            const salaryIndex = headers.indexOf('Salary Range (Monthly)');
-
-            if (jobLevelIndex !== -1 && salaryIndex !== -1) {
-                foundDataInTable = true;
-                for (let i = 1; i < rows.length; i++) {
-                    const cells = $(rows[i]).find('td');
-                    const experienceLevel = $(cells[jobLevelIndex]).text().trim();
-                    const salaryRangeStr = $(cells[salaryIndex]).text().trim();
-                    const salaryParts = salaryRangeStr.split('–').map(s => s.trim());
-                    if (salaryParts.length !== 2) continue;
-
-                    const salaryRangeLow = parseInt(salaryParts[0].replace(/[^0-9]/g, ''), 10);
-                    const salaryRangeHigh = parseInt(salaryParts[1].replace(/[^0-9]/g, ''), 10);
-
-                    if (!isNaN(salaryRangeLow) && !isNaN(salaryRangeHigh)) {
-                        salaryData.push({
-                            jobTitle: jobCategory,
-                            experienceLevel: experienceLevel,
-                            salaryRangeLow: salaryRangeLow,
-                            salaryRangeHigh: salaryRangeHigh,
-                            location: "Philippines"
-                        });
-                    }
-                }
-            }
-        });
-
-        // Strategy 2: Find data in script tags if no tables were found
-        if (!foundDataInTable) {
-            $('script').each((i, script) => {
-                const scriptContent = $(script).html();
-                const match = /const data = ({[^;]+});/.exec(scriptContent);
-
-                if (match && match[1]) {
-                    try {
-                        const dataObject = new Function(`return ${match[1]}`)();
-                        const experienceLabels = ['Entry Level', 'Mid-Level', 'Senior Level', 'Expert Level'];
-
-                        for (const category in dataObject) {
-                            const jobTitle = `Driver (${category.charAt(0).toUpperCase() + category.slice(1)})`;
-                            const salaries = dataObject[category];
-                            
-                            salaries.forEach((salary, index) => {
-                                if (experienceLabels[index]) {
-                                    salaryData.push({
-                                        jobTitle: jobTitle,
-                                        experienceLevel: experienceLabels[index],
-                                        salaryRangeLow: salary, 
-                                        salaryRangeHigh: salary + 5000, 
-                                        location: "Philippines"
-                                    });
-                                }
-                            });
-                        }
-                    } catch (e) {
-                        console.error(`Error parsing script data in ${file}:`, e);
-                    }
-                }
-            });
-        }
-    });
-
-    // 1. Write the salary data to the dist directory
-    const uniqueSalaryData = Array.from(new Set(salaryData.map(e => JSON.stringify(e))))
-        .map(e => JSON.parse(e));
-    fs.writeFileSync(outputFilePath, JSON.stringify(uniqueSalaryData, null, 2), 'utf-8');
-    console.log(`Successfully generated salary_data.json with ${uniqueSalaryData.length} entries.`);
-
-    // 2. Copy all necessary static files and folders to the dist directory
-    const projectRoot = path.join(__dirname, '..');
-    const filesToCopy = ['index.html', 'style.css', 'main.js', 'job_data.json'];
-    
-    filesToCopy.forEach(file => {
-        fs.copySync(path.join(projectRoot, file), path.join(outputDir, file));
-        console.log(`Copied ${file} to dist.`);
-    });
-
-    // 3. Copy the posts directory recursively
-    fs.copySync(postsDir, path.join(outputDir, 'posts'));
-    console.log('Copied posts directory to dist.');
-
-    console.log('Build process complete. The `dist` directory is ready for deployment.');
+const model = genAI.getGenerativeModel({
+  model: 'gemini-1.5-flash',
+  systemInstruction: `너는 필리핀 채용 시장 데이터 전문 추출기야. 내가 제공하는 HTML 원문을 분석해서 아래 구조의 JSON 데이터로만 응답해. 마크다운이나 다른 부연 설명은 절대 금지.
+   {
+     \"jobTitle\": \"Job Name (English)\",
+     \"baseSalary\": {
+       \"entry\": { \"min\": 0, \"max\": 0 },
+       \"mid\": { \"min\": 0, \"max\": 0 },
+       \"senior\": { \"min\": 0, \"max\": 0 }
+     },
+     \"skillModifiers\": [
+       { \"skill\": \"Skill Name\", \"bonusPercentage\": 0.0 }
+     ]
+   }`,
 });
 
+async function extractSalaryData() {
+  const postsDir = path.join(__dirname, '../posts');
+  const files = await fs.readdir(postsDir);
+  const salaryData = [];
+
+  for (const file of files) {
+    if (path.extname(file) === '.html') {
+      const filePath = path.join(postsDir, file);
+      try {
+        const htmlContent = await fs.readFile(filePath, 'utf-8');
+        const result = await model.generateContent(htmlContent);
+        const response = await result.response;
+        const text = await response.text();
+        salaryData.push(JSON.parse(text));
+      } catch (error) {
+        console.error(`Error processing file ${file}:`, error);
+      }
+    }
+  }
+
+  const outputPath = path.join(__dirname, '../salary_data.json');
+  await fs.writeFile(outputPath, JSON.stringify(salaryData, null, 2));
+  console.log('Salary data has been successfully built.');
+}
+
+extractSalaryData();
