@@ -28,22 +28,6 @@
     }
 </style>
 
-<nav class="bg-white border-b border-stone-200 sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16 items-center">
-            <div class="flex-shrink-0 flex items-center gap-2">
-                <span class="text-2xl">📊</span>
-                <span class="font-bold text-xl text-stone-800 tracking-tight">PH Salary Insights 2026</span>
-            </div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#overview" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Overview</a>
-                <a href="#explorer" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Data Explorer</a>
-                <a href="#trends" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Market Trends</a>
-            </div>
-        </div>
-    </div>
-</nav>
-
 <header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
     <div class="max-w-3xl">
         <h1 class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">Navigating the 2026 Philippine Compensation Landscape</h1>
@@ -149,12 +133,6 @@
         </div>
     </section>
 </main>
-
-<footer class="bg-stone-950 text-stone-500 py-8 text-center text-sm border-t border-stone-800">
-    <div class="max-w-7xl mx-auto px-4">
-        <p>&copy; 2026 PH Data Analytics Group. Synthesized Research Application. All figures in PHP.</p>
-    </div>
-</footer>
 
 <script>
 if (window.phMarketReportInitialized) {
@@ -350,6 +328,8 @@ if (window.phMarketReportInitialized) {
         }
     };
 
-    window.phMarketReport.init();
+    setTimeout(() => {
+        window.phMarketReport.init();
+    }, 100);
 }
 </script>
