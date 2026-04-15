@@ -5,25 +5,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2026 PH Labor Market Report</title>
-    <link rel="stylesheet" href="../style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-slate-50">
-<div class="report-container bg-white rounded-none shadow-none md:p-10">
+<div class="report-container bg-white rounded-none shadow-none px-0 py-4 md:p-10">
 
     <!-- Header -->
-    <header class="mb-10 px-4 pt-6">
+    <header class="mb-10 px-4 md:px-0">
         <span class="inline-block px-3 py-1 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold uppercase tracking-widest mb-4">Comprehensive Analysis</span>
         <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">2026 Philippine Labor Market & Compensation Analysis Report</h1>
         <p class="mt-4 text-lg text-slate-600">Salary Benchmarks and Macroeconomic Strategies for the Modern Workforce</p>
     </header>
 
     <!-- Body -->
-    <main class="space-y-12 px-4 pb-6">
+    <main class="space-y-16">
 
         <!-- 1. Macroeconomic Context -->
-        <section>
+        <section class="px-4 md:px-0">
             <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">1. Macroeconomic Context & 2026 Wage Guidelines</h2>
             <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
                 <p>In 2026, the Philippine economy stands at a pivotal juncture where macroeconomic stabilization meets global uncertainty. According to the Department of Finance (DOF), the inflation rate in January 2026 was recorded at <strong>2.0%</strong>, settling within the government's target range of 2.0% to 4.0%. This stability indicates resilient domestic demand and robust household spending. However, the Bangko Sentral ng Pilipinas (BSP) remains cautious, noting that supply-side factors such as global oil price volatility, rice tariff adjustments, and electricity rate hikes could keep inflation at an elevated path.</p>
@@ -34,13 +33,17 @@
 
         <!-- 2. Regional Minimum Wage -->
         <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">2. Statutory Minimum Wage and Regional Living Cost Analysis</h2>
-            <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
-                <p>The foundation of the Philippine wage structure is the statutory minimum wage set by Regional Tripartite Wages and Productivity Boards (RTWPB). In 2026, several regions are implementing significant updates or tranches of previous wage orders.</p>
-                <p>In Metro Manila (NCR), the daily minimum wage for non-agricultural workers is set at ₱695, effective until late 2026. While this represents a nominal increase from previous years, real purchasing power remains a challenge as the cost of essentials like rice and transportation continues to rise. Data suggests that for a typical family of five, the daily minimum wage is often just at or below the poverty threshold in urban centers.</p>
+            <div class="px-4 md:px-0">
+                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">2. Statutory Minimum Wage and Regional Living Cost Analysis</h2>
+                <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                    <p>The foundation of the Philippine wage structure is the statutory minimum wage set by Regional Tripartite Wages and Productivity Boards (RTWPB). In 2026, several regions are implementing significant updates or tranches of previous wage orders.</p>
+                    <p>In Metro Manila (NCR), the daily minimum wage for non-agricultural workers is set at ₱695, effective until late 2026. While this represents a nominal increase from previous years, real purchasing power remains a challenge as the cost of essentials like rice and transportation continues to rise. Data suggests that for a typical family of five, the daily minimum wage is often just at or below the poverty threshold in urban centers.</p>
+                </div>
             </div>
-            <div class="my-8 table-wrapper">
-                <h3 class="font-bold text-lg mb-4">2026 Key Regional Minimum Wage Benchmarks (Non-Agricultural)</h3>
+            <div class="my-8 overflow-x-auto">
+                <div class="px-4 md:px-0">
+                    <h3 class="font-bold text-lg mb-4">2026 Key Regional Minimum Wage Benchmarks (Non-Agricultural)</h3>
+                </div>
                 <table class="w-full text-left border-collapse table-zoomable">
                     <thead class="bg-slate-100">
                         <tr>
@@ -59,25 +62,33 @@
                     </tbody>
                 </table>
             </div>
-            <p class="text-slate-600 leading-relaxed max-w-4xl mb-8">
-                The chart below visualizes the maximum daily minimum wage benchmarks for non-agricultural workers across these key regions.
-            </p>
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
-                <div class="relative h-[300px] w-full">
-                    <canvas id="regionalWageChart"></canvas>
+            <div class="px-4 md:px-0">
+                <p class="text-slate-600 leading-relaxed max-w-4xl mb-8">
+                    The chart below visualizes the maximum daily minimum wage benchmarks for non-agricultural workers across these key regions.
+                </p>
+            </div>
+            <div class="px-4 md:px-0">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 overflow-x-auto">
+                    <div class="relative h-[300px] w-full min-w-[600px]">
+                        <canvas id="regionalWageChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 3. Salary Progression by Career Level -->
         <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">3. General Job Levels and Experience-Based Salary Progression</h2>
-             <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
-                <p>Compensation in the Philippines follows a steep pyramid structure, with the most significant jumps occurring between mid-level and senior management. The national average monthly salary for full-time workers is approximately ₱44,800, but this is heavily skewed by high-paying executive and tech roles. A more realistic indicator is the median monthly salary, which falls between ₱20,500 and ₱30,000 for the typical mid-market professional.</p>
-                <p>For fresh graduates, the average starting salary is approximately ₱20,019 as of early 2026. However, those in specialized fields like software development or data analytics can command starting packages as high as ₱35,000. By 2026, AI literacy has become a "non-negotiable" skill, with candidates possessing AI-integrated workflows earning a premium across all levels.</p>
+            <div class="px-4 md:px-0">
+                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">3. General Job Levels and Experience-Based Salary Progression</h2>
+                 <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                    <p>Compensation in the Philippines follows a steep pyramid structure, with the most significant jumps occurring between mid-level and senior management. The national average monthly salary for full-time workers is approximately ₱44,800, but this is heavily skewed by high-paying executive and tech roles. A more realistic indicator is the median monthly salary, which falls between ₱20,500 and ₱30,000 for the typical mid-market professional.</p>
+                    <p>For fresh graduates, the average starting salary is approximately ₱20,019 as of early 2026. However, those in specialized fields like software development or data analytics can command starting packages as high as ₱35,000. By 2026, AI literacy has become a "non-negotiable" skill, with candidates possessing AI-integrated workflows earning a premium across all levels.</p>
+                </div>
             </div>
-            <div class="my-8 table-wrapper">
-                <h3 class="font-bold text-lg mb-4">2026 Standard Salary Benchmarks by Career Level</h3>
+            <div class="my-8 overflow-x-auto">
+                 <div class="px-4 md:px-0">
+                    <h3 class="font-bold text-lg mb-4">2026 Standard Salary Benchmarks by Career Level</h3>
+                </div>
                 <table class="w-full text-left border-collapse table-zoomable">
                      <thead class="bg-slate-100">
                         <tr>
@@ -94,29 +105,33 @@
                     </tbody>
                 </table>
             </div>
-            <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80">
-                <div class="relative h-[350px] w-full">
-                    <canvas id="careerLevelChart"></canvas>
+            <div class="px-4 md:px-0">
+                <div class="bg-slate-50 p-6 rounded-2xl border border-slate-200/80 overflow-x-auto">
+                    <div class="relative h-[350px] w-full min-w-[500px]">
+                        <canvas id="careerLevelChart"></canvas>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- 4. Industry In-Depth Analysis -->
-        <section>
+        <section class="px-4 md:px-0">
             <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">4. In-Depth Analysis by Core Industry</h2>
             <div class="space-y-8">
-                <div class="table-wrapper">
+                <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4">4.1. Information & Communications Technology (ICT)</h3>
                     <p class="mb-4">ICT remains the highest-paying industry in the country, with an average monthly wage of ₱43,676. The demand for cybersecurity, cloud computing, and full-stack development continues to outpace the local supply of talent.</p>
-                    <table class="w-full text-left border-collapse table-zoomable">
-                        <thead class="bg-slate-100">
-                            <tr><th class="p-3 border">IT Specific Role</th><th class="p-3 border">Level</th><th class="p-3 border">Monthly Range (PHP)</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td class="p-3 border">Software Developer</td><td class="p-3 border">Senior</td><td class="p-3 border">₱80,000 – ₱150,000</td></tr>
-                            <tr><td class="p-3 border">Cloud Architect</td><td class="p-3 border">Senior</td><td class="p-3 border">₱120,000 – ₱200,000+</td></tr>
-                        </tbody>
-                    </table>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse table-zoomable">
+                            <thead class="bg-slate-100">
+                                <tr><th class="p-3 border">IT Specific Role</th><th class="p-3 border">Level</th><th class="p-3 border">Monthly Range (PHP)</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td class="p-3 border">Software Developer</td><td class="p-3 border">Senior</td><td class="p-3 border">₱80,000 – ₱150,000</td></tr>
+                                <tr><td class="p-3 border">Cloud Architect</td><td class="p-3 border">Senior</td><td class="p-3 border">₱120,000 – ₱200,000+</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div>
                     <h3 class="text-xl font-bold text-slate-800 mb-4">4.2. Financial Services and Banking</h3>
@@ -140,10 +155,14 @@
 
         <!-- 5. IT-BPM (BPO) Strategic Evolution -->
         <section>
-            <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">5. IT-BPM (BPO) Strategic Evolution and TCO Models</h2>
-            <p class="mb-4">The IT-BPM industry is projected to reach $42 billion in export revenues and employ 1.97 million people by late 2026. The industry is shifting from basic voice services to high-value segments like Knowledge Process Outsourcing (KPO) and Global Capability Centers (GCC).</p>
-            <div class="my-8 table-wrapper">
-                <h3 class="font-bold text-lg mb-4">5.1. BPO Salary Benchmarks for 2026</h3>
+            <div class="px-4 md:px-0">
+                <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">5. IT-BPM (BPO) Strategic Evolution and TCO Models</h2>
+                <p class="mb-4">The IT-BPM industry is projected to reach $42 billion in export revenues and employ 1.97 million people by late 2026. The industry is shifting from basic voice services to high-value segments like Knowledge Process Outsourcing (KPO) and Global Capability Centers (GCC).</p>
+            </div>
+            <div class="my-8 overflow-x-auto">
+                <div class="px-4 md:px-0">
+                    <h3 class="font-bold text-lg mb-4">5.1. BPO Salary Benchmarks for 2026</h3>
+                </div>
                 <table class="w-full text-left border-collapse table-zoomable">
                     <thead class="bg-slate-100">
                         <tr>
@@ -159,14 +178,14 @@
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div class="px-4 md:px-0">
                  <h3 class="font-bold text-lg mb-4">5.2. Total Cost of Ownership (TCO) for Global Firms</h3>
                  <p>The primary driver for outsourcing to the Philippines remains the 60% to 75% cost delta. A "fully loaded" labor rate in Manila averages $14/hour ($2,400/month), which includes salary (60%), benefits (15%), facilities (15%), and compliance/management (10%).</p>
             </div>
         </section>
         
         <!-- 6. Statutory Benefits -->
-        <section>
+        <section class="px-4 md:px-0">
             <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">6. Statutory Benefits and 2026 Contribution Adjustments</h2>
             <div class="space-y-4 prose max-w-none">
                 <p><strong>Social Security System (SSS):</strong> Effective January 2026, the contribution rate increases to 15% (10% employer, 5% employee). The maximum Monthly Salary Credit (MSC) is ₱35,000.</p>
@@ -176,29 +195,31 @@
         </section>
 
         <!-- 7. Tax Environment -->
-        <section class="bg-indigo-50/60 p-6 rounded-lg border border-indigo-200/80">
-            <h2 class="text-2xl font-bold text-indigo-900 mb-6 text-center">7. Tax Environment & De Minimis Benefits</h2>
-            <p class="text-center text-slate-600 max-w-3xl mx-auto mb-8">Individuals earning ₱250,000 or less annually are exempt from income tax. Effective January 6, 2026, BIR Regulation RR 29-2025 significantly raised the non-taxable ceilings for small perks ("De Minimis" benefits).</p>
-            <div class="table-wrapper">
-                 <table class="w-full text-center border-collapse table-zoomable">
-                    <thead class="bg-white">
-                        <tr>
-                            <th class="p-3 border">Benefit Item</th>
-                            <th class="p-3 border">2026 New Ceiling (PHP)</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white/80">
-                        <tr><td class="p-2 border">Rice Subsidy</td><td class="p-2 border font-mono">₱2,500 / month</td></tr>
-                        <tr><td class="p-2 border">Clothing/Uniform</td><td class="p-2 border font-mono">₱8,000 / year</td></tr>
-                        <tr><td class="p-2 border">Medical Assistance</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
-                        <tr><td class="p-2 border">CBA/Productivity</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
-                    </tbody>
-                </table>
+        <section class="px-4 md:px-0">
+            <div class="bg-indigo-50/60 p-6 rounded-lg border border-indigo-200/80">
+                <h2 class="text-2xl font-bold text-indigo-900 mb-6 text-center">7. Tax Environment & De Minimis Benefits</h2>
+                <p class="text-center text-slate-600 max-w-3xl mx-auto mb-8">Individuals earning ₱250,000 or less annually are exempt from income tax. Effective January 6, 2026, BIR Regulation RR 29-2025 significantly raised the non-taxable ceilings for small perks ("De Minimis" benefits).</p>
+                <div class="overflow-x-auto">
+                     <table class="w-full text-center border-collapse table-zoomable">
+                        <thead class="bg-white">
+                            <tr>
+                                <th class="p-3 border">Benefit Item</th>
+                                <th class="p-3 border">2026 New Ceiling (PHP)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white/80">
+                            <tr><td class="p-2 border">Rice Subsidy</td><td class="p-2 border font-mono">₱2,500 / month</td></tr>
+                            <tr><td class="p-2 border">Clothing/Uniform</td><td class="p-2 border font-mono">₱8,000 / year</td></tr>
+                            <tr><td class="p-2 border">Medical Assistance</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
+                            <tr><td class="p-2 border">CBA/Productivity</td><td class="p-2 border font-mono">₱12,000 / year</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
         <!-- 8. Executive Compensation -->
-        <section>
+        <section class="px-4 md:px-0">
             <h2 class="text-2xl font-bold mb-6 border-l-4 border-indigo-500 pl-4">8. Executive and C-Suite Compensation</h2>
              <ul class="list-disc list-inside prose">
                 <li><strong>CEO Compensation:</strong> Average basic pay is ~₱4.45M/year, with top packages exceeding ₱10M.</li>
@@ -208,7 +229,7 @@
         </section>
 
         <!-- 9. Conclusion -->
-        <section>
+        <section class="px-4 md:px-0">
              <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">9. Conclusion: Strategic Insights for Employers</h2>
              <ul class="list-disc list-inside prose max-w-none text-slate-700 leading-relaxed space-y-2">
                 <li><strong>Inflation Readiness:</strong> Plan for a minimum 5.5% annual increase and account for the 15% SSS contribution rate.</li>
@@ -310,24 +331,22 @@
         function createModal(table) {
             const overlay = document.createElement('div');
             overlay.className = 'table-modal-overlay';
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 3000; padding: 1rem;';
 
             const content = document.createElement('div');
             content.className = 'table-modal-content';
+            content.style.cssText = 'background: white; padding: 1.5rem; border-radius: 8px; max-width: 95%; max-height: 90%; overflow: auto; position: relative;';
             
             const closeButton = document.createElement('span');
             closeButton.className = 'table-modal-close';
             closeButton.innerHTML = '&times;';
+            closeButton.style.cssText = 'position: absolute; top: 10px; right: 15px; font-size: 2rem; font-weight: bold; color: #6c757d; cursor: pointer; line-height: 1;';
 
             const clonedTable = table.cloneNode(true);
             clonedTable.style.cursor = 'auto';
-            clonedTable.classList.remove('table-zoomable');
-
-            const wrapper = document.createElement('div');
-            wrapper.className = 'table-wrapper';
-            wrapper.appendChild(clonedTable);
             
             content.appendChild(closeButton);
-            content.appendChild(wrapper);
+            content.appendChild(clonedTable);
             overlay.appendChild(content);
             document.body.appendChild(overlay);
 
