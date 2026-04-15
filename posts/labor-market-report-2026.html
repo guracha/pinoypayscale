@@ -1,150 +1,355 @@
-<link rel="stylesheet" href="post-style.css">
+<!-- Custom styles for this specific post -->
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #faf9f6; 
+        color: #1e293b;
+    }
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        max-height: 450px;
+    }
+    @media (max-width: 768px) {
+        .chart-container {
+            height: 300px;
+        }
+    }
+    select {
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%231e293b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right .7em top 50%;
+        background-size: .65em auto;
+    }
+</style>
 
-<div class="post-container">
-
-    <div class="post-section">
-        <h2>1. Macroeconomic Context & 2026 Wage Guidelines</h2>
-        <p>
-            In 2026, the Philippine economy stands at a pivotal juncture where macroeconomic stabilization meets global uncertainty. According to the Department of Finance (DOF), the inflation rate in January 2026 was recorded at <strong>2.0%</strong>, settling within the government's target range of 2.0% to 4.0%. This stability indicates resilient domestic demand and robust household spending.
-        </p>
-        <p>
-            In this environment, Philippine employers are projecting a median salary increase of approximately <span class="highlight-value">5.5%</span> for 2026. This mirrors 2025 levels, though higher increases are expected in high-growth sectors such as technology, finance, and Business Process Outsourcing (BPO) where talent competition is most intense.
-        </p>
-    </div>
-
-    <div class="post-section">
-        <h2>2. Salary Increase Projections by Industry</h2>
-        <p>
-            The projected 5.5% median increase is not uniform across all sectors. High-growth, high-demand industries are expected to offer significantly higher raises to attract and retain specialized talent. The table below details the projected salary budget increases for 2026.
-        </p>
-
-        <div class="post-table-wrapper">
-            <table class="post-table">
-                <thead>
-                    <tr>
-                        <th>Industry</th>
-                        <th>Projected Salary Increase (Median)</th>
-                        <th>Key Drivers</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Technology & Software Development</td>
-                        <td>8.0% - 12.0%</td>
-                        <td>AI, Cloud, Cybersecurity Talent Shortage</td>
-                    </tr>
-                    <tr>
-                        <td>Finance & Fintech</td>
-                        <td>7.5% - 10.0%</td>
-                        <td>Digital Banking, Data Analytics</td>
-                    </tr>
-                    <tr>
-                        <td>Business Process Outsourcing (BPO)</td>
-                        <td>6.0% - 8.0%</td>
-                        <td>Higher-Value Services, AI Integration</td>
-                    </tr>
-                    <tr>
-                        <td>Healthcare & Pharmaceuticals</td>
-                        <td>5.5% - 7.0%</td>
-                        <td>Aging Population, Health Infra Dev.</td>
-                    </tr>
-                    <tr>
-                        <td>Consumer Goods & Retail</td>
-                        <td>4.5% - 5.5%</td>
-                        <td>Inflationary Pressures, Domestic Demand</td>
-                    </tr>
-                    <tr>
-                        <td>Manufacturing & Logistics</td>
-                        <td>5.0% - 6.0%</td>
-                        <td>Supply Chain Optimization, E-commerce</td>
-                    </tr>
-                </tbody>
-            </table>
+<nav class="bg-white border-b border-stone-200 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <span class="text-2xl">📊</span>
+                <span class="font-bold text-xl text-stone-800 tracking-tight">PH Salary Insights 2026</span>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Overview</a>
+                <a href="#explorer" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Data Explorer</a>
+                <a href="#trends" class="text-stone-600 hover:text-teal-700 font-medium transition-colors">Market Trends</a>
+            </div>
         </div>
     </div>
+</nav>
 
-    <div class="post-section">
-        <h2>3. Key Compensation Strategy Themes for 2026</h2>
-
-        <div class="post-media-container">
-            <canvas id="compensationStrategyChart"></canvas>
-            <p class="post-media-caption">Chart: Shift in employer focus for compensation strategies.</p>
+<header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+    <div class="max-w-3xl">
+        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">Navigating the 2026 Philippine Compensation Landscape</h1>
+        <p class="text-lg text-stone-600 mb-8 leading-relaxed">
+            As the Philippine economy adapts to global digital transformation and post-inflationary adjustments, compensation structures are rapidly evolving. This interactive report provides a comprehensive breakdown of monthly baseline salaries across top industries and experience levels in 2026.
+        </p>
+        <div class="flex gap-4">
+            <a href="#explorer" class="bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-6 rounded-lg shadow-sm transition-all">Explore Data</a>
         </div>
-
-        <h3>Theme 1: "Quality over Quantity" Hiring</h3>
-        <p>
-            The overarching theme for 2026 is a strategic shift away from aggressive mass hiring towards recruiting selectively for high-impact roles. Businesses are prioritizing positions that offer direct financial impact, such as Cloud Architects, FP&A Managers, and Strategic HR Business Partners (HRBPs). This approach aims to maximize ROI on talent acquisition by focusing on roles that drive innovation and efficiency.
-        </p>
-        
-        <h3>Theme 2: Productivity-Linked Incentives</h3>
-        <p>
-            Many employers are moving from aggressive base pay hikes toward productivity-linked incentives and the efficient use of tax-free "De Minimis" benefits. This strategy allows companies to reward high-performers and manage fixed costs more effectively. Variable pay, performance bonuses, and profit-sharing schemes are becoming increasingly integral components of the total rewards package.
-        </p>
-
-        <h3>Theme 3: The Rise of Counter-Offers</h3>
-        <p>
-            With talent scarcity in critical roles, the practice of making counter-offers to retain departing employees is becoming more prevalent. While often effective in the short term, employers are cautioned that this can disrupt internal pay equity and may not address the root causes of employee dissatisfaction. A proactive approach focusing on career development and a positive work environment is recommended as a more sustainable retention strategy.
-        </p>
     </div>
+</header>
 
-    <div class="post-section">
-        <h2>4. Macroeconomic Risks & Outlook</h2>
-        <p>
-            While the domestic outlook is stable, external risks remain. The Asian Development Bank (ADB) has highlighted that geopolitical tensions, particularly in the Middle East, could fuel inflation toward the 4.0% mark through oil price volatility. Furthermore, a slowdown in major global economies could temper the growth of the export-oriented BPO sector. Businesses are advised to build resilience and adopt agile compensation strategies that can adapt to a fluctuating economic environment.
-        </p>
+<main>
+    <section id="overview" class="bg-white py-16 border-y border-stone-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-2xl">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">Industry Averages at a Glance</h2>
+                <p class="text-stone-600">
+                    This section compares the median monthly salary (aggregated across all experience levels) among the top five employing sectors in the Philippines. It highlights the continued premium placed on specialized technical skills in 2026.
+                </p>
+            </div>
+            <div class="bg-[#faf9f6] p-6 rounded-xl border border-stone-100 shadow-sm">
+                <div class="chart-container">
+                    <canvas id="averageChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="explorer" class="py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 max-w-2xl">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">Salary Explorer by Job Level</h2>
+                <p class="text-stone-600">
+                    Select an industry below to analyze the career progression and corresponding compensation growth. Values represent average gross monthly base pay in Philippine Pesos (PHP).
+                </p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+                <div class="p-6 md:p-8 border-b border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="w-full md:w-1/3">
+                        <label for="industrySelect" class="block text-sm font-semibold text-stone-700 mb-2">Select Industry</label>
+                        <select id="industrySelect" class="w-full bg-white border border-stone-300 text-stone-900 text-base rounded-lg focus:ring-teal-500 focus:border-teal-500 block p-3 shadow-sm transition-colors cursor-pointer">
+                            <option value="it">IT & Technology</option>
+                            <option value="finance">Finance & Banking</option>
+                            <option value="bpo">BPO & Customer Service</option>
+                            <option value="engineering">Engineering & Construction</option>
+                            <option value="healthcare">Healthcare (Private)</option>
+                        </select>
+                    </div>
+                    <div class="w-full md:w-2/3 md:pl-8">
+                        <h3 id="insightTitle" class="text-xl font-bold text-teal-800 mb-2">IT & Technology Insights</h3>
+                        <p id="insightText" class="text-stone-600 leading-relaxed text-sm md:text-base">
+                            Driven by aggressive AI integration and cloud infrastructure expansion, tech roles continue to command the highest market premium. Senior developers and AI specialists see aggressive counter-offers.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="p-6 md:p-10">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8" id="statsGrid">
+                    </div>
+
+                    <div class="chart-container mt-8">
+                        <canvas id="progressionChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="trends" class="bg-stone-900 py-16 md:py-24 text-stone-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 max-w-2xl">
+                <h2 class="text-3xl font-bold text-white mb-4">Key Market Trends for 2026</h2>
+                <p class="text-stone-400">
+                    Beyond the numbers, several qualitative shifts are redefining the Philippine labor market, driven by global economic pressures and technological advancement.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
+                    <div class="text-4xl mb-4 text-teal-400">💡</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">The AI Skill Premium</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        Routine tasks are increasingly automated. Across all sectors, professionals who can integrate AI tools into their workflows are negotiating 15-20% higher base salaries compared to peers with traditional skill sets.
+                    </p>
+                </div>
+                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors">
+                    <div class="text-4xl mb-4 text-amber-400">💼</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">BPO Moving Up the Value Chain</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        Traditional voice-support roles face wage stagnation. However, the BPO sector is seeing a massive surge in Tier 3 support, data analytics, and specialized healthcare outsourcing, which offer highly competitive mid-level salaries.
+                    </p>
+                </div>
+                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
+                    <div class="text-4xl mb-4 text-teal-400">⚖️</div>
+                    <h3 class="text-xl font-bold mb-3 text-white">Retention Over Acquisition</h3>
+                    <p class="text-stone-400 text-sm leading-relaxed">
+                        Due to high turnover in 2024-2025, companies are allocating larger budgets to mid-level and senior retention. Signing bonuses have decreased, but long-term incentives and flexible work allowances have become standard.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-stone-950 text-stone-500 py-8 text-center text-sm border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4">
+        <p>&copy; 2026 PH Data Analytics Group. Synthesized Research Application. All figures in PHP.</p>
     </div>
-</div>
+</footer>
 
 <script>
-    setTimeout(() => {
-        const ctx = document.getElementById('compensationStrategyChart');
-        if (ctx && typeof Chart !== 'undefined') {
-            if (window.myCharts && window.myCharts.compensationStrategyChart) {
-                window.myCharts.compensationStrategyChart.destroy();
-            }
-            
-            const chartData = {
-                labels: ['Aggressive Base Pay Hikes', 'Productivity-Linked Bonuses', 'Enhanced Health Benefits', 'Retention Counter-Offers'],
-                datasets: [{
-                    label: '2024 Focus',
-                    data: [65, 40, 55, 30],
-                    backgroundColor: 'rgba(71, 85, 105, 0.6)', // Slate-500
-                    borderColor: 'rgba(71, 85, 105, 1)',
-                    borderWidth: 1
-                }, {
-                    label: '2026 Projected Focus',
-                    data: [45, 75, 65, 50],
-                    backgroundColor: 'rgba(49, 46, 129, 0.7)', // Indigo-700
-                    borderColor: 'rgba(49, 46, 129, 1)',
-                    borderWidth: 1
-                }]
-            };
+if (window.phMarketReportInitialized) {
+    // Already initialized
+} else {
+    window.phMarketReportInitialized = true;
 
-            const chartConfig = {
+    window.phMarketReport = {
+        progressionChart: null,
+        averageChart: null,
+        salaryData: {
+            'it': {
+                title: 'IT & Technology Insights',
+                insight: 'Driven by aggressive AI integration and cloud infrastructure expansion, tech roles continue to command the highest market premium. Senior developers and AI specialists see aggressive counter-offers.',
+                data: [35000, 65000, 110000, 160000]
+            },
+            'finance': {
+                title: 'Finance & Banking Insights',
+                insight: 'Fintech expansion keeps banking salaries competitive. There is a noticeable spike in compensation for risk management, compliance, and cybersecurity within financial institutions.',
+                data: [28000, 50000, 85000, 130000]
+            },
+            'bpo': {
+                title: 'BPO & Customer Service Insights',
+                insight: 'While entry-level voice roles see slower growth, specialized BPO segments (Financial, Medical coding, L3 Tech Support) offer rapid salary acceleration at the mid-to-senior levels.',
+                data: [22000, 38000, 60000, 95000]
+            },
+            'engineering': {
+                title: 'Engineering & Construction Insights',
+                insight: 'Fueled by continued infrastructure projects and sustainable energy initiatives, engineering roles show steady, predictable growth, with managerial roles commanding high premiums for project delivery.',
+                data: [25000, 45000, 75000, 120000]
+            },
+            'healthcare': {
+                title: 'Healthcare (Private) Insights',
+                insight: 'Private hospitals are aggressively increasing mid-level compensation to combat the brain drain to overseas markets. Specialized nurses and allied health managers see the largest year-over-year gains.',
+                data: [26000, 42000, 65000, 90000]
+            }
+        },
+        levels: ['Entry (0-2 Yrs)', 'Mid (3-5 Yrs)', 'Senior (6-9 Yrs)', 'Manager (10+ Yrs)'],
+
+        formatCurrency: (value) => {
+            return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(value);
+        },
+
+        initAverageChart: function() {
+            const canvas = document.getElementById('averageChart');
+            if (!canvas) return;
+            if (window.myCharts && window.myCharts.averageChart) {
+                window.myCharts.averageChart.destroy();
+            }
+            const ctx = canvas.getContext('2d');
+            this.averageChart = new Chart(ctx, {
                 type: 'bar',
-                data: chartData,
+                data: {
+                    labels: ['IT & Tech', 'Finance', 'Engineering', 'BPO', 'Healthcare'],
+                    datasets: [{
+                        label: 'Median Monthly Salary (PHP)',
+                        data: [85000, 72000, 65000, 52000, 50000],
+                        backgroundColor: [
+                            'rgba(15, 118, 110, 0.8)', 
+                            'rgba(245, 158, 11, 0.8)', 
+                            'rgba(148, 163, 184, 0.8)',
+                            'rgba(148, 163, 184, 0.8)',
+                            'rgba(148, 163, 184, 0.8)'
+                        ],
+                        borderRadius: 4
+                    }]
+                },
                 options: {
-                    responsive: true,
+                    indexAxis: 'y',
                     maintainAspectRatio: false,
-                    indexAxis: 'y', // Horizontal bar chart
+                    responsive: true,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { callbacks: { label: (context) => this.formatCurrency(context.raw) } }
+                    },
                     scales: {
                         x: {
                             beginAtZero: true,
-                            title: { display: true, text: 'Employer Priority Score' }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        title: {
-                            display: true,
-                            text: 'Shifting Compensation Priorities',
-                            font: { size: 16, family: 'var(--font-primary)' }
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            ticks: { callback: (value) => '₱' + (value/1000) + 'k' }
+                        },
+                        y: {
+                            grid: { display: false },
+                            ticks: { font: { family: 'Inter', size: 13 } }
                         }
                     }
                 }
-            };
+            });
+            if (!window.myCharts) window.myCharts = {};
+            window.myCharts.averageChart = this.averageChart;
+        },
 
-            window.myCharts.compensationStrategyChart = new Chart(ctx, chartConfig);
+        initProgressionChart: function() {
+            const canvas = document.getElementById('progressionChart');
+            if (!canvas) return;
+            if (window.myCharts && window.myCharts.progressionChart) {
+                window.myCharts.progressionChart.destroy();
+            }
+            const ctx = canvas.getContext('2d');
+            this.progressionChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: this.levels,
+                    datasets: [{
+                        type: 'bar',
+                        label: 'Monthly Salary (PHP)',
+                        data: this.salaryData['it'].data,
+                        backgroundColor: 'rgba(15, 118, 110, 0.15)',
+                        borderColor: 'rgba(15, 118, 110, 1)',
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        order: 2
+                    },
+                    {
+                        type: 'line',
+                        label: 'Growth Trend',
+                        data: this.salaryData['it'].data,
+                        borderColor: 'rgba(245, 158, 11, 1)',
+                        backgroundColor: 'rgba(245, 158, 11, 1)',
+                        borderWidth: 3,
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        order: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { family: 'Inter' } } },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: { label: (context) => context.datasetIndex === 0 ? this.formatCurrency(context.raw) : '' }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            suggestedMax: 180000,
+                            grid: { color: 'rgba(0,0,0,0.05)' },
+                            ticks: { callback: (value) => '₱' + (value/1000) + 'k', font: { family: 'Inter' } }
+                        },
+                        x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+                    }
+                }
+            });
+            if (!window.myCharts) window.myCharts = {};
+            window.myCharts.progressionChart = this.progressionChart;
+        },
+
+        updateStatsGrid: function(dataArr) {
+            const grid = document.getElementById('statsGrid');
+            if(!grid) return;
+            grid.innerHTML = '';
+            this.levels.forEach((level, index) => {
+                const statDiv = document.createElement('div');
+                statDiv.className = 'bg-stone-50 rounded-lg p-4 border border-stone-200 text-center';
+                statDiv.innerHTML = `
+                    <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">${level.split(' ')[0]}</div>
+                    <div class="text-xl md:text-2xl font-bold text-teal-800">${this.formatCurrency(dataArr[index]).replace('.00', '')}</div>
+                `;
+                grid.appendChild(statDiv);
+            });
+        },
+
+        handleIndustryChange: function() {
+            const industrySelect = document.getElementById('industrySelect');
+            if (!industrySelect) return;
+            const industry = industrySelect.value;
+            const data = this.salaryData[industry];
+            
+            document.getElementById('insightTitle').innerText = data.title;
+            document.getElementById('insightText').innerText = data.insight;
+            
+            this.updateStatsGrid(data.data);
+
+            this.progressionChart.data.datasets[0].data = data.data;
+            this.progressionChart.data.datasets[1].data = data.data;
+            this.progressionChart.update();
+        },
+
+        init: function() {
+            this.initAverageChart();
+            this.initProgressionChart();
+            this.updateStatsGrid(this.salaryData['it'].data);
+
+            const industrySelect = document.getElementById('industrySelect');
+            if (industrySelect) {
+                industrySelect.onchange = () => this.handleIndustryChange();
+            }
         }
-    }, 200);
+    };
+
+    window.phMarketReport.init();
+}
 </script>
