@@ -12,7 +12,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 85px !important; /* Global offset for sticky header, increased specificity */
 }
 
 body {
@@ -45,9 +44,6 @@ header {
     align-items: center;
     border-bottom: 1px solid var(--border-color);
     box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
 
 header h1 {
@@ -156,6 +152,7 @@ section {
     border-left: 1px solid var(--border-color);
     padding-left: 2.5rem;
     min-height: 400px; /* Ensures consistent height */
+    overflow-x: auto; /* For responsive tables */
 }
 
 #post-content-container.post-content-placeholder {
@@ -219,8 +216,8 @@ section {
 
 /* --- Contact Section --- */
 .contact-section-updated {
-    background-color: #1e3a8a !important;
-    color: white !important;
+    background-color: #1e3a8a;
+    color: white;
 }
 
 .contact-container {
@@ -230,7 +227,7 @@ section {
 }
 
 .contact-section-updated h3 {
-    color: white !important;
+    color: white;
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
 }
@@ -241,7 +238,7 @@ section {
 
 .contact-section-updated .form-group label {
     display: block;
-    color: #dbeafe !important; /* Blue-200 */
+    color: #dbeafe; /* Blue-200 */
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
@@ -249,9 +246,9 @@ section {
 .contact-section-updated .form-group input,
 .contact-section-updated .form-group textarea {
     width: 100%;
-    background-color: #2b4b8a !important;
-    color: white !important;
-    border: 1px solid #4a6baa !important;
+    background-color: #2b4b8a;
+    color: white;
+    border: 1px solid #4a6baa;
     border-radius: 8px;
     padding: 0.875rem;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -259,21 +256,21 @@ section {
 
 .contact-section-updated .form-group input::placeholder,
 .contact-section-updated .form-group textarea::placeholder {
-    color: #93c5fd !important; /* Blue-300 */
+    color: #93c5fd; /* Blue-300 */
     opacity: 0.7;
 }
 
 .contact-section-updated .form-group input:focus,
 .contact-section-updated .form-group textarea:focus {
     outline: none;
-    border-color: #60a5fa !important; /* Blue-400 */
+    border-color: #60a5fa; /* Blue-400 */
     box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
 }
 
 .contact-section-updated .submit-btn {
     width: 100%;
-    background-color: #60a5fa !important;
-    color: #1e293b !important;
+    background-color: #60a5fa; /* Blue-400 */
+    color: #1e293b; /* Slate-800 */
     font-weight: bold;
     padding: 1rem;
     border: none;
@@ -283,7 +280,7 @@ section {
 }
 
 .contact-section-updated .submit-btn:hover {
-    background-color: #93c5fd !important;
+    background-color: #93c5fd; /* Blue-300 */
 }
 
 .contact-info {
@@ -299,14 +296,14 @@ section {
 
 .contact-info-item i {
     font-size: 1.5rem;
-    color: #93c5fd !important;
+    color: #93c5fd; /* Blue-300 */
     margin-right: 1.5rem;
     width: 30px;
     text-align: center;
 }
 
 .contact-info-item span {
-    color: #dbeafe !important;
+    color: #dbeafe; /* Blue-200 */
     font-size: 1rem;
 }
 
@@ -360,26 +357,37 @@ footer {
 @media (max-width: 768px) {
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.3rem; }
 
     header {
         padding: 1rem;
         flex-direction: column;
-        align-items: flex-start; /* Changed from center */
+        align-items: flex-start;
     }
-    header nav ul { margin-top: 1rem; }
-    header nav li { margin-left: 1.5rem; }
+    header nav ul {
+        margin-top: 1rem;
+        padding-left: 0; /* Align nav items to the left */
+    }
+    header nav li {
+        margin-left: 0;
+        margin-right: 1.5rem;
+    }
 
     main {
         padding: 0 1rem;
-        margin: 1rem auto;
+        margin: 1.5rem auto;
     }
 
     section {
         padding: 1.5rem;
     }
 
-    #hero {
-        padding: 3rem 1.5rem;
+    #hero h2 {
+        font-size: 2.25rem;
+    }
+
+    #hero p {
+        font-size: 1rem;
     }
 
     .blog-layout {
@@ -393,7 +401,7 @@ footer {
     #post-content-container {
         border-left: none;
         padding-left: 0;
-        min-height: auto; /* Overridden for mobile, but base is set */
+        min-height: auto;
     }
     #post-content-container.post-content-placeholder {
         padding: 2rem 0;
