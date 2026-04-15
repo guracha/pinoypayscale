@@ -4,338 +4,145 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2026 Kasambahay Report</title>
+    <title>2026 PH Kasambahay Salary & Labor Guide</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-<article class="salary-report">
-    <style>
-        .salary-report {
-            --primary-color: #3b82f6;
-            --primary-dark: #2563eb;
-            --secondary-color: #ef4444;
-            --text-dark: #1e293b;
-            --text-medium: #475569;
-            --text-light: #f1f5f9;
-            --bg-light: #ffffff;
-            --bg-medium: #f8fafc;
-            --bg-dark: #0f172a;
-            --border-color: #e2e8f0;
-        }
+<body class="bg-slate-50">
 
-        .salary-report h1, .salary-report h2, .salary-report h3 {
-            font-weight: 800;
-            color: var(--text-dark);
-            letter-spacing: -0.025em;
-        }
-        .salary-report h1 { font-size: 2rem; line-height: 2.5rem; margin-bottom: 0.5rem; }
-        .salary-report h2 { font-size: 1.75rem; margin-top: 2.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;}
-        .salary-report h3 { font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem; font-weight: 700; }
-        .salary-report p { line-height: 1.75; color: var(--text-medium); margin-bottom: 1.25rem; }
-        .salary-report strong { color: var(--text-dark); font-weight: 600; }
-        .salary-report ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; color: var(--text-medium); }
-        .salary-report li { margin-bottom: 0.5rem; }
+<div class="report-container bg-white rounded-none shadow-none p-4 md:p-10">
 
-        .salary-report section { margin-bottom: 2.5rem; }
-        .info-card {
-            background-color: var(--bg-medium);
-            border: 1px solid var(--border-color);
-            border-radius: 1rem;
-            padding: 1.5rem;
-            margin-top: 1rem;
-        }
-        
-        .table-container {
-            overflow-x: auto;
-            border-radius: 0.75rem;
-            border: 1px solid var(--border-color);
-        }
-        .salary-table {
-            width: 100%;
-            text-align: left;
-            border-collapse: collapse;
-        }
-        .salary-table th, .salary-table td {
-            padding: 1rem 1.25rem;
-            white-space: nowrap;
-        }
-        .salary-table thead {
-            background-color: var(--bg-medium);
-        }
-        .salary-table th {
-            font-weight: 600;
-            color: var(--text-dark);
-            font-size: 0.875rem;
-            text-transform: uppercase;
-        }
-        .salary-table tbody tr {
-            border-bottom: 1px solid var(--border-color);
-        }
-         .salary-table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        .calculator-box {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            border-radius: 1.5rem;
-            padding: clamp(1.5rem, 5vw, 3rem);
-            margin-top: 2rem;
-        }
-        .calculator-box h2 { color: var(--text-light); border: none; }
-        .calculator-box p { color: #94a3b8; }
-        .calculator-box label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            color: var(--primary-color);
-        }
-        .calculator-box select, .calculator-box .skill-checkbox {
-            width: 100%;
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            margin-top: 0.5rem;
-            color: var(--text-light);
-        }
-        .calculator-box .checkbox-label {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 0.5rem;
-            padding: 0.75rem 1rem;
-            margin-top: 0.5rem;
-            cursor: pointer;
-        }
-        .calculator-box .skill-checkbox { width: auto; margin: 0; }
-        .calculator-box button {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 700;
-            padding: 0.875rem 1.5rem;
-            border-radius: 9999px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-top: 1.5rem;
-            width: 100%;
-        }
-        .calculator-box button:hover { background-color: var(--primary-dark); }
-        #calcResultArea {
-            background-color: #1e293b;
-            padding: 1.5rem;
-            border-radius: 1rem;
-            margin-top: 1.5rem;
-            text-align: center;
-            border: 1px solid #334155;
-        }
-         @media (max-width: 768px) {
-            .salary-report h1 {
-                font-size: 1.75rem;
-            }
-            .salary-report h2 {
-                font-size: 1.5rem;
-            }
-            .calculator-box {
-                padding: 1.5rem;
-            }
-            .calculator-box .grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-
-    <header>
-        <h1>The 2026 Guide to Hiring Housekeepers & Babysitters (Ate & Yaya)</h1>
-        <p>
-            Understanding the compensation landscape for domestic helpers in the Philippines, driven by inflation, specialized skills, and the Kasambahay Law.
-        </p>
+    <!-- Header -->
+    <header class="mb-10">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-slate-900">2026 Philippine Kasambahay Salary & Labor Guide</h1>
+        <p class="mt-3 text-lg text-slate-600">A Comprehensive Guide to the Compensation, Rights, and Responsibilities of Domestic Workers in the Philippines</p>
+        <p class="mt-2 text-sm text-slate-500">Updated: October 26, 2023</p>
     </header>
 
-    <section>
-        <h2>Executive Summary</h2>
-        <p>
-            The domestic labor market in 2026 has professionalized significantly. Employers are shifting from purely informal arrangements to structured compensation packages, heavily influenced by regional minimum wages and the demand for specialized childcare and culinary skills.
-        </p>
-        <div class="info-card">
-            <h3>Key Market Insights</h3>
-            <ul>
-                <li><strong>8.5% Average Wage Growth:</strong> National average increase in base pay for domestic helpers year-over-year.</li>
-                <li><strong>Newborn Specialist in Demand:</strong> 'Yayas' with infant care and CPR certifications command the highest salary premiums.</li>
-                <li><strong>Mandatory Benefits:</strong> Strict enforcement of employer contributions for SSS, PhilHealth, and Pag-IBIG is now the standard.</li>
-            </ul>
-        </div>
-    </section>
+    <!-- Body -->
+    <main class="space-y-12">
 
-    <section>
-        <h2>Baseline Compensation Matrix</h2>
-        <p>
-            The table below shows the average monthly base salaries in Metro Manila for 2026. Note the disparity between general housekeeping and specialized childcare, and between stay-in and stay-out arrangements.
-        </p>
-        <div class="table-container">
-            <table class="salary-table">
-                <thead>
-                    <tr>
-                        <th>Job Role</th>
-                        <th>Average Monthly Salary (PHP)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Housekeeper (Ate) - Stay-in</td>
-                        <td>₱10,000</td>
-                    </tr>
-                    <tr>
-                        <td>Housekeeper (Ate) - Stay-out</td>
-                        <td>₱13,000</td>
-                    </tr>
-                    <tr>
-                        <td>Babysitter (Yaya) - Stay-in, Toddler</td>
-                        <td>₱12,000</td>
-                    </tr>
-                    <tr>
-                        <td>Babysitter (Yaya) - Stay-out, Toddler</td>
-                        <td>₱15,000</td>
-                    </tr>
-                    <tr>
-                        <td>Newborn Specialist (Yaya) - Stay-in</td>
-                        <td>₱18,000</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section>
-        <h2>The Skill Premium</h2>
-        <p>
-            In 2026, hiring specialists is becoming more common than finding "generalists." Specific skills allow domestic helpers to negotiate significant premiums on top of their base salary.
-        </p>
-        <ul>
-            <li><strong>English Fluency (+15%):</strong> Highly sought after by expat families and households emphasizing early childhood language development.</li>
-            <li><strong>Specialized Cooking (+20%):</strong> Ability to follow dietary restrictions (vegan, keto) or cook specific international cuisines.</li>
-            <li><strong>Infant Care & First Aid (+25%):</strong> Formal training in newborn handling, CPR, and pediatric first aid commands the highest premium.</li>
-        </ul>
-    </section>
-
-    <section>
-        <div class="calculator-box">
-            <h2>Kasambahay Cost Estimator</h2>
-            <p>
-                Calculate the estimated total monthly cost for hiring domestic help in 2026, including skill premiums and mandatory government contributions.
-            </p>
-
-            <div class="grid" style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-top: 1.5rem;">
-                <div>
-                    <label for="calcRole">Primary Role</label>
-                    <select id="calcRole">
-                        <option value="ate_stayin">Housekeeper (Ate) - Stay-in</option>
-                        <option value="ate_stayout">Housekeeper (Ate) - Stay-out</option>
-                        <option value="yaya_stayin">Babysitter (Yaya) - Stay-in</option>
-                        <option value="yaya_stayout">Babysitter (Yaya) - Stay-out</option>
-                        <option value="yaya_newborn">Newborn Specialist - Stay-in</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="calcRegion">Household Location</label>
-                    <select id="calcRegion">
-                        <option value="1.0">Metro Manila (NCR)</option>
-                        <option value="0.85">Metro Cebu</option>
-                        <option value="0.80">Metro Davao</option>
-                        <option value="0.65">Provincial / Rural Areas</option>
-                    </select>
-                </div>
+        <!-- 1. Minimum Wage -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">Mandatory Minimum Wage for 2026</h2>
+            <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                <p>Under the <a href="https://www.officialgazette.gov.ph/2013/01/18/republic-act-no-10361/" target="_blank" class="text-indigo-600 hover:underline">Batas Kasambahay (Republic Act No. 10361)</a>, domestic workers are entitled to a minimum wage. As of the latest wage order effective until mid-2026, the minimum monthly salaries are as follows:</p>
             </div>
-
-            <div style="margin-top: 1.5rem;">
-                <label>Required Specialized Skills</label>
-                <div style="display: grid; grid-template-columns: 1fr; gap: 0.5rem; margin-top: 0.5rem;">
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="skill-checkbox" value="0.15">
-                        <span>Fluent English</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="skill-checkbox" value="0.20">
-                        <span>Specialized Cooking</span>
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" class="skill-checkbox" value="0.25">
-                        <span>First Aid / CPR</span>
-                    </label>
-                </div>
+            <div class="my-6">
+                <table class="w-full text-left border-collapse table-zoomable">
+                    <thead class="bg-slate-100">
+                        <tr>
+                            <th class="p-3 border">Region</th>
+                            <th class="p-3 border">Minimum Monthly Salary (PHP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="p-3 border">National Capital Region (NCR)</td><td class="p-3 border">₱6,500</td></tr>
+                        <tr><td class="p-3 border">Cities and 1st Class Municipalities</td><td class="p-3 border">₱5,500</td></tr>
+                        <tr><td class="p-3 border">Other Municipalities</td><td class="p-3 border">₱4,500</td></tr>
+                    </tbody>
+                </table>
             </div>
-
-            <button id="calculateBtn">Calculate Estimated Cost</button>
-
-            <div id="calcResultArea" style="display: none; transition: opacity 0.5s;">
-                <p style="font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #94a3b8;">Total Estimated Monthly Cost</p>
-                <div style="font-weight: 800; font-size: 2.5rem; color: white; margin: 0.5rem 0;">
-                    ₱<span id="totalCost">0</span>
-                </div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; border-top: 1px solid #334155; padding-top: 1rem; margin-top: 1rem; text-align: left;">
-                    <div>
-                        <p style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 600;">Est. Base + Premium</p>
-                        <p style="font-weight: 600; color: var(--text-light);">₱<span id="baseCost">0</span></p>
-                    </div>
-                    <div>
-                        <p style="font-size: 0.7rem; text-transform: uppercase; color: #94a3b8; font-weight: 600;">Mandatory Benefits (Est.)</p>
-                        <p style="font-weight: 600; color: var(--text-light);">₱<span id="benefitsCost">0</span></p>
-                    </div>
-                </div>
-                <p style="font-size: 0.75rem; color: #64748b; margin-top: 1.5rem; font-style: italic;">
-                    * Benefits estimate is approximate. Excludes 13th-month pay and other potential costs.
-                </p>
+             <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                 <p><strong>Important Note:</strong> These are the mandatory minimums. Employers and kasambahays are free to agree on a higher salary. The rates apply to all domestic workers, whether they are on a live-in or live-out basis.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-</article>
+        <!-- 2. Typical Market Rates -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">Current Market Salary Rates in Key Urban Areas</h2>
+            <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                <p>While the law sets the floor, actual market rates in major cities are often higher due to demand. In high-end subdivisions and condominium communities, experienced kasambahays command more competitive salaries.</p>
+                 <p>Below are the typical 2026 market rates for an experienced, all-around kasambahay in a live-in arrangement:</p>
+            </div>
+             <div class="my-6">
+                <table class="w-full text-left border-collapse table-zoomable">
+                    <thead class="bg-slate-100">
+                        <tr>
+                            <th class="p-3 border">Location (Metro Manila Area)</th>
+                            <th class="p-3 border">Typical Monthly Salary Range (PHP)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="p-3 border">Makati (Dasmarinas, Forbes Park) / BGC</td><td class="p-3 border">₱10,000 – ₱18,000+</td></tr>
+                        <tr><td class="p-3 border">Alabang (Ayala Alabang)</td><td class="p-3 border">₱9,000 – ₱15,000</td></tr>
+                        <tr><td class="p-3 border">Quezon City / Pasig / Mandaluyong</td><td class="p-3 border">₱7,500 – ₱12,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. Mandatory Benefits -->
+        <section>
+            <h2 class="text-2xl font-bold mb-4 border-l-4 border-indigo-500 pl-4">Mandatory Benefits Beyond Salary</h2>
+            <div class="prose max-w-none text-slate-700 leading-relaxed space-y-4">
+                <p>The Batas Kasambahay ensures that domestic workers are not just paid a salary but are also covered by essential social security benefits. It is the employer's responsibility to register their kasambahay and remit contributions.</p>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><strong>SSS (Social Security System):</strong> Provides retirement, disability, and other benefits.</li>
+                    <li><strong>PhilHealth:</strong> Ensures access to medical care and hospitalization services.</li>
+                    <li><strong>Pag-IBIG Fund:</strong> Offers housing loan programs and savings.</li>
+                </ul>
+                <p>Employers are required to shoulder the full premium contribution if the kasambahay's monthly salary is less than ₱5,000. If it is ₱5,000 or more, the employee also contributes their share.</p>
+            </div>
+        </section>
+
+        <!-- 4. Rights and Privileges -->
+        <section class="bg-indigo-50/60 p-6 rounded-lg border border-indigo-200/80">
+            <h2 class="text-2xl font-bold text-indigo-900 mb-4 text-center">Rights and Privileges of a Kasambahay</h2>
+            <div class="prose max-w-none text-slate-700 leading-relaxed">
+                <ul class="list-disc list-inside space-y-3 md:columns-2">
+                    <li>Right to a written employment contract (Kontrata).</li>
+                    <li>Right to a Certificate of Employment.</li>
+                    <li>Right to 13th-month pay.</li>
+                    <li>Right to at least 24 hours of consecutive rest per week.</li>
+                    <li>Right to 5 days of annual service incentive leave with pay.</li>
+                    <li>Right to be treated with dignity and respect.</li>
+                    <li>Right to access education and training opportunities.</li>
+                    <li>Right to terminate the employment relationship with just cause.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+</div>
 
 <script>
-    (() => {
-        const calcButton = document.getElementById('calculateBtn');
-        if (!calcButton || calcButton.dataset.listenerAttached === 'true') {
-            return;
-        }
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.table-zoomable').forEach(table => {
+            table.addEventListener('click', function () {
+                createModal(this);
+            });
+        });
 
-        calcButton.dataset.listenerAttached = 'true';
+        function createModal(table) {
+            const overlay = document.createElement('div');
+            overlay.className = 'table-modal-overlay';
+            overlay.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); display: flex; align-items: center; justify-content: center; z-index: 3000; padding: 1rem;';
 
-        const executeCalculation = () => {
-            const roleBases = {
-                'ate_stayin': 10000, 'ate_stayout': 13000,
-                'yaya_stayin': 12000, 'yaya_stayout': 15000,
-                'yaya_newborn': 18000
-            };
-
-            const roleKey = document.getElementById('calcRole').value;
-            const regionMultiplier = parseFloat(document.getElementById('calcRegion').value);
-            let baseSalary = roleBases[roleKey] * regionMultiplier;
+            const content = document.createElement('div');
+            content.className = 'table-modal-content';
+            content.style.cssText = 'background: white; padding: 1.5rem; border-radius: 8px; max-width: 95%; max-height: 90%; overflow: auto; position: relative;';
             
-            let skillMultiplier = 0;
-            document.querySelectorAll('.skill-checkbox:checked').forEach(checkbox => {
-                skillMultiplier += parseFloat(checkbox.value);
+            const closeButton = document.createElement('span');
+            closeButton.className = 'table-modal-close';
+            closeButton.innerHTML = '&times;';
+            closeButton.style.cssText = 'position: absolute; top: 10px; right: 15px; font-size: 2rem; font-weight: bold; color: #6c757d; cursor: pointer; line-height: 1;';
+
+            const clonedTable = table.cloneNode(true);
+            clonedTable.style.cursor = 'auto';
+            
+            content.appendChild(closeButton);
+            content.appendChild(clonedTable);
+            overlay.appendChild(content);
+            document.body.appendChild(overlay);
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay || e.target === closeButton) {
+                    document.body.removeChild(overlay);
+                }
             });
-
-            const finalSalary = Math.round(baseSalary + (baseSalary * skillMultiplier));
-            const benefitsEst = Math.round(finalSalary * 0.11);
-            const totalCost = finalSalary + benefitsEst;
-
-            const resultArea = document.getElementById('calcResultArea');
-            resultArea.style.display = 'block';
-
-            requestAnimationFrame(() => {
-                resultArea.style.opacity = 1;
-            });
-
-            document.getElementById('totalCost').textContent = totalCost.toLocaleString();
-            document.getElementById('baseCost').textContent = finalSalary.toLocaleString();
-            document.getElementById('benefitsCost').textContent = benefitsEst.toLocaleString();
-        };
-
-        calcButton.addEventListener('click', executeCalculation);
-    })();
+        }
+    });
 </script>
+
 </body>
 </html>
