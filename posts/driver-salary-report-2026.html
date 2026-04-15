@@ -5,10 +5,6 @@
   3. All detailed data from the expanded report is included here.
 -->
 
-<!-- Dependencies -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
     
@@ -88,10 +84,10 @@
                     <p class="text-sm text-slate-500 mt-1">Select a category to see how experience impacts monthly base pay (NCR baseline).</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button onclick="updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
-                    <button onclick="updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
-                    <button onclick="updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
-                    <button onclick="updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
+                    <button onclick="window.driverReport.updateChart('private', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200 active-tab">Private</button>
+                    <button onclick="window.driverReport.updateChart('corporate', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Corporate</button>
+                    <button onclick="window.driverReport.updateChart('executive', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Executive</button>
+                    <button onclick="window.driverReport.updateChart('logistics', this)" class="nav-btn px-4 py-2 rounded-lg text-xs font-bold border border-slate-200">Logistics</button>
                 </div>
             </div>
             <div class="report-chart-container">
@@ -172,7 +168,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Experience</label>
-                    <select id="calcExp" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                    <select id="calcExp" onchange="window.driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm outline-none focus:ring-2 focus:ring-blue-500">
                         <option value="0">Entry (1-3 yrs)</option>
                         <option value="1">Mid (4-7 yrs)</option>
                         <option value="2">Senior (8-12 yrs)</option>
@@ -181,7 +177,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Category</label>
-                    <select id="calcCat" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcCat" onchange="window.driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="private">Private Family</option>
                         <option value="corporate">Corporate Office</option>
                         <option value="executive">Executive / VIP</option>
@@ -190,7 +186,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Location</label>
-                    <select id="calcLoc" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcLoc" onchange="window.driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="1.0">Manila (NCR)</option>
                         <option value="0.88">Cebu Hubs</option>
                         <option value="0.85">Clark / Pampanga</option>
@@ -199,7 +195,7 @@
                 </div>
                 <div class="space-y-2">
                     <label class="text-[10px] font-bold uppercase text-slate-400 tracking-widest">Safety Record</label>
-                    <select id="calcSafe" onchange="runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
+                    <select id="calcSafe" onchange="window.driverReport.runEstimator()" class="w-full bg-slate-800 border border-slate-700 p-3 rounded-xl text-sm">
                         <option value="1.0">Standard Record</option>
                         <option value="1.05">Clean LTO History</option>
                         <option value="1.15">Accident-Free Certified</option>
@@ -225,89 +221,113 @@
 </div>
 
 <script>
-    (function() {
-        const matrix = {
-            private: [17500, 22500, 28000, 35000],
-            corporate: [21000, 28000, 36000, 45000],
-            executive: [28000, 42000, 60000, 85000],
-            logistics: [24000, 33000, 48000, 65000]
-        };
+    if (window.driverReportInitialized) {
+        // Don't run the script again if it's already initialized
+    } else {
+        window.driverReportInitialized = true;
 
-        let salaryChart;
+        window.driverReport = {
+            salaryChart: null,
+            matrix: {
+                private: [17500, 22500, 28000, 35000],
+                corporate: [21000, 28000, 36000, 45000],
+                executive: [28000, 42000, 60000, 85000],
+                logistics: [24000, 33000, 48000, 65000]
+            },
 
-        function initSalaryChart() {
-            const ctx = document.getElementById('salaryMatrixChart').getContext('2d');
-            salaryChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Junior (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
-                    datasets: [{
-                        label: 'Avg Salary (PHP)',
-                        data: matrix.private,
-                        backgroundColor: '#3b82f6',
-                        borderRadius: 8,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        y: { beginAtZero: true, ticks: { callback: v => '₱' + (v/1000) + 'k' } }
-                    }
+            initSalaryChart: function() {
+                const canvas = document.getElementById('salaryMatrixChart');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+                
+                if (window.myCharts.salaryMatrixChart) {
+                    window.myCharts.salaryMatrixChart.destroy();
                 }
-            });
-        }
 
-        function initRegionalChart() {
-            const ctx = document.getElementById('regionalBarChart').getContext('2d');
-            new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Manila', 'Cebu', 'Clark', 'Davao', 'Iloilo'],
-                    datasets: [{
-                        data: [100, 88, 85, 75, 72],
-                        backgroundColor: ['#0f172a', '#94a3b8', '#cbd5e1', '#e2e8f0', '#f1f5f9'],
-                        borderRadius: 6
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } }
+                this.salaryChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Junior (1-3y)', 'Mid (4-7y)', 'Senior (8-12y)', 'Expert (13y+)'],
+                        datasets: [{
+                            label: 'Avg Salary (PHP)',
+                            data: this.matrix.private,
+                            backgroundColor: '#3b82f6',
+                            borderRadius: 8,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { callback: v => '₱' + (v/1000) + 'k' } }
+                        }
                     }
+                });
+                window.myCharts.salaryMatrixChart = this.salaryChart;
+            },
+
+            initRegionalChart: function() {
+                const canvas = document.getElementById('regionalBarChart');
+                if (!canvas) return;
+                const ctx = canvas.getContext('2d');
+
+                if (window.myCharts.regionalBarChart) {
+                    window.myCharts.regionalBarChart.destroy();
                 }
-            });
-        }
 
-        window.updateChart = function(type, btn) {
-            salaryChart.data.datasets[0].data = matrix[type];
-            salaryChart.update();
+                const regionalChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Manila', 'Cebu', 'Clark', 'Davao', 'Iloilo'],
+                        datasets: [{
+                            data: [100, 88, 85, 75, 72],
+                            backgroundColor: ['#0f172a', '#94a3b8', '#cbd5e1', '#e2e8f0', '#f1f5f9'],
+                            borderRadius: 6
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            x: { beginAtZero: true, max: 110, ticks: { display: false }, grid: { display: false } }
+                        }
+                    }
+                });
+                window.myCharts.regionalBarChart = regionalChart;
+            },
 
-            document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
-            btn.classList.add('active-tab');
+            updateChart: function(type, btn) {
+                this.salaryChart.data.datasets[0].data = this.matrix[type];
+                this.salaryChart.update();
+
+                document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active-tab'));
+                btn.classList.add('active-tab');
+            },
+
+            runEstimator: function() {
+                const exp = parseInt(document.getElementById('calcExp').value);
+                const cat = document.getElementById('calcCat').value;
+                const loc = parseFloat(document.getElementById('calcLoc').value);
+                const safe = parseFloat(document.getElementById('calcSafe').value);
+
+                const base = this.matrix[cat][exp];
+                const result = Math.round(base * loc * safe);
+                
+                const resultEl = document.getElementById('finalResult');
+                resultEl.innerText = result.toLocaleString();
+            },
+
+            init: function() {
+                this.initSalaryChart();
+                this.initRegionalChart();
+                this.runEstimator();
+            }
         };
 
-        window.runEstimator = function() {
-            const exp = parseInt(document.getElementById('calcExp').value);
-            const cat = document.getElementById('calcCat').value;
-            const loc = parseFloat(document.getElementById('calcLoc').value);
-            const safe = parseFloat(document.getElementById('calcSafe').value);
-
-            const base = matrix[cat][exp];
-            const result = Math.round(base * loc * safe);
-            
-            const resultEl = document.getElementById('finalResult');
-            resultEl.innerText = result.toLocaleString();
-        };
-
-        // Initialize on Load
-        initSalaryChart();
-        initRegionalChart();
-        runEstimator();
-    })();
+        window.driverReport.init();
+    }
 </script>
