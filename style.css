@@ -91,6 +91,7 @@ section {
     padding: 2.5rem;
     margin-bottom: 0; /* Removed margin as main is now a grid */
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    scroll-margin-top: 80px; /* Offset for sticky header */
 }
 
 /* --- Hero Section --- */
@@ -215,8 +216,32 @@ section {
 }
 
 /* --- Contact Section --- */
-.contact-section-updated { background-color: #1e3a8a; }
-/* Other contact styles remain largely the same */
+.contact-section-updated { 
+    background-color: #1e3a8a; 
+    color: white;
+}
+.contact-section-updated h3 {
+    color: white;
+}
+.contact-section-updated .form-group label {
+    color: #e0e0e0;
+}
+.contact-section-updated .form-group input,
+.contact-section-updated .form-group textarea {
+    background-color: #2b4b8a;
+    color: white;
+    border: 1px solid #4a6baa;
+}
+.contact-section-updated .submit-btn {
+    background-color: #60a5fa; /* Blue-400 */
+    color: #1e3a8a;
+}
+.contact-section-updated .contact-info-item i {
+    color: #93c5fd; /* Blue-300 */
+}
+.contact-section-updated .contact-info-item span {
+    color: #e0e0e0;
+}
 
 /* --- Modal Styles --- */
 .modal-overlay {
