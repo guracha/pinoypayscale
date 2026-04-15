@@ -28,122 +28,133 @@
     }
 </style>
 
-<header class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-    <div class="max-w-3xl">
-        <h1 class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">Navigating the 2026 Philippine Compensation Landscape</h1>
-        <p class="text-lg text-stone-600 mb-8 leading-relaxed">
-            As the Philippine economy adapts to global digital transformation and post-inflationary adjustments, compensation structures are rapidly evolving. This interactive report provides a comprehensive breakdown of monthly baseline salaries across top industries and experience levels in 2026.
-        </p>
-        <div class="flex gap-4">
-            <a href="#explorer" class="bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-6 rounded-lg shadow-sm transition-all">Explore Data</a>
+<div class="text-4xl md:text-5xl font-bold text-stone-900 leading-tight mb-6">Navigating the 2026 Philippine Compensation Landscape</div>
+<p class="text-lg text-stone-600 mb-8 leading-relaxed">
+    As the Philippine economy adapts to global digital transformation and post-inflationary adjustments, compensation structures are rapidly evolving. This interactive report provides a comprehensive breakdown of monthly baseline salaries across top industries and experience levels in 2026.
+</p>
+<div class="flex gap-4">
+    <a href="#explorer" class="bg-teal-700 hover:bg-teal-800 text-white font-semibold py-3 px-6 rounded-lg shadow-sm transition-all">Explore Data</a>
+</div>
+
+<section id="overview" class="bg-white py-16 border-y border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 max-w-2xl">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">Industry Averages at a Glance</h2>
+            <p class="text-stone-600">
+                This section compares the median monthly salary (aggregated across all experience levels) among the top five employing sectors in the Philippines. It highlights the continued premium placed on specialized technical skills in 2026.
+            </p>
+        </div>
+        <div class="bg-[#faf9f6] p-6 rounded-xl border border-stone-100 shadow-sm">
+            <div class="chart-container">
+                <canvas id="averageChart"></canvas>
+            </div>
         </div>
     </div>
-</header>
+</section>
 
-<main>
-    <section id="overview" class="bg-white py-16 border-y border-stone-200">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10 max-w-2xl">
-                <h2 class="text-3xl font-bold text-stone-900 mb-4">Industry Averages at a Glance</h2>
-                <p class="text-stone-600">
-                    This section compares the median monthly salary (aggregated across all experience levels) among the top five employing sectors in the Philippines. It highlights the continued premium placed on specialized technical skills in 2026.
-                </p>
-            </div>
-            <div class="bg-[#faf9f6] p-6 rounded-xl border border-stone-100 shadow-sm">
-                <div class="chart-container">
-                    <canvas id="averageChart"></canvas>
-                </div>
-            </div>
+<section id="explorer" class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 max-w-2xl">
+            <h2 class="text-3xl font-bold text-stone-900 mb-4">Salary Explorer by Job Level</h2>
+            <p class="text-stone-600">
+                Select an industry below to analyze the career progression and corresponding compensation growth. Values represent average gross monthly base pay in Philippine Pesos (PHP).
+            </p>
         </div>
-    </section>
 
-    <section id="explorer" class="py-16 md:py-24">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10 max-w-2xl">
-                <h2 class="text-3xl font-bold text-stone-900 mb-4">Salary Explorer by Job Level</h2>
-                <p class="text-stone-600">
-                    Select an industry below to analyze the career progression and corresponding compensation growth. Values represent average gross monthly base pay in Philippine Pesos (PHP).
-                </p>
-            </div>
-
-            <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
-                <div class="p-6 md:p-8 border-b border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                    <div class="w-full md:w-1/3">
-                        <label for="industrySelect" class="block text-sm font-semibold text-stone-700 mb-2">Select Industry</label>
-                        <select id="industrySelect" class="w-full bg-white border border-stone-300 text-stone-900 text-base rounded-lg focus:ring-teal-500 focus:border-teal-500 block p-3 shadow-sm transition-colors cursor-pointer">
-                            <option value="it">IT & Technology</option>
-                            <option value="finance">Finance & Banking</option>
-                            <option value="bpo">BPO & Customer Service</option>
-                            <option value="engineering">Engineering & Construction</option>
-                            <option value="healthcare">Healthcare (Private)</option>
-                        </select>
-                    </div>
-                    <div class="w-full md:w-2/3 md:pl-8">
-                        <h3 id="insightTitle" class="text-xl font-bold text-teal-800 mb-2">IT & Technology Insights</h3>
-                        <p id="insightText" class="text-stone-600 leading-relaxed text-sm md:text-base">
-                            Driven by aggressive AI integration and cloud infrastructure expansion, tech roles continue to command the highest market premium. Senior developers and AI specialists see aggressive counter-offers.
-                        </p>
-                    </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-stone-200 overflow-hidden">
+            <div class="p-6 md:p-8 border-b border-stone-100 bg-stone-50 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="w-full md:w-1/3">
+                    <label for="industrySelect" class="block text-sm font-semibold text-stone-700 mb-2">Select Industry</label>
+                    <select id="industrySelect" class="w-full bg-white border border-stone-300 text-stone-900 text-base rounded-lg focus:ring-teal-500 focus:border-teal-500 block p-3 shadow-sm transition-colors cursor-pointer">
+                        <option value="it">IT & Technology</option>
+                        <option value="finance">Finance & Banking</option>
+                        <option value="bpo">BPO & Customer Service</option>
+                        <option value="engineering">Engineering & Construction</option>
+                        <option value="healthcare">Healthcare (Private)</option>
+                    </select>
                 </div>
-                
-                <div class="p-6 md:p-10">
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8" id="statsGrid">
-                    </div>
-
-                    <div class="chart-container mt-8">
-                        <canvas id="progressionChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="trends" class="bg-stone-900 py-16 md:py-24 text-stone-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-12 max-w-2xl">
-                <h2 class="text-3xl font-bold text-white mb-4">Key Market Trends for 2026</h2>
-                <p class="text-stone-400">
-                    Beyond the numbers, several qualitative shifts are redefining the Philippine labor market, driven by global economic pressures and technological advancement.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
-                    <div class="text-4xl mb-4 text-teal-400">💡</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">The AI Skill Premium</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed">
-                        Routine tasks are increasingly automated. Across all sectors, professionals who can integrate AI tools into their workflows are negotiating 15-20% higher base salaries compared to peers with traditional skill sets.
-                    </p>
-                </div>
-                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors">
-                    <div class="text-4xl mb-4 text-amber-400">💼</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">BPO Moving Up the Value Chain</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed">
-                        Traditional voice-support roles face wage stagnation. However, the BPO sector is seeing a massive surge in Tier 3 support, data analytics, and specialized healthcare outsourcing, which offer highly competitive mid-level salaries.
-                    </p>
-                </div>
-                <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
-                    <div class="text-4xl mb-4 text-teal-400">⚖️</div>
-                    <h3 class="text-xl font-bold mb-3 text-white">Retention Over Acquisition</h3>
-                    <p class="text-stone-400 text-sm leading-relaxed">
-                        Due to high turnover in 2024-2025, companies are allocating larger budgets to mid-level and senior retention. Signing bonuses have decreased, but long-term incentives and flexible work allowances have become standard.
+                <div class="w-full md:w-2/3 md:pl-8">
+                    <h3 id="insightTitle" class="text-xl font-bold text-teal-800 mb-2">IT & Technology Insights</h3>
+                    <p id="insightText" class="text-stone-600 leading-relaxed text-sm md:text-base">
+                        Driven by aggressive AI integration and cloud infrastructure expansion, tech roles continue to command the highest market premium. Senior developers and AI specialists see aggressive counter-offers.
                     </p>
                 </div>
             </div>
+            
+            <div class="p-6 md:p-10">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8" id="statsGrid">
+                </div>
+
+                <div class="chart-container mt-8">
+                    <canvas id="progressionChart"></canvas>
+                </div>
+            </div>
         </div>
-    </section>
-</main>
+    </div>
+</section>
+
+<section id="trends" class="bg-stone-900 py-16 md:py-24 text-stone-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 max-w-2xl">
+            <h2 class="text-3xl font-bold text-white mb-4">Key Market Trends for 2026</h2>
+            <p class="text-stone-400">
+                Beyond the numbers, several qualitative shifts are redefining the Philippine labor market, driven by global economic pressures and technological advancement.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">💡</div>
+                <h3 class="text-xl font-bold mb-3 text-white">The AI Skill Premium</h3>
+                <p class="text-stone-400 text-sm leading-relaxed">
+                    Routine tasks are increasingly automated. Across all sectors, professionals who can integrate AI tools into their workflows are negotiating 15-20% higher base salaries compared to peers with traditional skill sets.
+                </p>
+            </div>
+            <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-amber-500 transition-colors">
+                <div class="text-4xl mb-4 text-amber-400">💼</div>
+                <h3 class="text-xl font-bold mb-3 text-white">BPO Moving Up the Value Chain</h3>
+                <p class="text-stone-400 text-sm leading-relaxed">
+                    Traditional voice-support roles face wage stagnation. However, the BPO sector is seeing a massive surge in Tier 3 support, data analytics, and specialized healthcare outsourcing, which offer highly competitive mid-level salaries.
+                </p>
+            </div>
+            <div class="bg-stone-800 p-8 rounded-xl border border-stone-700 hover:border-teal-500 transition-colors">
+                <div class="text-4xl mb-4 text-teal-400">⚖️</div>
+                <h3 class="text-xl font-bold mb-3 text-white">Retention Over Acquisition</h3>
+                <p class="text-stone-400 text-sm leading-relaxed">
+                    Due to high turnover in 2024-2025, companies are allocating larger budgets to mid-level and senior retention. Signing bonuses have decreased, but long-term incentives and flexible work allowances have become standard.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 <script>
-if (window.phMarketReportInitialized) {
-    // Already initialized
-} else {
-    window.phMarketReportInitialized = true;
+(function() {
+    function cleanupCharts() {
+        if (window.laborMarketCharts) {
+            if (window.laborMarketCharts.averageChart) {
+                window.laborMarketCharts.averageChart.destroy();
+            }
+            if (window.laborMarketCharts.progressionChart) {
+                window.laborMarketCharts.progressionChart.destroy();
+            }
+            window.laborMarketCharts = null;
+        }
+    }
 
-    window.phMarketReport = {
-        progressionChart: null,
-        averageChart: null,
-        salaryData: {
+    function initializeLaborReport() {
+        const averageChartEl = document.getElementById('averageChart');
+        const progressionChartEl = document.getElementById('progressionChart');
+        const industrySelectEl = document.getElementById('industrySelect');
+
+        if (!averageChartEl || !progressionChartEl || !industrySelectEl) {
+            setTimeout(initializeLaborReport, 100);
+            return;
+        }
+        
+        cleanupCharts();
+
+        const salaryData = {
             'it': {
                 title: 'IT & Technology Insights',
                 insight: 'Driven by aggressive AI integration and cloud infrastructure expansion, tech roles continue to command the highest market premium. Senior developers and AI specialists see aggressive counter-offers.',
@@ -169,167 +180,132 @@ if (window.phMarketReportInitialized) {
                 insight: 'Private hospitals are aggressively increasing mid-level compensation to combat the brain drain to overseas markets. Specialized nurses and allied health managers see the largest year-over-year gains.',
                 data: [26000, 42000, 65000, 90000]
             }
-        },
-        levels: ['Entry (0-2 Yrs)', 'Mid (3-5 Yrs)', 'Senior (6-9 Yrs)', 'Manager (10+ Yrs)'],
+        };
 
-        formatCurrency: (value) => {
-            return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(value);
-        },
+        const levels = ['Entry (0-2 Yrs)', 'Mid (3-5 Yrs)', 'Senior (6-9 Yrs)', 'Manager (10+ Yrs)'];
+        const formatCurrency = (value) => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(value);
 
-        initAverageChart: function() {
-            const canvas = document.getElementById('averageChart');
-            if (!canvas) return;
-            if (window.myCharts && window.myCharts.averageChart) {
-                window.myCharts.averageChart.destroy();
-            }
-            const ctx = canvas.getContext('2d');
-            this.averageChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['IT & Tech', 'Finance', 'Engineering', 'BPO', 'Healthcare'],
-                    datasets: [{
-                        label: 'Median Monthly Salary (PHP)',
-                        data: [85000, 72000, 65000, 52000, 50000],
-                        backgroundColor: [
-                            'rgba(15, 118, 110, 0.8)', 
-                            'rgba(245, 158, 11, 0.8)', 
-                            'rgba(148, 163, 184, 0.8)',
-                            'rgba(148, 163, 184, 0.8)',
-                            'rgba(148, 163, 184, 0.8)'
-                        ],
-                        borderRadius: 4
-                    }]
+        const ctxAverage = averageChartEl.getContext('2d');
+        const averageChart = new Chart(ctxAverage, {
+            type: 'bar',
+            data: {
+                labels: ['IT & Tech', 'Finance', 'Engineering', 'BPO', 'Healthcare'],
+                datasets: [{
+                    label: 'Median Monthly Salary (PHP)',
+                    data: [85000, 72000, 65000, 52000, 50000],
+                    backgroundColor: ['rgba(15, 118, 110, 0.8)', 'rgba(245, 158, 11, 0.8)', 'rgba(148, 163, 184, 0.8)', 'rgba(148, 163, 184, 0.8)', 'rgba(148, 163, 184, 0.8)'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: (context) => formatCurrency(context.raw) } }
                 },
-                options: {
-                    indexAxis: 'y',
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { callbacks: { label: (context) => this.formatCurrency(context.raw) } }
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        ticks: { callback: (value) => '₱' + (value / 1000) + 'k' }
                     },
-                    scales: {
-                        x: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(0,0,0,0.05)' },
-                            ticks: { callback: (value) => '₱' + (value/1000) + 'k' }
-                        },
-                        y: {
-                            grid: { display: false },
-                            ticks: { font: { family: 'Inter', size: 13 } }
-                        }
+                    y: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter', size: 13 } }
                     }
                 }
-            });
-            if (!window.myCharts) window.myCharts = {};
-            window.myCharts.averageChart = this.averageChart;
-        },
-
-        initProgressionChart: function() {
-            const canvas = document.getElementById('progressionChart');
-            if (!canvas) return;
-            if (window.myCharts && window.myCharts.progressionChart) {
-                window.myCharts.progressionChart.destroy();
             }
-            const ctx = canvas.getContext('2d');
-            this.progressionChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: this.levels,
-                    datasets: [{
-                        type: 'bar',
-                        label: 'Monthly Salary (PHP)',
-                        data: this.salaryData['it'].data,
-                        backgroundColor: 'rgba(15, 118, 110, 0.15)',
-                        borderColor: 'rgba(15, 118, 110, 1)',
-                        borderWidth: 2,
-                        borderRadius: 4,
-                        order: 2
-                    },
-                    {
-                        type: 'line',
-                        label: 'Growth Trend',
-                        data: this.salaryData['it'].data,
-                        borderColor: 'rgba(245, 158, 11, 1)',
-                        backgroundColor: 'rgba(245, 158, 11, 1)',
-                        borderWidth: 3,
-                        tension: 0.3,
-                        pointRadius: 6,
-                        pointHoverRadius: 8,
-                        order: 1
-                    }]
+        });
+
+        const ctxProgression = progressionChartEl.getContext('2d');
+        const progressionChart = new Chart(ctxProgression, {
+            type: 'bar',
+            data: {
+                labels: levels,
+                datasets: [{
+                    type: 'bar',
+                    label: 'Monthly Salary (PHP)',
+                    data: salaryData['it'].data,
+                    backgroundColor: 'rgba(15, 118, 110, 0.15)',
+                    borderColor: 'rgba(15, 118, 110, 1)',
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    order: 2
+                }, {
+                    type: 'line',
+                    label: 'Growth Trend',
+                    data: salaryData['it'].data,
+                    borderColor: 'rgba(245, 158, 11, 1)',
+                    backgroundColor: 'rgba(245, 158, 11, 1)',
+                    borderWidth: 3,
+                    tension: 0.3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8,
+                    order: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top', labels: { font: { family: 'Inter' } } },
+                    tooltip: {
+                        mode: 'index',
+                        intersect: false,
+                        callbacks: { label: (context) => (context.datasetIndex === 0 ? formatCurrency(context.raw) : '') }
+                    }
                 },
-                options: {
-                    maintainAspectRatio: false,
-                    responsive: true,
-                    plugins: {
-                        legend: { position: 'top', labels: { font: { family: 'Inter' } } },
-                        tooltip: {
-                            mode: 'index',
-                            intersect: false,
-                            callbacks: { label: (context) => context.datasetIndex === 0 ? this.formatCurrency(context.raw) : '' }
-                        }
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        suggestedMax: 180000,
+                        grid: { color: 'rgba(0,0,0,0.05)' },
+                        ticks: { callback: (value) => '₱' + (value / 1000) + 'k', font: { family: 'Inter' } }
                     },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            suggestedMax: 180000,
-                            grid: { color: 'rgba(0,0,0,0.05)' },
-                            ticks: { callback: (value) => '₱' + (value/1000) + 'k', font: { family: 'Inter' } }
-                        },
-                        x: { grid: { display: false }, ticks: { font: { family: 'Inter' } } }
+                    x: {
+                        grid: { display: false },
+                        ticks: { font: { family: 'Inter' } }
                     }
                 }
-            });
-            if (!window.myCharts) window.myCharts = {};
-            window.myCharts.progressionChart = this.progressionChart;
-        },
+            }
+        });
 
-        updateStatsGrid: function(dataArr) {
+        window.laborMarketCharts = { averageChart, progressionChart };
+
+        const updateStatsGrid = (dataArr) => {
             const grid = document.getElementById('statsGrid');
-            if(!grid) return;
+            if (!grid) return;
             grid.innerHTML = '';
-            this.levels.forEach((level, index) => {
+            levels.forEach((level, index) => {
                 const statDiv = document.createElement('div');
                 statDiv.className = 'bg-stone-50 rounded-lg p-4 border border-stone-200 text-center';
                 statDiv.innerHTML = `
                     <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-1">${level.split(' ')[0]}</div>
-                    <div class="text-xl md:text-2xl font-bold text-teal-800">${this.formatCurrency(dataArr[index]).replace('.00', '')}</div>
+                    <div class="text-xl md:text-2xl font-bold text-teal-800">${formatCurrency(dataArr[index]).replace('.00', '')}</div>
                 `;
                 grid.appendChild(statDiv);
             });
-        },
+        };
 
-        handleIndustryChange: function() {
-            const industrySelect = document.getElementById('industrySelect');
-            if (!industrySelect) return;
-            const industry = industrySelect.value;
-            const data = this.salaryData[industry];
-            
+        const handleIndustryChange = (e) => {
+            const industry = e.target.value;
+            const data = salaryData[industry];
             document.getElementById('insightTitle').innerText = data.title;
             document.getElementById('insightText').innerText = data.insight;
-            
-            this.updateStatsGrid(data.data);
+            updateStatsGrid(data.data);
+            progressionChart.data.datasets[0].data = data.data;
+            progressionChart.data.datasets[1].data = data.data;
+            progressionChart.update();
+        };
 
-            this.progressionChart.data.datasets[0].data = data.data;
-            this.progressionChart.data.datasets[1].data = data.data;
-            this.progressionChart.update();
-        },
+        industrySelectEl.addEventListener('change', handleIndustryChange);
 
-        init: function() {
-            this.initAverageChart();
-            this.initProgressionChart();
-            this.updateStatsGrid(this.salaryData['it'].data);
+        // Initial population
+        updateStatsGrid(salaryData['it'].data);
+    }
 
-            const industrySelect = document.getElementById('industrySelect');
-            if (industrySelect) {
-                industrySelect.onchange = () => this.handleIndustryChange();
-            }
-        }
-    };
-
-    setTimeout(() => {
-        window.phMarketReport.init();
-    }, 100);
-}
+    initializeLaborReport();
+})();
 </script>
