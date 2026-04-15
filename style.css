@@ -88,7 +88,6 @@ section {
     padding: 2rem;
     margin-bottom: 2rem;
     box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    overflow: hidden; /* Hide overflowing content for scrolling section */
 }
 
 /* --- Hero Section --- */
@@ -394,6 +393,7 @@ footer {
 
     #post-content-container {
         padding-left: 0;
+        overflow-x: hidden;
     }
 
     .analyzer-box {
