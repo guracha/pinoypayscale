@@ -12,7 +12,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px; /* Global offset for sticky header */
+    scroll-padding-top: 85px !important; /* Global offset for sticky header, increased specificity */
 }
 
 body {
@@ -100,8 +100,6 @@ section {
 
 /* --- Hero Section --- */
 #hero {
-    /* These styles are applied via Tailwind classes in the HTML now */
-    /* But we can add text-shadow helpers */
     text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 .text-shadow-light {
@@ -220,9 +218,9 @@ section {
 }
 
 /* --- Contact Section --- */
-.contact-section-updated { 
-    background-color: #1e3a8a; 
-    color: white;
+.contact-section-updated {
+    background-color: #1e3a8a !important;
+    color: white !important;
 }
 
 .contact-container {
@@ -232,7 +230,7 @@ section {
 }
 
 .contact-section-updated h3 {
-    color: white;
+    color: white !important;
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
 }
@@ -243,7 +241,7 @@ section {
 
 .contact-section-updated .form-group label {
     display: block;
-    color: #dbeafe; /* Blue-200 */
+    color: #dbeafe !important; /* Blue-200 */
     margin-bottom: 0.5rem;
     font-weight: 500;
 }
@@ -251,9 +249,9 @@ section {
 .contact-section-updated .form-group input,
 .contact-section-updated .form-group textarea {
     width: 100%;
-    background-color: #2b4b8a;
-    color: white;
-    border: 1px solid #4a6baa;
+    background-color: #2b4b8a !important;
+    color: white !important;
+    border: 1px solid #4a6baa !important;
     border-radius: 8px;
     padding: 0.875rem;
     transition: border-color 0.3s, box-shadow 0.3s;
@@ -261,21 +259,21 @@ section {
 
 .contact-section-updated .form-group input::placeholder,
 .contact-section-updated .form-group textarea::placeholder {
-    color: #93c5fd; /* Blue-300 */
+    color: #93c5fd !important; /* Blue-300 */
     opacity: 0.7;
 }
 
 .contact-section-updated .form-group input:focus,
 .contact-section-updated .form-group textarea:focus {
     outline: none;
-    border-color: #60a5fa; /* Blue-400 */
+    border-color: #60a5fa !important; /* Blue-400 */
     box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
 }
 
 .contact-section-updated .submit-btn {
     width: 100%;
-    background-color: #60a5fa; /* Blue-400 */
-    color: #1e293b; /* Slate-800 */
+    background-color: #60a5fa !important;
+    color: #1e293b !important;
     font-weight: bold;
     padding: 1rem;
     border: none;
@@ -285,7 +283,7 @@ section {
 }
 
 .contact-section-updated .submit-btn:hover {
-    background-color: #93c5fd; /* Blue-300 */
+    background-color: #93c5fd !important;
 }
 
 .contact-info {
@@ -301,16 +299,17 @@ section {
 
 .contact-info-item i {
     font-size: 1.5rem;
-    color: #93c5fd; /* Blue-300 */
+    color: #93c5fd !important;
     margin-right: 1.5rem;
     width: 30px;
     text-align: center;
 }
 
 .contact-info-item span {
-    color: #dbeafe; /* Blue-200 */
+    color: #dbeafe !important;
     font-size: 1rem;
 }
+
 
 /* --- Modal Styles --- */
 .modal-overlay {
