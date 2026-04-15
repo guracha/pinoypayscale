@@ -1,157 +1,530 @@
-<link rel="stylesheet" href="post-style.css">
 
-<div class="post-container">
+<!-- Custom styles for this specific post -->
+<style>
+    .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 350px;
+        max-height: 450px;
+    }
 
-    <div class="post-section">
-        <h2>1. Executive Summary & Median Wage</h2>
-        <p>
-            The 2026 market analysis for Kasambahays (domestic helpers) and Yayas (nannies) in the Philippines indicates a <strong>median monthly wage of <span class="highlight-value">₱8,000</span></strong> for a standard live-in arrangement. This figure is influenced by the mandatory minimum wage set by the Domestic Workers Act (Batas Kasambahay), which varies by region. The market is characterized by high demand, informal employment practices, and increasing awareness of worker rights.
+    @media (min-width: 768px) {
+        .chart-container {
+            height: 400px;
+        }
+    }
+
+    .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(231, 229, 228, 0.8);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+    }
+</style>
+
+<!-- Post Content Starts Here -->
+<header class="pt-12 pb-16 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+        <span class="px-4 py-1.5 rounded-full bg-stone-100 text-stone-600 text-xs font-bold uppercase tracking-widest mb-6 inline-block">2026 Research Report</span>
+        <h1 class="text-4xl md:text-6xl font-black text-stone-900 mb-6 leading-tight">
+            The 2026 Guide to Hiring <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-coral-500">Housekeepers & Babysitters</span>
+        </h1>
+        <p class="text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed">
+            Understanding the compensation landscape for "Ates" (Housekeepers) and "Yayas" (Babysitters) in the Philippines. Driven by inflation, specialized skills, and the Kasambahay Law.
         </p>
     </div>
+</header>
 
-    <div class="post-section">
-        <h2>2. Kasambahay & Yaya Wage Benchmarks for 2026</h2>
-        <p>
-            Wages are primarily dictated by the government-mandated minimums, but often exceed these rates based on location, job scope (e.g., childcare vs. general housekeeping), and employment arrangement (live-in vs. live-out). Below is a breakdown of typical monthly wage ranges.
-        </p>
+<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-24">
 
-        <div class="post-table-wrapper">
-            <table class="post-table">
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Arrangement</th>
-                        <th>Location</th>
-                        <th>Typical Monthly Wage (PHP)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>All-Around Kasambahay</td>
-                        <td>Live-In</td>
-                        <td>Metro Manila (NCR)</td>
-                        <td>₱7,000 - ₱10,000</td>
-                    </tr>
-                    <tr>
-                        <td>Yaya (Nanny) - Childcare Focus</td>
-                        <td>Live-In</td>
-                        <td>Metro Manila (NCR)</td>
-                        <td>₱8,000 - ₱15,000+</td>
-                    </tr>
-                    <tr>
-                        <td>All-Around Kasambahay</td>
-                        <td>Live-Out</td>
-                        <td>Metro Manila (NCR)</td>
-                        <td>₱9,000 - ₱14,000 (plus transport)</td>
-                    </tr>
-                     <tr>
-                        <td>Kasambahay / Yaya</td>
-                        <td>Live-In</td>
-                        <td>Other Major Cities (Cebu, Davao)</td>
-                        <td>₱6,000 - ₱9,000</td>
-                    </tr>
-                    <tr>
-                        <td>Kasambahay / Yaya</td>
-                        <td>Live-In</td>
-                        <td>Provincial Areas</td>
-                        <td>₱4,500 - ₱7,000</td>
-                    </tr>
-                </tbody>
-            </table>
+    <section id="overview" class="scroll-mt-24">
+        <div class="mb-10">
+            <h2 class="text-3xl font-extrabold text-stone-900 mb-4 flex items-center gap-3">
+                <span class="text-teal-600">📊</span> Executive Summary
+            </h2>
+            <p class="text-stone-600 leading-relaxed max-w-3xl">
+                The domestic labor market in 2026 has professionalized significantly. Employers are shifting from purely informal arrangements to structured compensation packages, heavily influenced by regional minimum wages and the demand for specialized childcare and culinary skills.
+            </p>
         </div>
-         <p>
-            <strong>Note:</strong> The official minimum wage in NCR is ₱6,500 as of recent updates. The figures above reflect prevailing market rates, which are often higher due to demand. Employers are legally required to provide SSS, PhilHealth, and Pag-IBIG benefits in addition to the base salary.
-        </p>
-    </div>
-
-    <div class="post-section">
-        <h2>3. Key Market Dynamics & Trends</h2>
-
-        <div class="post-media-container">
-            <canvas id="kasambahayDemandChart"></canvas>
-            <p class="post-media-caption">Chart: Wage growth in NCR vs. Provincial areas for live-in kasambahays.</p>
-        </div>
-
-        <h3>Impact of Batas Kasambahay (Republic Act 10361)</h3>
-        <p>
-            The Domestic Workers Act has been pivotal in formalizing the sector. It mandates minimum wages, social security contributions, and proper employment contracts. While enforcement remains a challenge, it has empowered domestic workers and set a legal standard for employers, leading to gradual improvements in working conditions and compensation.
-        </p>
         
-        <h3>Live-In vs. Live-Out Arrangements</h3>
-        <p>
-           There is a growing preference for live-out arrangements, especially in urban areas. Live-out helpers command a higher salary to cover transportation and living expenses. However, the live-in model remains dominant due to convenience for employers and the provision of accommodation for the worker, which is a significant non-cash benefit.
-        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-t-teal-500">
+                <div class="text-4xl mb-4">📈</div>
+                <p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Y-o-Y Base Increase</p>
+                <p class="text-4xl font-black text-stone-900">8.5<span class="text-xl text-stone-500">%</span></p>
+                <p class="text-sm text-stone-600 mt-2">Average national wage growth for domestic helpers.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-t-coral-500">
+                <div class="text-4xl mb-4">👶</div>
+                <p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Highest Demand Role</p>
+                <p class="text-2xl font-black text-stone-900 mt-2">Newborn Specialist</p>
+                <p class="text-sm text-stone-600 mt-2">Yayas with infant care and CPR certifications command the highest premiums.</p>
+            </div>
+            <div class="glass-card p-8 rounded-3xl border-t-4 border-t-amber-500">
+                <div class="text-4xl mb-4">⚖️</div>
+                <p class="text-stone-400 text-xs font-bold uppercase tracking-widest mb-2">Mandatory Benefits</p>
+                <p class="text-2xl font-black text-stone-900 mt-2">SSS, PHIC, HDMF</p>
+                <p class="text-sm text-stone-600 mt-2">Strict enforcement of employer contributions under the Kasambahay Law.</p>
+            </div>
+        </div>
+    </section>
 
-        <h3>Role of Placement Agencies</h3>
-        <p>
-            Reputable placement agencies are becoming more common. They charge a one-time fee (often equivalent to one month's salary) for vetting, training, and placing workers. While this adds to the initial cost, it provides employers with a degree of security and a guarantee of replacement if the worker leaves prematurely. Agencies often command higher salaries for their sourced candidates.
-        </p>
-    </div>
+    <section id="salaries" class="scroll-mt-24">
+        <div class="mb-10 text-center md:text-left">
+            <h2 class="text-3xl font-extrabold text-stone-900 mb-4">Baseline Compensation Matrix</h2>
+            <p class="text-stone-600 max-w-3xl leading-relaxed mx-auto md:mx-0">
+                The chart below visualizes the average monthly base salaries (in PHP) in Metro Manila for 2026. Note the significant disparity between general housekeeping and specialized childcare, as well as the cost difference between stay-in and stay-out arrangements.
+            </p>
+        </div>
 
-    <div class="post-section">
-        <h2>4. Considerations for Employers</h2>
-        <ul>
-            <li><strong>Adherence to Law is Non-Negotiable:</strong> Ensure you are compliant with the Batas Kasambahay, including wage, benefits (SSS, PhilHealth, Pag-IBIG), and providing a weekly day off.</li>
-            <li><strong>Clearly Define Job Scope:</strong> To avoid disputes, create a clear contract that outlines duties, work hours, and compensation. A Yaya focused solely on childcare should be compensated differently from an all-around Kasambahay.</li>
-            <li><strong>Factor in Total Cost:</strong> The total cost of employment is not just the salary. It includes benefits, food, and utilities (for live-in staff). Budget accordingly to ensure you can sustainably meet your obligations.</li>
-        </ul>
-    </div>
-</div>
+        <div class="glass-card p-6 md:p-10 rounded-[2.5rem]">
+            <div class="chart-container">
+                <canvas id="baseSalaryChart"></canvas>
+            </div>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 bg-stone-50 p-6 rounded-2xl border border-stone-200">
+                <div>
+                    <h4 class="font-bold text-stone-900 flex items-center gap-2"><span class="text-xl">🧹</span> Housekeeper (Ate)</h4>
+                    <p class="text-sm text-stone-600 mt-2">Stay-out arrangements command higher cash salaries to offset the lack of provided food, lodging, and utilities, which are typically absorbed by the employer in stay-in setups.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-stone-900 flex items-center gap-2"><span class="text-xl">🍼</span> Babysitter (Yaya)</h4>
+                    <p class="text-sm text-stone-600 mt-2">Yayas generally earn 20-30% more than general housekeepers due to the specialized nature of childcare, liability, and the required attention to detail.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="regions" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div>
+            <h2 class="text-3xl font-extrabold text-stone-900 mb-6">Regional Wage Disparities</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                Compensation varies drastically depending on the location of the household. Metro Manila (NCR) remains the highest-paying region, acting as the benchmark index (100%).
+            </p>
+            <div class="space-y-4">
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-stone-200 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-stone-800 text-white flex items-center justify-center font-bold">NCR</div>
+                    <div class="flex-1">
+                        <p class="font-bold text-stone-900">Metro Manila</p>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest">Baseline (100%)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-stone-200 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-stone-200 text-stone-700 flex items-center justify-center font-bold">CEB</div>
+                    <div class="flex-1">
+                        <p class="font-bold text-stone-900">Metro Cebu</p>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest">Visayas Hub (85%)</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 p-4 rounded-2xl bg-white border border-stone-200 shadow-sm">
+                    <div class="w-12 h-12 rounded-full bg-stone-200 text-stone-700 flex items-center justify-center font-bold">DVO</div>
+                    <div class="flex-1">
+                        <p class="font-bold text-stone-900">Metro Davao</p>
+                        <p class="text-xs text-stone-500 uppercase tracking-widest">Mindanao Hub (80%)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="glass-card p-8 md:p-10 rounded-[2.5rem]">
+            <h3 class="text-center text-xs font-bold text-stone-400 uppercase tracking-widest mb-6">Regional Salary Index</h3>
+            <div class="chart-container" style="height: 300px;">
+                <canvas id="regionalChart"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div class="glass-card p-8 md:p-10 rounded-[2.5rem] order-2 lg:order-1">
+            <h3 class="text-center text-xs font-bold text-stone-400 uppercase tracking-widest mb-6">Skill Premium Valuation</h3>
+            <div class="chart-container" style="height: 320px;">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </div>
+        <div class="order-1 lg:order-2">
+            <h2 class="text-3xl font-extrabold text-stone-900 mb-6">The Skill Premium</h2>
+            <p class="text-stone-600 mb-8 leading-relaxed text-lg">
+                In 2026, finding a "generalist" is giving way to hiring specialists. Specific skills allow domestic helpers to negotiate significant premiums on top of their base salary.
+            </p>
+            <ul class="space-y-4">
+                <li class="flex items-start gap-4">
+                    <span class="text-2xl">🗣️</span>
+                    <div>
+                        <h4 class="font-bold text-stone-900">English Fluency (+15%)</h4>
+                        <p class="text-sm text-stone-500">Highly sought after by expat families and households emphasizing early childhood language development.</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-4">
+                    <span class="text-2xl">🍳</span>
+                    <div>
+                        <h4 class="font-bold text-stone-900">Specialized Cooking (+20%)</h4>
+                        <p class="text-sm text-stone-500">Ability to follow dietary restrictions (vegan, keto) or cook specific international cuisines.</p>
+                    </div>
+                </li>
+                <li class="flex items-start gap-4">
+                    <span class="text-2xl">⚕️</span>
+                    <div>
+                        <h4 class="font-bold text-stone-900">Infant Care & First Aid (+25%)</h4>
+                        <p class="text-sm text-stone-500">Formal training in newborn handling, CPR, and pediatric first aid commands the highest premium.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="calculator" class="scroll-mt-24 pb-16">
+        <div class="bg-stone-900 text-white rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
+            <div class="absolute -top-24 -right-24 w-96 h-96 bg-teal-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-coral-500/20 rounded-full blur-[80px] pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-5xl font-black mb-4">Kasambahay Cost Estimator</h2>
+                    <p class="text-stone-400 text-lg">
+                        Calculate the estimated total monthly cost for hiring domestic help in 2026, including skill premiums and mandatory government contributions.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold uppercase tracking-widest text-teal-400">Primary Role</label>
+                        <select id="calcRole" class="w-full bg-stone-800 border border-stone-700 text-white p-4 rounded-xl outline-none focus:ring-2 focus:ring-teal-500 cursor-pointer">
+                            <option value="ate_stayin">Housekeeper (Ate) - Stay-in</option>
+                            <option value="ate_stayout">Housekeeper (Ate) - Stay-out</option>
+                            <option value="yaya_stayin">Babysitter (Yaya) - Stay-in</option>
+                            <option value="yaya_stayout">Babysitter (Yaya) - Stay-out</option>
+                            <option value="yaya_newborn">Newborn Specialist - Stay-in</option>
+                        </select>
+                    </div>
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold uppercase tracking-widest text-teal-400">Household Location</label>
+                        <select id="calcRegion" class="w-full bg-stone-800 border border-stone-700 text-white p-4 rounded-xl outline-none focus:ring-2 focus:ring-teal-500 cursor-pointer">
+                            <option value="1.0">Metro Manila (NCR)</option>
+                            <option value="0.85">Metro Cebu</option>
+                            <option value="0.80">Metro Davao</option>
+                            <option value="0.65">Provincial / Rural Areas</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-10">
+                    <label class="text-xs font-bold uppercase tracking-widest text-coral-400 block mb-4 text-center">Required Specialized Skills (Select Multiples)</label>
+                    <div class="flex flex-wrap justify-center gap-3">
+                        <label class="flex items-center gap-2 bg-stone-800 border border-stone-700 px-4 py-3 rounded-xl cursor-pointer hover:bg-stone-700 transition-colors">
+                            <input type="checkbox" class="skill-checkbox rounded text-teal-500 focus:ring-teal-500" value="0.15">
+                            <span class="text-sm font-semibold">Fluent English</span>
+                        </label>
+                        <label class="flex items-center gap-2 bg-stone-800 border border-stone-700 px-4 py-3 rounded-xl cursor-pointer hover:bg-stone-700 transition-colors">
+                            <input type="checkbox" class="skill-checkbox rounded text-teal-500 focus:ring-teal-500" value="0.20">
+                            <span class="text-sm font-semibold">Specialized Cooking</span>
+                        </label>
+                        <label class="flex items-center gap-2 bg-stone-800 border border-stone-700 px-4 py-3 rounded-xl cursor-pointer hover:bg-stone-700 transition-colors">
+                            <input type="checkbox" class="skill-checkbox rounded text-teal-500 focus:ring-teal-500" value="0.25">
+                            <span class="text-sm font-semibold">First Aid / CPR</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="flex justify-center mb-12">
+                    <button id="calculateBtn" class="bg-teal-600 hover:bg-teal-500 text-white font-bold py-4 px-12 rounded-full transition-all shadow-lg uppercase tracking-widest text-sm">
+                        Calculate Estimated Cost
+                    </button>
+                </div>
+
+                <div id="calcResultArea" class="hidden transition-all duration-500 opacity-0 translate-y-4">
+                    <div class="bg-stone-800 p-8 rounded-3xl border border-stone-700 text-center">
+                        <p class="text-xs font-bold text-stone-400 mb-2 uppercase tracking-widest">Total Estimated Monthly Cost</p>
+                        <div class="flex items-center justify-center gap-3 mb-6">
+                            <span class="text-3xl text-teal-500 font-bold">₱</span>
+                            <span id="totalCost" class="text-6xl md:text-7xl font-black text-white tracking-tighter">0</span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 max-w-lg mx-auto text-left border-t border-stone-700 pt-6">
+                            <div>
+                                <p class="text-[10px] uppercase text-stone-500 font-bold">Est. Base + Premium</p>
+                                <p class="text-lg font-semibold text-stone-300">₱<span id="baseCost">0</span></p>
+                            </div>
+                            <div>
+                                <p class="text-[10px] uppercase text-stone-500 font-bold">Mandatory Benefits (Est.)</p>
+                                <p class="text-lg font-semibold text-stone-300">₱<span id="benefitsCost">0</span></p>
+                            </div>
+                        </div>
+                        <p class="mt-6 text-xs text-stone-500 italic">
+                            * Mandatory benefits estimate includes approximate employer share for SSS, PhilHealth, and Pag-IBIG. Excludes 13th-month pay accrual and daily household consumption (food/utilities for stay-in).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
 
 <script>
-    setTimeout(() => {
-        const ctx = document.getElementById('kasambahayDemandChart');
-        if (ctx && typeof Chart !== 'undefined') {
-            if (window.myCharts && window.myCharts.kasambahayDemandChart) {
-                window.myCharts.kasambahayDemandChart.destroy();
-            }
+    // Ensure that the script runs in the global scope and doesn't conflict
+    // with the existing chart instances by using the window.myCharts object.
+    
+    // Check if Chart.js is loaded
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js is not loaded. Please ensure it is included in your main page.');
+    } else {
+        // Use a local scope to avoid polluting the global namespace
+        (() => {
+            const chartIds = ['baseSalaryChart', 'regionalChart', 'skillsChart'];
 
-            const chartData = {
-                labels: ['2023', '2024', '2025', '2026'],
-                datasets: [{
-                    label: 'NCR (Metro Manila)',
-                    data: [6000, 6500, 7000, 7500],
-                    borderColor: '#312e81', 
-                    backgroundColor: 'transparent',
-                    borderWidth: 3,
-                    type: 'line',
-                    tension: 0.3
-                }, {
-                    label: 'Provincial Areas',
-                    data: [4000, 4500, 5000, 5000],
-                    borderColor: '#475569', 
-                    backgroundColor: 'transparent',
-                    borderWidth: 3,
-                    type: 'line', 
-                    borderDash: [5, 5],
-                    tension: 0.3
-                }]
+            const wrapLabel = (text) => {
+                if (window.innerWidth < 480 && text.length > 12) { // Shorter length for mobile
+                    const words = text.split(' ');
+                    let lines = [];
+                    let curr = '';
+                    for (let w of words) {
+                        if ((curr + w).length > 12) {
+                            if (curr) lines.push(curr.trim());
+                            curr = w + ' ';
+                        } else {
+                            curr += w + ' ';
+                        }
+                    }
+                    if (curr) lines.push(curr.trim());
+                    return lines;
+                }
+                if (text.length <= 16) return text;
+                const words = text.split(' ');
+                let lines = [];
+                let curr = '';
+                for (let w of words) {
+                    if ((curr + w).length > 16) {
+                        if (curr) lines.push(curr.trim());
+                        curr = w + ' ';
+                    } else {
+                        curr += w + ' ';
+                    }
+                }
+                if (curr) lines.push(curr.trim());
+                return lines;
             };
 
-            const chartConfig = {
-                type: 'bar', 
-                data: chartData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            title: { display: true, text: 'Average Monthly Wage (PHP)' }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        title: {
-                            display: true,
-                            text: 'Kasambahay Wage Growth (Live-In)',
-                            font: { size: 16, family: 'var(--font-primary)' }
-                        }
+            const standardTooltipConfig = {
+                callbacks: {
+                     title: function(tooltipItems) {
+                        const item = tooltipItems[0];
+                        let label = item.chart.data.labels[item.dataIndex];
+                        if (Array.isArray(label)) return label.join(' ');
+                        return label;
                     }
                 }
             };
 
-            window.myCharts.kasambahayDemandChart = new Chart(ctx, chartConfig);
-        }
-    }, 200);
+            Chart.defaults.font.family = "'Outfit', sans-serif";
+            Chart.defaults.color = '#78716c';
+
+            function initBaseSalaryChart() {
+                const ctx = document.getElementById('baseSalaryChart');
+                if (!ctx) return;
+                
+                const labels = [
+                    'Ate (Stay-in)', 
+                    'Ate (Stay-out)', 
+                    'Yaya (Stay-in, Toddler)', 
+                    'Yaya (Stay-out, Toddler)', 
+                    'Newborn Specialist'
+                ].map(wrapLabel);
+
+                window.myCharts.baseSalaryChart = new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Avg. Monthly Salary (PHP)',
+                            data: [10000, 13000, 12000, 15000, 18000],
+                            backgroundColor: ['#0d9488', '#0d9488', '#f43f5e', '#f43f5e', '#f59e0b'],
+                            borderRadius: 8,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                ...standardTooltipConfig,
+                                backgroundColor: 'rgba(41, 37, 36, 0.95)',
+                                titleFont: { size: 14, weight: 'bold' },
+                                bodyFont: { size: 15, weight: 'bold' },
+                                padding: 12,
+                                callbacks: {
+                                    ...standardTooltipConfig.callbacks,
+                                    label: (context) => ' ₱' + context.parsed.y.toLocaleString()
+                                }
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                grid: { color: 'rgba(0,0,0,0.05)', drawBorder: false },
+                                ticks: { callback: v => '₱' + (v/1000) + 'k', font: { weight: '600' } }
+                            },
+                            x: {
+                                grid: { display: false, drawBorder: false },
+                                ticks: { font: { weight: '600' } }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function initRegionalChart() {
+                const ctx = document.getElementById('regionalChart');
+                if (!ctx) return;
+                window.myCharts.regionalChart = new Chart(ctx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Metro Manila', 'Metro Cebu', 'Metro Davao', 'Rest of Luzon', 'Provincial Vis/Min'],
+                        datasets: [{
+                            label: 'Wage Index (%)',
+                            data: [100, 85, 80, 75, 65],
+                            backgroundColor: ['#292524', '#0d9488', '#0f766e', '#a8a29e', '#d6d3d1'],
+                            borderRadius: 6,
+                            barPercentage: 0.7
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                ...standardTooltipConfig,
+                                backgroundColor: 'rgba(41, 37, 36, 0.95)',
+                                titleFont: { size: 14 },
+                                bodyFont: { size: 15, weight: 'bold' },
+                                callbacks: {
+                                     ...standardTooltipConfig.callbacks,
+                                    label: (context) => ' ' + context.parsed.x + '% of NCR'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                max: 110,
+                                grid: { color: 'rgba(0,0,0,0.05)' },
+                                ticks: { callback: v => v + '%' }
+                            },
+                            y: {
+                                grid: { display: false },
+                                ticks: { font: { weight: '600' } }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function initSkillsChart() {
+                const ctx = document.getElementById('skillsChart');
+                if(!ctx) return;
+                window.myCharts.skillsChart = new Chart(ctx.getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: [
+                            'Base Salary',
+                            'Infant/CPR (+25%)',
+                            'Cooking (+20%)',
+                            'English Fluency (+15%)'
+                        ],
+                        datasets: [{
+                            data: [100, 25, 20, 15],
+                            backgroundColor: ['#e7e5e4', '#f43f5e', '#f59e0b', '#0d9488'],
+                            borderWidth: 0,
+                            hoverOffset: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '70%',
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                ...standardTooltipConfig,
+                                backgroundColor: 'rgba(41, 37, 36, 0.95)',
+                                bodyFont: { size: 14, weight: 'bold' },
+                                padding: 12,
+                                callbacks: {
+                                    ...standardTooltipConfig.callbacks,
+                                    label: (context) => ' Value Add: ' + context.parsed + '%'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function executeCalculation() {
+                const roleBases = {
+                    'ate_stayin': 10000,
+                    'ate_stayout': 13000,
+                    'yaya_stayin': 12000,
+                    'yaya_stayout': 15000,
+                    'yaya_newborn': 18000
+                };
+                
+                const roleEl = document.getElementById('calcRole');
+                const regionEl = document.getElementById('calcRegion');
+
+                if(!roleEl || !regionEl) return;
+
+                const roleKey = roleEl.value;
+                const regionMultiplier = parseFloat(regionEl.value);
+                
+                let baseSalary = roleBases[roleKey] * regionMultiplier;
+                
+                let skillMultiplier = 0;
+                document.querySelectorAll('.skill-checkbox:checked').forEach(checkbox => {
+                    skillMultiplier += parseFloat(checkbox.value);
+                });
+
+                const finalSalary = Math.round(baseSalary + (baseSalary * skillMultiplier));
+                
+                const benefitsEst = Math.round(finalSalary * 0.11); 
+                const totalCost = finalSalary + benefitsEst;
+
+                const resultArea = document.getElementById('calcResultArea');
+                const totalCostEl = document.getElementById('totalCost');
+                const baseCostEl = document.getElementById('baseCost');
+                const benefitsCostEl = document.getElementById('benefitsCost');
+
+                if (!resultArea || !totalCostEl || !baseCostEl || !benefitsCostEl) return;
+
+                resultArea.classList.remove('hidden');
+                
+                setTimeout(() => {
+                    resultArea.style.opacity = '1';
+                    resultArea.style.transform = 'translateY(0)';
+                }, 50);
+
+                totalCostEl.textContent = totalCost.toLocaleString();
+                baseCostEl.textContent = finalSalary.toLocaleString();
+                benefitsCostEl.textContent = benefitsEst.toLocaleString();
+            }
+
+            // Cleanup previous event listeners before adding new ones
+            const calcBtn = document.getElementById('calculateBtn');
+            if (calcBtn) {
+                 // Clone and replace the button to remove all old listeners
+                const newBtn = calcBtn.cloneNode(true);
+                calcBtn.parentNode.replaceChild(newBtn, calcBtn);
+                newBtn.addEventListener('click', executeCalculation);
+            }
+
+            // Initialize charts
+            initBaseSalaryChart();
+            initRegionalChart();
+            initSkillsChart();
+        })();
+    }
 </script>
