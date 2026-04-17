@@ -1,0 +1,81 @@
+[33m005cbbf[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Fix: Restore accidentally deleted analyze button
+[33m9cdd797[m Fix: Enhance AI response handling logic
+[33m1bcc6b3[m Fix: Add logic to enable file attachment functionality
+[33m4463c16[m Refactor: Remove blog data dependency for salary prediction
+[33m7dac0da[m Update to JSON format for Gemma 4
+[33m9bcd1f9[m Update .gitignore
+[33mbec16fd[m Add Gemma 4 analysis function
+[33m0839790[m Implement salary data extraction script and automation
+[33m05a05f5[m Fix: Prevent horizontal overflow from salary ticker
+[33ma416a6e[m Fix: Add top padding to post title
+[33m81c2372[m Refactor: Improve readability of Key Market Trends section
+[33m701ad5b[m Fix: Correct report layout and chart script
+[33mca6317a[m Fix: Resolve layout and chart rendering issues in labor market report
+[33mc32aba0[m Feat: Add 2026 labor market analysis content
+[33mf0c9fe5[m Fix: Resolve chart and estimator script conflicts in driver report
+[33mb8b8921[m Fix: Driver report UI, chart, and estimator issues
+[33m51142e5[m Feat: Update driver salary report content
+[33m49a469e[m Fix: UI layout, font color, and post title
+[33m36e39b1[m Feat: Kasambahay 블로그 게시물 업데이트
+[33m9207471[m Fix: 블로그 및 문의하기 양식 오류 수정
+[33m3153d1e[m Revert "블로그 게시물 수정 및 차트 오류 해결"
+[33mf5a2e25[m 블로그 게시물 수정 및 차트 오류 해결
+[33m45d2d74[m feat: Implement asynchronous Formspree submission
+[33mf4ccc2c[m feat: Standardize blog post styling and structure
+[33mb5dd739[m fix: Implement robust scrolling and responsive improvements
+[33m33d5802[m fix(css): Resolve header overlap and improve responsive layout
+[33m315c6d9[m fix: Remove sticky header and improve responsive design
+[33m3c09e6f[m fix: Force style updates with !important
+[33m5cc873e[m fix: Improve readability and mobile layout
+[33mb64286b[m fix: Resolve blog title overlap and contact form UI
+[33m52975de[m fix: Improve readability and mobile layout
+[33m6ab8c83[m feat: Revamp entire website design for modern UI/UX
+[33m2099fa2[m fix(mobile-layout): ensure content fills width and prevent overflow issues
+[33m13912ac[m fix: resolve mobile layout, table clipping, and chart visibility issues
+[33m8f89fd5[m feat: improve mobile readability and add table zoom modal
+[33mcb9aa35[m fix: resolve mobile layout issues
+[33mdc98dc9[m feat: make website mobile-friendly
+[33ma4d5a2f[m Chore: kasambahay-report-2026.html 리서치 결과물로 교체
+[33m96b0df8[m Fix: 블로그 게시물 제목 및 링크 수정
+[33m6b9d06c[m Fix: Final design unification for driver salary report
+[33me507afa[m Fix: Restore incorrect content for driver salary report
+[33m711fed4[m Fix: Unify blog post styles and update post list
+[33m1018c61[m Fix: Update blog post list to include new article
+[33mdc1bd25[m Feat: Add new blog post 'Kasambahay and Yaya Market'
+[33mf100132[m Fix: Update contact information and remove social media links
+[33me2a85c1[m Feat: Overhaul Contact Us section with a new design and form
+[33m06d56b3[m Style: Enhance blog post list readability
+[33m0f2a55c[m Refactor: Remove redundant Salary Dashboard section
+[33m20d15b1[m Feat: Add dynamic salary ticker for key job roles
+[33m5ce0590[m Feat: Update labor market report with complete and detailed content
+[33mca516f2[m Fix: Adjust Y-axis start value on regional minimum wage chart
+[33ma1ceb70[m Fix: Resolve chart conflicts when switching blog posts
+[33mbd35aef[m Fix: Resolve blog loading issue and prioritize newest post
+[33m38ae85a[m Feat: Add new blog post '2026 Labor Market Analysis'
+[33m2093fa3[m Feat: Implement SPA-like navigation for focused content views
+[33mb397649[m Fix: Resolve broken chart and calculator in dynamic blog posts
+[33m09ff07b[m Fix: Correct broken blog post styling
+[33mccd8dca[m Feat: Implement dynamic blog loading and UI improvements
+[33mb9447fa[m Feat: Add driver salary report post and simplify blog list
+[33mb6f58b1[m Feat: Refactor blog rendering system
+[33m59a570e[m Docs: Update driver salary report with new design
+[33m2d22649[m Feat: Allow PDF and Word document uploads for resume analysis
+[33m20957a3[m Fix: Reorder sections and fix resume analyzer functionality
+[33m8a0daa5[m Hide blog section on main page, reveal on menu click
+[33mcdd4851[m refactor: Revamp resume analysis to 'Salary Sonar' feature
+[33m06f83fc[m chore: Clean up dev environment config and track project files
+[33mfaee694[m fix: Remove problematic Pages Function causing build failure
+[33maa762d3[m feat: Implement robust build process and create dist folder
+[33m550d131[m fix: Restore build script in package.json to enable deployment
+[33mce047fd[m fix: Remove node_modules from git to fix Cloudflare deployment
+[33m75861a6[m refactor: Overhaul UX/UI for professionalism and trust
+[33m1763f27[m fix: Correctly parse and display blog post content
+[33ma9e5d76[m feat: Implement dynamic blog post loading
+[33m89257a4[m feat: Add driver salary data and update build script
+[33m4049673[m feat: Implement scalable salary data pipeline and AI-powered resume scanning
+[33m63d9e34[m Add resume scanning feature
+[33m291df1e[m feat: Add blog page and update styles
+[33m481ed26[m feat: Implement result simulation for salary prediction
+[33mee88b0b[m feat: Complete PinoyPayScale landing page development
+[33m53f4d86[m Upload all worked code to PinoyPayscale repository
+[33md015217[m Initialized workspace with Firebase Studio
