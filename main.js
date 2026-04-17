@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 handleFile(files[0]);
             }
         });
-        elements.dropZone.addEventListener('click', () => elements.fileInput.click());
+        // elements.dropZone.addEventListener('click', () => elements.fileInput.click()); // REMOVED THIS LINE
         elements.fileInput.addEventListener('change', () => handleFile(elements.fileInput.files[0]));
         elements.analyzeButton.addEventListener('click', () => {
             const file = elements.fileInput.files[0];
