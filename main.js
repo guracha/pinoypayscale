@@ -207,9 +207,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     
-    function handleNavigation(hash) {
+    function handleNavigation(hash, shouldScroll = true) {
         if (!hash || hash === '#') {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (shouldScroll) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
             return;
         }
 
@@ -226,12 +228,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     loadPost(postLink.dataset.file);
                 }
                 
-                // Scroll to the blog section itself, not the post content
-                customScrollTo(elements.blogSection);
+                if (shouldScroll) {
+                    customScrollTo(elements.blogSection);
+                }
             }
         } else {
             const targetElement = document.getElementById(targetId);
-            if (targetElement) {
+            if (targetElement && shouldScroll) {
                 customScrollTo(targetElement);
             }
         }
@@ -253,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 handleFile(files[0]);
             }
         });
-        // elements.dropZone.addEventListener('click', () => elements.fileInput.click()); // REMOVED THIS LINE
         elements.fileInput.addEventListener('change', () => handleFile(elements.fileInput.files[0]));
         elements.analyzeButton.addEventListener('click', () => {
             const file = elements.fileInput.files[0];
@@ -277,38 +279,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const href = anchor.getAttribute('href');
         
-        // Handle header home click
         if (anchor.parentElement.tagName === 'H1') {
             e.preventDefault();
             history.pushState(null, '', ' ');
-            handleNavigation('#');
+            handleNavigation('#', true);
             return;
         }
 
         if (href && href.startsWith('#')) {
             e.preventDefault();
             history.pushState(null, '', href);
-            handleNavigation(href);
+            handleNavigation(href, true);
         }
     });
 
     window.addEventListener('popstate', () => {
-        handleNavigation(window.location.hash);
+        handleNavigation(window.location.hash, true);
     });
 
     // --- INITIALIZATION --- //
     function initializeApp() {
         initializeBlog();
         
-        // If a URL hash exists (e.g., #blog, #post-1), navigate to that section.
-        // This is for handling deep links.
         const initialHash = window.location.hash;
+
         if (initialHash) {
-            // Use a short timeout to ensure the browser has finished rendering before we try to scroll.
-            setTimeout(() => handleNavigation(initialHash), 100);
+            // A user is loading a page with a hash (e.g., from a bookmark or link).
+            // Load the content, but DON'T scroll. The browser handles the initial jump.
+            handleNavigation(initialHash, false); 
         } else {
-            // If no hash is present in the URL, ensure the page is scrolled to the very top.
-            // This prevents the browser from automatically restoring a previous scroll position on refresh.
+            // This is a fresh visit to the root URL.
+            // Load the MOST RECENT post by default (the first in the array).
+            const mostRecentPost = availablePosts[0];
+            if (mostRecentPost) {
+                const postLink = elements.postList.querySelector(`a[data-file="${mostRecentPost.file}"]`);
+                if(postLink) {
+                    // Activate the link in the list
+                    postLink.classList.add('active');
+                    // Load the post content
+                    loadPost(mostRecentPost.file);
+                    // Update the URL hash without creating a new history entry
+                    history.replaceState(null, '', postLink.href); 
+                }
+            }
+            // On a fresh load, ALWAYS ensure the viewport is at the top.
             window.scrollTo(0, 0);
         }
     }
