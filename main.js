@@ -300,22 +300,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function initializeApp() {
         initializeBlog();
         
-        // Handle initial page load based on URL
+        // If a URL hash exists (e.g., #blog, #post-1), navigate to that section.
+        // This is for handling deep links.
         const initialHash = window.location.hash;
         if (initialHash) {
-            handleNavigation(initialHash);
+            // Use a short timeout to ensure the browser has finished rendering before we try to scroll.
+            setTimeout(() => handleNavigation(initialHash), 100);
         } else {
-            // Load the first post by default if no hash
-            const firstPost = availablePosts[0];
-            if (firstPost) {
-                const firstLink = elements.postList.querySelector(`a[data-file="${firstPost.file}"]`);
-                if(firstLink) {
-                    firstLink.classList.add('active');
-                    // Use replaceState to not pollute history on first load
-                    history.replaceState(null, '', firstLink.href); 
-                    loadPost(firstPost.file);
-                }
-            }
+            // If no hash is present in the URL, ensure the page is scrolled to the very top.
+            // This prevents the browser from automatically restoring a previous scroll position on refresh.
+            window.scrollTo(0, 0);
         }
     }
 
