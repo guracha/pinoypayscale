@@ -34,6 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (ui.analyzerDropZone) {
+        // Allow clicking anywhere on the drop zone to open the file dialog
+        ui.analyzerDropZone.addEventListener('click', () => {
+            ui.resumeFileInput.click();
+        });
+
         // Prevent default drag behaviors
         ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
             ui.analyzerDropZone.addEventListener(eventName, preventDefaults, false);
@@ -138,9 +143,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function extractTextFromFile(file) {
         const extension = file.name.split('.').pop().toLowerCase();
-        const reader = new FileReader();
 
         return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            
             reader.onload = async (event) => {
                 try {
                     const arrayBuffer = event.target.result;
@@ -156,21 +162,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else if (extension === 'docx') {
                         const result = await mammoth.extractRawText({ arrayBuffer });
                         resolve(result.value);
-                    } else { // txt or other text-based formats
-                        reader.onload = (e) => resolve(e.target.result);
-                        reader.readAsText(file);
+                    } else { // txt and other simple text formats
+                        resolve(new TextDecoder().decode(arrayBuffer));
                     }
                 } catch (error) {
                     reject(error);
                 }
             };
+
             reader.onerror = (error) => reject(error);
 
-            if (extension === 'pdf' || extension === 'docx') {
-                reader.readAsArrayBuffer(file);
-            } else {
-                // Let the inner onload handle reading as text
-            }
+            reader.readAsArrayBuffer(file);
         });
     }
 
