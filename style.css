@@ -406,4 +406,22 @@ footer {
     /* Increase touch target size for mobile nav */
     header nav li { margin-left: 1rem; }
     header nav a { padding: 0.5rem; }
+
+    /* Hamburger Menu */
+    .nav-toggle {
+        display: block;
+        cursor: pointer;
+        /* Style your hamburger icon here */
+    }
+
+    nav ul {
+        display: none; /* Hide the nav by default */
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul.active {
+        display: flex; /* Show the nav when active */
+    }
 }
