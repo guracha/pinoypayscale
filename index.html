@@ -1,162 +1,159 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PinoyPayScale: 2026 PH Salary Guide</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.19/mammoth.browser.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
+    <title>PinoyPayScale: 2026 PH Salary & Career Guide</title>
 
-    <header>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <nav class="w-full flex items-center justify-between">
-                <h1 style="cursor:pointer;" onclick="window.location.hash='''">PinoyPayScale</h1>
-                <div class="md:hidden">
-                    <button class="nav-toggle">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
-                <ul class="hidden md:flex items-center space-x-8">
-                    <li><a href="#blog">Blog</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Unlock your earning potential. Leverage our 2026 salary guide and AI-powered tools to navigate your career path with confidence in the Philippines.">
+    <meta name="keywords" content="philippines salary, salary guide philippines, job market philippines, career advice, resume analyzer, salary calculator">
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+<body class="bg-slate-50">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-40 shadow-sm">
+        <nav class="container mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <h1 class="text-2xl font-bold text-slate-800">
+                <a href="#" class="hover:text-indigo-600">PinoyPayScale</a>
+            </h1>
+            <button class="nav-toggle md:hidden">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-menu hidden md:flex items-center space-x-8">
+                <li><a href="#resume-analyzer" class="text-slate-600 hover:text-indigo-500 font-medium">Resume Analyzer</a></li>
+                <li><a href="#blog" class="text-slate-600 hover:text-indigo-500 font-medium">Salary Insights</a></li>
+                <li><a href="#contact" class="text-slate-600 hover:text-indigo-500 font-medium">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Salary Ticker Section -->
-    <section id="salary-ticker-container" style="overflow: hidden;">
+    <!-- Salary Ticker -->
+    <div id="salary-ticker-container" class="bg-slate-800 text-white py-3 overflow-hidden">
         <div class="ticker-wrap">
             <ul class="ticker-move">
-                <li>Senior Software Developer<span>₱115,000/mo</span></li>
-                <li>Cloud Architect<span>₱160,000/mo</span></li>
-                <li>FP&A Manager<span>₱72,500/mo</span></li>
-                <li>Registered Nurse<span>₱27,000/mo</span></li>
-                <li>Senior Tech Support<span>₱120,000/mo</span></li>
-                <li>Data Analyst<span>₱32,500/mo</span></li>
-                <li>Customer Service Rep<span>₱24,000/mo</span></li>
-                <li>Senior Software Developer<span>₱115,000/mo</span></li>
-                <li>Cloud Architect<span>₱160,000/mo</span></li>
-                <li>FP&A Manager<span>₱72,500/mo</span></li>
-                <li>Registered Nurse<span>₱27,000/mo</span></li>
-                <li>Senior Tech Support<span>₱120,000/mo</span></li>
-                <li>Data Analyst<span>₱32,500/mo</span></li>
-                <li>Customer Service Rep<span>₱24,000/mo</span></li>
+                <!-- Ticker items will be injected by JS -->
             </ul>
         </div>
-    </section>
+    </div>
 
-    <main>
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+
         <!-- Hero Section -->
-        <section id="hero" class="bg-gradient-to-br from-indigo-800 to-blue-900 text-white text-center py-20 px-4 rounded-lg shadow-xl">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-100 text-shadow">
-                    Unlock Your True Market Value in the Philippines
-                </h2>
-                <p class="text-lg md:text-xl text-indigo-200 max-w-3xl mx-auto mb-8 text-shadow-light">
-                    Leverage our 2026 salary guide and AI-powered tools to navigate your career path with confidence.
-                </p>
-                <a href="#resume-analyzer" class="bg-white text-indigo-700 font-bold py-3 px-8 rounded-full shadow-lg hover:bg-indigo-100 transition-transform duration-300 transform hover:scale-105 inline-block">
-                    Analyze Your Resume Now
-                </a>
-            </div>
+        <section id="hero" class="bg-indigo-600 text-white text-center rounded-xl p-10 md:p-20 bg-cover bg-center" style="background-image: linear-gradient(rgba(79, 70, 229, 0.8), rgba(79, 70, 229, 0.9)), url('https://images.unsplash.com/photo-1521737711867-e3b973a5f902?q=80&w=2787&auto=format&fit=crop');">
+            <h2 class="text-4xl md:text-6xl font-extrabold mb-4">Unlock Your True Market Value</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-indigo-100">Leverage our 2026 salary guide and AI-powered tools to navigate your career path with confidence.</p>
+            <a href="#resume-analyzer" class="bg-white text-indigo-600 font-bold py-3 px-8 rounded-full text-lg hover:bg-indigo-100 transition duration-300">Analyze Your Resume Now</a>
         </section>
 
         <!-- Resume Analyzer Section -->
-        <section id="resume-analyzer" class="py-16 bg-slate-100">
-            <div class="max-w-4xl mx-auto px-4 text-center">
-                <!-- Section Header -->
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Unlock Your Earning Potential</h2>
-                <p class="text-lg text-slate-600 mb-12">
-                    Let our AI analyze your resume and provide a data-driven salary estimate based on your skills, experience, and current market trends.
-                </p>
+        <section id="resume-analyzer" class="mt-16 scroll-mt-24">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">Unlock Your Earning Potential</h2>
+                <p class="mt-4 text-lg text-slate-600">Let our AI analyze your resume against millions of data points to provide an estimated salary range and identify key skills.</p>
+            </div>
 
-                <!-- Drop Zone -->
-                <div id="analyzer-drop-zone" class="relative border-4 border-dashed border-slate-300 rounded-2xl p-8 md:p-12 transition-all duration-300 hover:border-indigo-400 hover:bg-slate-50 cursor-pointer">
-                    <!-- Icon and Text -->
-                    <div class="flex flex-col items-center justify-center">
-                        <i class="fas fa-cloud-upload-alt text-6xl text-slate-400 mb-6 transition-all duration-300"></i>
-                        <h3 class="text-xl font-bold text-slate-800">Drag & Drop Your Resume Here</h3>
-                        <p class="text-slate-500 mt-2">or <span class="text-indigo-600 font-semibold">click to browse</span></p>
-                        <p class="text-xs text-slate-400 mt-4">( .pdf, .docx, or .txt files only )</p>
+            <div id="analyzer-drop-zone" class="mt-10 max-w-3xl mx-auto border-4 border-dashed border-slate-300 rounded-xl text-center p-10 cursor-pointer hover:border-indigo-500 transition bg-white">
+                <div class="flex flex-col items-center justify-center space-y-4">
+                     <i class="fas fa-cloud-upload-alt text-5xl text-indigo-400"></i>
+                    <p class="text-lg text-slate-600"><b>Drag & drop your resume here</b></p>
+                    <p class="text-slate-500">or</p>
+                    <label for="resume-file-input" class="bg-indigo-500 text-white font-bold py-2 px-6 rounded-full cursor-pointer hover:bg-indigo-600 transition">Browse Files</label>
+                    <input type="file" id="resume-file-input" class="hidden" accept=".pdf,.doc,.docx,.txt">
+                    <p class="text-xs text-slate-400 mt-4">Supported formats: PDF, DOC, DOCX, TXT</p>
+                </div>
+            </div>
+
+            <div id="file-info" class="mt-6 max-w-3xl mx-auto bg-green-100 border border-green-300 text-green-800 px-4 py-3 rounded-lg text-center" style="display: none;">
+                <span id="file-name-display"></span> ready for analysis.
+            </div>
+
+            <div class="text-center mt-6">
+                 <button id="analyze-button" class="bg-green-600 text-white font-bold py-3 px-10 rounded-full text-xl hover:bg-green-700 transition shadow-lg">Get Salary Estimate</button>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="mt-16 scroll-mt-24">
+            <div class="max-w-4xl mx-auto text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800">2026 Salary & Market Insights</h2>
+                <p class="mt-4 text-lg text-slate-600">In-depth analysis of the Philippine job market, compensation trends, and specific industry reports.</p>
+            </div>
+
+            <div class="blog-layout grid grid-cols-1 md:grid-cols-4 gap-8">
+                <aside id="post-list-container" class="md:col-span-1 bg-slate-100 p-6 rounded-lg">
+                    <h3 class="text-lg font-bold mb-4">Reports & Articles</h3>
+                    <ul class="space-y-2"></ul>
+                </aside>
+
+                <div id="post-content-container" class="md:col-span-3 bg-white p-8 rounded-lg shadow-sm post-content-placeholder">
+                    Select a post from the left to read.
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="mt-16 scroll-mt-24 bg-slate-800 text-white rounded-xl">
+             <div class="contact-container max-w-3xl mx-auto py-12 px-4">
+                <h2 class="text-3xl font-bold text-center mb-4">Get in Touch</h2>
+                <p class="text-center text-slate-300 mb-8">Have questions, feedback, or partnership inquiries? Reach out to us!</p>
+                <form id="contact-form" action="https://formspree.io/f/mzzpnbvy" method="POST" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                    <div class="form-group">
+                        <label for="name" class="block text-sm font-medium text-slate-300">Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:ring-indigo-500 focus:border-indigo-500">
                     </div>
-                    
-                    <!-- Hidden File Input -->
-                    <input type="file" id="resume-file-input" accept=".txt,.pdf,.docx,.doc" class="absolute top-0 left-0 w-full h-full opacity-0 cursor-pointer">
-                </div>
-
-                <!-- File Name Display & Analyze Button -->
-                <div id="file-info" class="mt-6 text-center" style="display: none;">
-                    <p class="text-slate-700 font-medium">File selected: <span id="file-name-display" class="font-bold"></span></p>
-                    <button id="analyze-button" class="mt-4 bg-indigo-600 text-white font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-indigo-700 transition-transform duration-200 hover:scale-105">
-                        <i class="fas fa-cogs mr-2"></i>Analyze My Resume
-                    </button>
-                </div>
-
-                 <!-- Disclaimer -->
-                <p class="mt-8 text-sm text-slate-500">
-                    <i class="fas fa-lock mr-1"></i> Your data is processed securely and is not stored.
-                </p>
+                    <div class="form-group">
+                        <label for="email" class="block text-sm font-medium text-slate-300">Email</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div class="form-group sm:col-span-2">
+                        <label for="message" class="block text-sm font-medium text-slate-300">Message</label>
+                        <textarea name="message" id="message" rows="4" required class="mt-1 block w-full bg-slate-700 border-slate-600 rounded-md shadow-sm py-2 px-3 text-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+                    </div>
+                    <div class="text-center sm:col-span-2">
+                        <button type="submit" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+                <p id="contact-form-status" class="mt-6 text-center"></p>
             </div>
         </section>
 
-        <section id="blog">
-            <h2>Latest Insights & Reports</h2>
-            <div class="blog-layout">
-                <div id="post-list-container">
-                    <h3>All Posts</h3>
-                    <ul></ul>
-                </div>
-                <div id="post-content-container" class="post-content-placeholder">
-                    <!-- Post content will be loaded here by main.js -->
-                </div>
-            </div>
-        </section>
-
-        <section id="contact" class="contact-section-updated">
-    <div class="contact-container">
-        <div class="contact-form" style="width: 100%; text-align: center;">
-            <h3 class="text-white">Get in Touch</h3>
-            <form id="contact-form" action="https://formspree.io/f/myzgyrqq" method="POST" style="margin: 0 auto; max-width: 500px;">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="name" placeholder="Juan Dela Cruz" required class="bg-slate-700 text-white">
-                </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" id="email" name="email" placeholder="juan.delacruz@email.com" required class="bg-slate-700 text-white">
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Let us know how we can help..." required class="bg-slate-700 text-white"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-                <p id="contact-form-status" class="mt-4 text-center text-white"></p>
-            </form>
-        </div>
-    </div>
-</section>
     </main>
 
-    <footer>
-        <p>&copy; 2026 PinoyPayScale. Built for the Filipino Workforce.</p>
+    <!-- Footer -->
+    <footer class="text-center py-8 text-slate-500">
+        <p>&copy; 2024 PinoyPayScale. All Rights Reserved.</p>
     </footer>
 
-    <div id="result-modal" class="modal-overlay">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <div id="salary-estimate-result"></div>
+    <!-- Modal Structure -->
+    <div id="result-modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50 hidden">
+        <div class="modal-content bg-white rounded-lg shadow-xl w-full max-w-md p-6 relative">
+            <button class="close-button absolute top-4 right-4 text-slate-500 hover:text-slate-800 text-2xl">&times;</button>
+            <div id="salary-estimate-result">
+                <!-- Analysis result will be injected here -->
+            </div>
         </div>
     </div>
 
-    <script src="main.js"></script>
+    <!-- JS Libraries -->
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.mjs" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+
+    <!-- Main Application Logic -->
+    <script src="main.js" type="module"></script>
 
 </body>
 </html>
